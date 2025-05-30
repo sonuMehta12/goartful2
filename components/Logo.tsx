@@ -17,9 +17,9 @@ export default function Logo({ className }: { className?: string }) {
     const effectiveTheme = theme === "system" ? systemTheme : theme;
 
     if (effectiveTheme === "dark") {
-      setCurrentLogo("/logofordarktheme.png");
+      setCurrentLogo("/image/logo-dark.png");
     } else {
-      setCurrentLogo("/logo.png");
+      setCurrentLogo("/image/logo-light.png");
     }
   }, [theme, systemTheme]);
 

@@ -1,27 +1,67 @@
 // components/Navbar.tsx
-import React from 'react';
-import Link from 'next/link';
-import { ThemeToggle } from './ThemeToggle';
+"use client";
 
-export default function Navbar() {
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import UserMenu from "./UserMenu";
+import Logo from "./Logo";
+import { useAuth } from "@/components/auth/AuthContext";
+import GoogleIcon from "@/components/icons/GoogleIcon";
+import { ThemeToggle } from "./ThemeToggle";
+import React, { FC } from "react"; // Explicitly import FC if not already
+
+const Navbar: FC = () => {
+  const { user, loading, signInWithGoogle } = useAuth();
+
+  const renderMainAuthAction = () => {
+    if (loading) {
+      return (
+        <Button
+          disabled
+          className="hidden sm:flex w-48 h-10 animate-pulse bg-muted rounded-md"
+        ></Button>
+      );
+    }
+
+    if (!user) {
+      return (
+        <Button
+          onClick={signInWithGoogle}
+          size="lg"
+          className="hidden sm:flex items-center gap-2"
+          type="button"
+        >
+          <GoogleIcon className="h-5 w-5" />
+          <span>Login / Sign Up</span>
+        </Button>
+      );
+    }
+    return null;
+  };
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-14 max-w-7xl items-center">
-        <Link href="/" className="mr-6 flex items-center space-x-2">
-          {/* You can add an SVG logo here if you have one */}
-          <span className="font-bold">goArful</span>
-        </Link>
-        <nav className="flex flex-1 items-center space-x-4">
-          {/* Example nav link */}
-          {/* <Link href="/events" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
-            Events
-          </Link> */}
-        </nav>
-        <div className="flex items-center justify-end space-x-2">
-          <ThemeToggle />
-          {/* Placeholder for Auth Button if needed */}
+      <div className="container mx-auto flex h-16 items-center justify-between px-4">
+        <Logo />
+        <div className="flex items-center gap-2 sm:gap-3">
+          {/* Desktop Navigation Links (Optional - can be added here) */}
+          {/* 
+          <nav className="hidden md:flex items-center space-x-4 lg:space-x-6">
+            <Link href="/explore" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
+              Explore
+            </Link>
+            <Link href="/create" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
+              Create
+            </Link>
+          </nav>
+          */}
+          {renderMainAuthAction()}
+          <ThemeToggle /> {/* ThemeToggle integrated here */}
+          <UserMenu />
         </div>
       </div>
     </header>
   );
-}
+};
+
+export default Navbar;

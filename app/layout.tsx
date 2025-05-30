@@ -1,27 +1,20 @@
 // app/layout.tsx
-import "./globals.css";
-// import { AuthProvider } from "@/components/auth/AuthContext"; // We'll create a placeholder
+import "./globals.css"; // Your global styles
+import { AuthProvider } from "@/components/auth/AuthContext"; // Your AuthProvider
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-// import { Toaster } from "@/components/ui/toaster"; // Ensure you've added toaster via shadcn/ui
-// import { ThemeProvider } from "@/components/ThemeProvider"; // We'll create this
-// import Navbar from "@/components/Navbar"; // We'll create a placeholder
-// import Footer from "@/components/Footer"; // We'll create a placeholder
-import { ReactNode } from "react";
-
-// Assuming these components will be created or already exist:
+import { Toaster } from "@/components/ui/sonner"; // Or your preferred toaster
 import { ThemeProvider } from "@/components/ThemeProvider";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import { AuthProvider } from "@/components/auth/AuthContext"; // Placeholder path
-import { Toaster } from "@/components/ui/sonner"; // shadcn/ui default is Sonner for new projects, or Toaster if you chose that. I'll assume Sonner.
-                                                  // If you added `toast` via `shadcn-ui add toast`, it likely set up Sonner.
+import Navbar from "@/components/Navbar"; // <<< IMPORT THE NEW NAVBAR
+import Footer from "@/components/Footer"; // Your Footer component
+import { ReactNode } from "react";
+import { cn } from "@/lib/utils"; // Utility function for classnames
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" }); // Added variable for Tailwind
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
-  title: "goArful - Live through art",
-  description: "Find and explore events happening around you",
+  title: "goArful - Live through art", // Update as needed
+  description: "Find and explore events happening around you", // Update as needed
 };
 
 interface RootLayoutProps {
@@ -31,22 +24,31 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} font-sans antialiased`}> {/* Added font-sans and antialiased */}
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          inter.variable
+        )}
+      >
         <ThemeProvider
           attribute="class"
-          defaultTheme="system" /* Recommendation: Use "system" */
-          enableSystem /* Recommendation: Enable system preference */
+          defaultTheme="system" // Or your preferred default
+          enableSystem
           disableTransitionOnChange
         >
-          <AuthProvider> {/* Placeholder AuthProvider */}
-            <div className="relative flex min-h-screen flex-col"> {/* Added for sticky footer */}
-              <Navbar /> {/* Placeholder Navbar */}
-              <main className="container mx-auto max-w-7xl flex-grow px-4 py-8"> {/* Adjusted padding */}
+          <AuthProvider>
+            <div className="relative flex min-h-screen flex-col">
+              <Navbar /> {/* <<< USE THE NEW NAVBAR HERE */}
+              <main className="flex-grow pt-0">
+                {" "}
+                {/* Adjusted main */}
+                {/* Content from page.tsx will go here. */}
+                {/* The container for page content should be in individual page.tsx files or a sub-layout */}
                 {children}
               </main>
-              <Footer /> {/* Placeholder Footer */}
+              <Footer />
             </div>
-            <Toaster richColors /> {/* Assuming Sonner Toaster */}
+            <Toaster richColors position="top-right" />
           </AuthProvider>
         </ThemeProvider>
       </body>

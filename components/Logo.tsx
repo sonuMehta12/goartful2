@@ -17,9 +17,9 @@ export default function Logo({ className }: { className?: string }) {
     const effectiveTheme = theme === "system" ? systemTheme : theme;
 
     if (effectiveTheme === "dark") {
-      setCurrentLogo("/image/logo-dark.png");
+      setCurrentLogo("/imgs/logo-dark.svg"); // Dark mode logo
     } else {
-      setCurrentLogo("/image/logo-light.png");
+      setCurrentLogo("/imgs/logo-light.svg"); // Light mode logo
     }
   }, [theme, systemTheme]);
 

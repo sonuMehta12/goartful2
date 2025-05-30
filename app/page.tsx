@@ -213,7 +213,7 @@ export default function HomePage() {
       {/* Search Modal for Mobile */}
       <SearchModal
         isOpen={isSearchModalOpen}
-        onClose={() => setIsSearchModalOpen(false)}
+        onModalClose={() => setIsSearchModalOpen(false)}
         filters={filters}
         onFilterChange={handleFullFilterUpdate} // Use the handler that takes the full SearchFilters object
       />

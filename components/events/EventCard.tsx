@@ -1,5 +1,5 @@
 // components/events/EventCard.tsx
-"use client"; 
+"use client";
 
 import { useState } from "react";
 import Image from "next/image";
@@ -16,16 +16,11 @@ import {
   TicketIcon,
 } from "lucide-react";
 
-import { Event } from "@/lib/types/event"; 
+import { Event } from "@/lib/types/event";
 import { cn, formatCurrency, formatDate } from "@/lib/utils"; // Utilities
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardFooter, CardTitle } from "@/components/ui/card";
 import {
   Tooltip,
   TooltipContent,
@@ -64,7 +59,8 @@ export function EventCard({ event, className }: EventCardProps) {
     },
     hover: {
       y: -5, // Subtle lift
-      boxShadow: "0px 8px 25px -5px hsl(var(--primary) / 0.15), 0px 5px 10px -6px hsl(var(--primary) / 0.1)", // Enhanced shadow
+      boxShadow:
+        "0px 8px 25px -5px hsl(var(--primary) / 0.15), 0px 5px 10px -6px hsl(var(--primary) / 0.1)", // Enhanced shadow
       transition: { duration: 0.2, ease: "easeOut" },
     },
   };
@@ -162,12 +158,18 @@ export function EventCard({ event, className }: EventCardProps) {
               <div
                 className={cn(
                   "text-lg font-bold whitespace-nowrap shrink-0 pl-2",
-                  event.isFree ? "text-emerald-600 dark:text-emerald-500" : "text-primary"
+                  event.isFree
+                    ? "text-emerald-600 dark:text-emerald-500"
+                    : "text-primary"
                 )}
               >
                 {event.isFree
                   ? "FREE"
-                  : formatCurrency(event.price, event.currency, event.currency === "INR" ? "en-IN" : "en-US" )}
+                  : formatCurrency(
+                      event.price,
+                      event.currency,
+                      event.currency === "INR" ? "en-IN" : "en-US"
+                    )}
               </div>
             </div>
 
@@ -183,7 +185,9 @@ export function EventCard({ event, className }: EventCardProps) {
               </div>
               <div className="flex items-center gap-2">
                 <Clock3Icon className="h-4 w-4 shrink-0 text-muted-foreground/80" />
-                <span>{event.startTime} {event.endTime && `- ${event.endTime}`}</span>
+                <span>
+                  {event.startTime} {event.endTime && `- ${event.endTime}`}
+                </span>
               </div>
               <div className="flex items-center gap-2">
                 <MapPinIcon className="h-4 w-4 shrink-0 text-muted-foreground/80" />
@@ -207,42 +211,44 @@ export function EventCard({ event, className }: EventCardProps) {
                 ))}
               </div>
             )}
-            
+
             {/* This spacer pushes the footer to the bottom */}
-            <div className="flex-grow" /> 
+            <div className="flex-grow" />
 
             {/* Footer - Kept lean, for more details, user clicks into the event */}
             <CardFooter className="mt-auto p-0 pt-4 flex justify-between items-center border-t">
-          <TooltipProvider delayDuration={100}>
-            <Tooltip>
-              <TooltipTrigger className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-colors">
-                <AccessibilityIcon className="h-4 w-4" />
-                <span>Accessibility</span>
-              </TooltipTrigger>
-              {/* ... TooltipContent ... */}
-            </Tooltip>
-          </TooltipProvider>
+              <TooltipProvider delayDuration={100}>
+                <Tooltip>
+                  <TooltipTrigger className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-colors">
+                    <AccessibilityIcon className="h-4 w-4" />
+                    <span>Accessibility</span>
+                  </TooltipTrigger>
+                  {/* ... TooltipContent ... */}
+                </Tooltip>
+              </TooltipProvider>
 
-          {typeof event.ticketsLeft === 'number' && (
-             <div
-                className={cn(
-                "flex items-center gap-1 text-xs font-medium", // ADDED flex items-center gap-1
-                event.ticketsLeft <= 10 && event.ticketsLeft > 0
-                    ? "text-destructive animate-pulse"
-                    : event.ticketsLeft === 0
-                    ? "text-destructive/80"
-                    : "text-muted-foreground"
-                )}
-            >
-                <TicketIcon className="h-3.5 w-3.5" /> {/* ADDED ICON */}
-                <span> {/* Wrapped text in span for better control if needed */}
+              {typeof event.ticketsLeft === "number" && (
+                <div
+                  className={cn(
+                    "flex items-center gap-1 text-xs font-medium", // ADDED flex items-center gap-1
+                    event.ticketsLeft <= 10 && event.ticketsLeft > 0
+                      ? "text-destructive"
+                      : event.ticketsLeft === 0
+                      ? "text-destructive/80"
+                      : "text-muted-foreground"
+                  )}
+                >
+                  <TicketIcon className="h-3.5 w-3.5" /> {/* ADDED ICON */}
+                  <span>
+                    {" "}
+                    {/* Wrapped text in span for better control if needed */}
                     {event.ticketsLeft === 0
-                    ? "Sold Out"
-                    : `${event.ticketsLeft} spots left`}
-                </span>
-            </div>
-          )}
-        </CardFooter>
+                      ? "Sold Out"
+                      : `${event.ticketsLeft} spots left`}
+                  </span>
+                </div>
+              )}
+            </CardFooter>
           </CardContent>
         </Card>
       </Link>

@@ -1,5 +1,4 @@
 // components/auth/AuthContext.tsx
-// YOUR PROVIDED AuthContext CODE HERE - IT LOOKS GOOD.
 // Ensure the UserProfile interface here includes at least:
 // uid, email, displayName, photoURL, role, profileComplete
 // (Your provided AuthContext already does this well)

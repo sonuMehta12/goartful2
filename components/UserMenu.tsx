@@ -25,6 +25,7 @@ import {
   Briefcase,
   LogIn,
   Sparkles,
+  Info,
 } from "lucide-react"; // Ensure all used icons are imported
 import { useAuth } from "@/components/auth/AuthContext";
 import Link from "next/link";
@@ -86,6 +87,12 @@ export default function UserMenu() {
             </Link>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
+          <DropdownMenuItem asChild>
+            <Link href="/about-us">
+              <Info className="mr-2 h-4 w-4" />
+              <span>About Us</span>
+            </Link>
+          </DropdownMenuItem>
           <DropdownMenuItem asChild>
             <Link href="/help-center">
               <HelpCircle className="mr-2 h-4 w-4" />

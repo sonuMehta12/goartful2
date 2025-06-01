@@ -19,7 +19,7 @@ const footerLinksColumns: LinkColumn[] = [
   {
     title: "Company",
     links: [
-      { href: "/about", label: "About Us" },
+      { href: "/about-us", label: "About Us" },
       { href: "/careers", label: "Careers" },
       { href: "/press", label: "Press" },
     ],
@@ -36,7 +36,7 @@ const footerLinksColumns: LinkColumn[] = [
     title: "Join Our Community",
     isPartnership: true,
     links: [
-      { href: "/artists", label: "Become a Creative Partner" },
+      { href: "/join-artful", label: "Become a Creative Partner" },
       { href: "/partner-with-us", label: "Partner with GoArtful" },
       { href: "/investors", label: "For Investors" },
     ],

@@ -1,5 +1,5 @@
 // app/events/[slug]/error.tsx
-"use client"; // Error components must be Client Components
+"use client";
 
 import { Button } from "@/components/ui/button";
 import { useEffect } from "react";

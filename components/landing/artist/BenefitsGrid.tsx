@@ -43,7 +43,7 @@ const benefits: Benefit[] = [
     icon: Settings2, // Representing tools & support
     title: "We Handle the Logistics",
     description:
-      "Focus on your art, we'll help with booking, (future) payments, and the essential tools to manage your experiences smoothly.",
+      "Focus on your art, we'll provide you supplies and space with zero cost, payments, and the essential tools to run and manage your experiences smoothly.",
     iconBgClass: "bg-amber-500/10 text-amber-600",
   },
   {

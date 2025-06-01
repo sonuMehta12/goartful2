@@ -80,7 +80,7 @@ export default function UserMenu() {
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
-            <Link href="/how-it-works">
+            <Link href="/join-artful#how-it-works-artists">
               <Sparkles className="mr-2 h-4 w-4" />
               <span>How GoArtful Works</span>
             </Link>

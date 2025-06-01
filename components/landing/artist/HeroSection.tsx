@@ -11,12 +11,13 @@ const HeroSection = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Image Section - Now first in DOM order for mobile */}
-          <div className="relative aspect-square lg:aspect-[5/4] rounded-2xl overflow-hidden shadow-2xl group lg:order-last">
+          <div className="relative w-full min-h-[400px] lg:min-h-[500px] rounded-2xl overflow-hidden group lg:order-last flex items-center justify-center">
             <Image
-              src="https://images.unsplash.com/photo-1582504305687-b3d3a70df5b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+              src="/imgs/Artist-teaching.png"
               alt="Artist passionately teaching a small group in a cozy studio setting"
-              fill
-              className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+              width={800}
+              height={600}
+              className="w-full h-auto max-h-[600px] group-hover:scale-105 transition-transform duration-700 ease-out"
               priority
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>

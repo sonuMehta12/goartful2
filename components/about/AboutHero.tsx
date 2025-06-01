@@ -15,8 +15,8 @@ const AboutHero = () => {
             </h1>
             <p className="text-lg sm:text-xl text-muted-foreground mb-4 leading-relaxed max-w-xl mx-auto lg:mx-0">
               Every stroke, every note, every carefully crafted piece carries a
-              fragment of an artist's soul. Yet, for too many talented creators
-              across India, this passion often meets unseen walls.
+              fragment of an artist&apos;s soul. Yet, for too many talented
+              creators across India, this passion often meets unseen walls.
             </p>
             <p className="text-md text-muted-foreground leading-relaxed max-w-xl mx-auto lg:mx-0">
               We saw artists struggling to share their unique vision, to find an
@@ -28,7 +28,7 @@ const AboutHero = () => {
           </div>
           <div className="relative aspect-[4/3] sm:aspect-square lg:aspect-[5/4] rounded-xl overflow-hidden shadow-2xl group mx-auto lg:mx-0 max-w-md lg:max-w-none">
             <Image
-              src="https://images.unsplash.com/photo-1508144849972-f8f356ab0f46?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=70"
+              src="/imgs/About-hero.png"
               alt="Close-up of an Indian artist's hands carefully working on a traditional art piece"
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"

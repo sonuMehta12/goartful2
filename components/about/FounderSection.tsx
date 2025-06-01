@@ -21,7 +21,7 @@ const FounderSection = ({
             <div className="relative aspect-[4/5] sm:aspect-square lg:aspect-[3/4] max-w-sm mx-auto lg:max-w-none rounded-xl overflow-hidden shadow-2xl group">
               <Image
                 // Replace with your actual photo, ideally one that's professional yet approachable
-                src="/imgs/Sonu-Kumar.png"
+                src="/imgs/Sonu-Kumar-min.png"
                 alt={`Photo of ${founderName}, Founder of GoArtful`}
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
@@ -46,12 +46,13 @@ const FounderSection = ({
               </p>
               <p>
                 In late 2024, I realized my true calling wasn&apos;t just
-                supporting others' visions, but building a platform that could
-                empower an entire creative community. GoArtful is that vision
-                realized – a commitment to every artist I've met, and a
-                testament to the incredible, transformative potential I see in
-                the Indian art scene. This isn&apos;t just a company; it's my
-                'friend' on the journey to making a meaningful impact.
+                supporting others&apos; visions, but building a platform that
+                could empower an entire creative community. GoArtful is that
+                vision realized – a commitment to every artist I&apos;ve met,
+                and a testament to the incredible, transformative potential I
+                see in the Indian art scene. This isn&apos;t just a company;
+                it&apos;s my &apos;friend&apos; on the journey to making a
+                meaningful impact.
               </p>
             </div>
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">

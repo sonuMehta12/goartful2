@@ -38,14 +38,14 @@ export const EVENTS_DATA: Event[] = [
     isFeatured: true,
     isTrending: true,
     status: "active",
-    date: getFutureDateString(45), // Approx. 1.5 months from now
+    date: getFutureDateString(4), // Approx. 1.5 months from now
     startTime: "6:00 PM",
     endTime: "08:00 PM",
     duration: "2 hours / Day (Multi-Day Options)", // Clarified duration
     upcomingDates: [
       // Assuming this festival might run for a weekend
       {
-        date: getFutureDateString(45), // Friday
+        date: getFutureDateString(3), // Friday
         startTime: "6:00 PM",
         endTime: "09:00 PM",
         spotsLeft: 15, // General admission spots for Friday
@@ -53,7 +53,7 @@ export const EVENTS_DATA: Event[] = [
         status: "available",
       },
       {
-        date: getFutureDateString(46), // Saturday
+        date: getFutureDateString(4), // Saturday
         startTime: "10:00 AM",
         endTime: "10:00 PM",
         spotsLeft: 15,
@@ -73,11 +73,6 @@ export const EVENTS_DATA: Event[] = [
     },
     galleryImages: [
       {
-        id: "g1-1",
-        url: "https://images.unsplash.com/photo-1547891654-e66ed7ebb968?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
-        alt: "Close-up of colorful abstract paintings at a festival stall",
-      },
-      {
         id: "g1-2",
         url: "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1748940564/SUmmer-Step2_brwfr0.webp",
         alt: "Live band performing on an outdoor stage at the art festival",
@@ -87,10 +82,26 @@ export const EVENTS_DATA: Event[] = [
         url: "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1748941319/myqhrnp1y3dse2axeg0l_mgsoal.png",
         alt: "Children participating in a hands-on art workshop at the festival",
       },
+
+      {
+        id: "g1-5",
+        url: "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1748969809/WhatsApp_Image_2025-06-03_at_14.57.35_88e14e43_ki3y57.jpg",
+        alt: "Attendees works",
+      },
+      {
+        id: "g1-6",
+        url: "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1748969809/WhatsApp_Image_2025-06-03_at_14.57.35_b18b86ca_wlkol7.jpg",
+        alt: "Attendees works",
+      },
       {
         id: "g1-4",
         url: "https://img.traveltriangle.com/blog/wp-content/uploads/2019/09/Restaurants-In-Bikaner.jpg",
         alt: "Artisan food truck serving customers at the festival",
+      },
+      {
+        id: "g1-1",
+        url: "https://images.unsplash.com/photo-1547891654-e66ed7ebb968?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
+        alt: "Close-up of colorful abstract paintings at a festival stall",
       },
     ],
     host: {
@@ -98,12 +109,12 @@ export const EVENTS_DATA: Event[] = [
       name: "Akansha Sharma", // More formal for a festival
       tagline: "Cultivating creativity, connecting communities.",
       avatar: {
-        url: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg", // Replace with an actual foundation logo or generic event icon
-        alt: "Artful Noida Foundation Logo",
+        url: "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1748969461/Akansha_Sharma_aexlhb.jpg", // Replace with an actual foundation logo or generic event icon
+        alt: "Akansha Sharma",
       },
-      title: "Artist & Dentist",
+      title: "Artist & Associate Dentist",
       bio: "I am Akanksha Sharma , an acrylic and watercolor artist. Creative art has been my go to especially in times when pressed by overwhelming emotions as it provides a healthy medium of expressing oneself . I wish to help others to utilise this meditative experience and thus introduce to them a tool they can access to process their feelings.",
-      experience: "3+ years organizing community festivals",
+      experience: "1+ years doing art workshops and community events",
       eventsHosted: 2, // Number of significant events
       verified: true,
       // languages, responseTime might not be relevant for an organization
@@ -215,7 +226,6 @@ export const EVENTS_DATA: Event[] = [
       "Just yourself, an open mind, and a willingness to explore your creativity!",
       "Appetite for delicious food and new experiences.",
     ],
-    whatToWear: ["Casual, comfortable attire suitable for outdoor weather."],
     prerequisites:
       "None! Just a curiosity to explore your emotions through art and a desire to connect.",
     policies: {
@@ -249,12 +259,6 @@ export const EVENTS_DATA: Event[] = [
         question: "Can I re-enter the festival if I leave?",
         answer:
           "Yes, re-entry is permitted with a valid ticket/wristband for the same day.",
-      },
-      {
-        id: "faq1-4",
-        question: "What happens if it rains?",
-        answer:
-          "The festival is a rain or shine event. Many stalls and stages are covered. Check weather updates.",
       },
     ],
     videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", // Placeholder (rickroll, replace with actual video)

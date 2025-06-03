@@ -137,7 +137,7 @@ export default function EventDescriptionHostVenue({
         {" "}
         {/* Separator for the section */}
         <Link
-          href={`/hosts/${host.id}`}
+          href={`https://www.instagram.com/akankshaa_sharmaa_/`}
           className="block group rounded-xl focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           aria-label={`View profile for ${host.name}`}
         >

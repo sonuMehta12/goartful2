@@ -120,7 +120,7 @@ export interface Event {
   tags: Tag[];
   isFeatured: boolean;
   isTrending: boolean;
-  status: "upcoming" | "past" | "cancelled";
+  status: "upcoming" | "active" | "past" | "cancelled";
   date: string;
   startTime: string;
   endTime: string;
@@ -147,6 +147,7 @@ export interface Event {
   skillLevel: string;
   ageRequirement: string;
   highlights: string[];
+  perfectFor: string[];
   whatYoullDo: WhatYoullDoItem[];
   materialsIncluded?: string[] | null;
   foodIncluded?: string[] | null;
@@ -154,8 +155,8 @@ export interface Event {
   whatToWear?: string[] | null;
   prerequisites?: string | null;
   policies: PolicyDetails;
+  guidelines?: string[] | null;
   faqs: FAQItem[];
-  relatedEvents: RelatedEventInfo[] | null;
   videoUrl: string | null;
   videoPosterUrl: string | null;
 }

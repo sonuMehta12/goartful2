@@ -2,6 +2,7 @@
 import { Event } from "@/lib/types/event";
 import {
   Check,
+  Users,
   Gift,
   ClipboardList,
   XCircle,
@@ -63,6 +64,7 @@ interface EventLogisticsProps {
     | "whatToBring"
     | "whatToWear"
     | "prerequisites"
+    | "perfectFor"
   >;
 }
 
@@ -74,6 +76,7 @@ export default function EventLogistics({ event }: EventLogisticsProps) {
     whatToBring,
     whatToWear,
     prerequisites,
+    perfectFor,
   } = event;
 
   // Only render the section if there's at least one piece of logistic info
@@ -102,6 +105,13 @@ export default function EventLogistics({ event }: EventLogisticsProps) {
             icon={ListChecks}
           />
         )}
+        {perfectFor && perfectFor.length > 0 && (
+          <DetailSection
+            title="Perfect For who ?"
+            items={perfectFor}
+            icon={Users} /* Re-using Users for perfect for */
+          />
+        )}
         {materialsIncluded && materialsIncluded.length > 0 && (
           <DetailSection
             title="Materials Included"
@@ -126,6 +136,7 @@ export default function EventLogistics({ event }: EventLogisticsProps) {
         {whatToWear && whatToWear.length > 0 && (
           <DetailSection title="What to Wear" items={whatToWear} icon={Shirt} />
         )}
+
         {prerequisites && (
           <div className="md:col-span-2 pt-2">
             {" "}

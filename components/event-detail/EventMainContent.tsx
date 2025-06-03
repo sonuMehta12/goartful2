@@ -33,6 +33,7 @@ interface EventMainContentProps {
     | "whatToBring"
     | "whatToWear"
     | "prerequisites"
+    | "perfectFor"
   >;
 }
 

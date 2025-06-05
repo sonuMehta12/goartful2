@@ -12,7 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { format, parseISO, isValid as isValidDate } from "date-fns";
+import { format, parseISO, isPast } from "date-fns";
 import { cn, formatCurrency } from "@/lib/utils";
 import { Heart, TicketIcon, Share2, Info, Minus, Plus } from "lucide-react";
 import type { Event, UpcomingDateSession } from "@/lib/types/event";
@@ -29,6 +29,7 @@ interface EventBookingCardClientProps {
     | "isFree"
     | "policies"
     | "slug"
+    | "date" // Add date to check if event is past
   >;
   className?: string;
 }
@@ -44,10 +45,15 @@ export default function EventBookingCardClient({
   const [guestCount, setGuestCount] = useState(1);
   const [isWishlisted, setIsWishlisted] = useState(false);
 
+  const isPastEvent = useMemo(() => {
+    const eventDate = parseISO(event.date);
+    return isPast(eventDate);
+  }, [event.date]);
+
   useEffect(() => {
-    setIsClient(true); // Component has mounted
+    setIsClient(true);
     // Auto-select the first available upcoming session
-    if (event.upcomingDates && event.upcomingDates.length > 0) {
+    if (!isPastEvent && event.upcomingDates && event.upcomingDates.length > 0) {
       const today = format(new Date(), "yyyy-MM-dd");
       const futureSessions = event.upcomingDates
         .filter(
@@ -76,7 +82,7 @@ export default function EventBookingCardClient({
           );
       }
     }
-  }, [event.upcomingDates]);
+  }, [event.upcomingDates, isPastEvent]);
 
   const availableSessions = useMemo(() => {
     const today = format(new Date(), "yyyy-MM-dd");
@@ -197,37 +203,51 @@ export default function EventBookingCardClient({
     "Free cancellation available."; // Default
 
   const isBookable =
-    (selectedSession && !isSelectedSessionSoldOut && guestCount > 0) ||
-    (event.isFree &&
-      (availableSessions.length === 0 ||
-        (selectedSession && !isSelectedSessionSoldOut)) &&
-      guestCount > 0);
+    !isPastEvent &&
+    ((selectedSession && !isSelectedSessionSoldOut && guestCount > 0) ||
+      (event.isFree &&
+        (availableSessions.length === 0 ||
+          (selectedSession && !isSelectedSessionSoldOut)) &&
+        guestCount > 0));
 
   if (!isClient) {
     // Basic Skeleton
     return (
       <Card className={cn("p-6 shadow-xl border animate-pulse", className)}>
-        <div className="h-10 bg-muted rounded w-1/2 mb-1"></div> {/* Price */}
-        <div className="h-6 bg-muted rounded w-1/3 mb-6"></div> {/* /person */}
-        <div className="space-y-4">
-          <div className="h-6 bg-muted rounded w-1/4 mb-1"></div> {/* Label */}
-          <div className="h-10 bg-muted rounded w-full"></div> {/* Select */}
-          <div className="h-6 bg-muted rounded w-1/4 mb-1"></div> {/* Label */}
-          <div className="h-10 bg-muted rounded w-full"></div>{" "}
-          {/* Guest Input */}
-          {!event.isFree && (
-            <div className="h-16 bg-muted rounded w-full pt-4 border-t"></div>
-          )}{" "}
-          {/* Price breakdown */}
-          <div className="h-12 bg-primary/80 rounded-md w-full"></div>{" "}
-          {/* Book button */}
-        </div>
-        <div className="mt-6 pt-4 border-t">
-          <div className="h-8 bg-muted rounded w-full mb-2"></div>{" "}
-          {/* Save/Share */}
-          <div className="h-4 bg-muted rounded w-3/4 mx-auto"></div>{" "}
-          {/* Policy text */}
-        </div>
+        {isPastEvent ? (
+          <div className="text-center text-muted-foreground">
+            This event has already occurred.
+          </div>
+        ) : (
+          <>
+            <div className="h-10 bg-muted rounded w-1/2 mb-1"></div>{" "}
+            {/* Price */}
+            <div className="h-6 bg-muted rounded w-1/3 mb-6"></div>{" "}
+            {/* /person */}
+            <div className="space-y-4">
+              <div className="h-6 bg-muted rounded w-1/4 mb-1"></div>{" "}
+              {/* Label */}
+              <div className="h-10 bg-muted rounded w-full"></div>{" "}
+              {/* Select */}
+              <div className="h-6 bg-muted rounded w-1/4 mb-1"></div>{" "}
+              {/* Label */}
+              <div className="h-10 bg-muted rounded w-full"></div>{" "}
+              {/* Guest Input */}
+              {!event.isFree && (
+                <div className="h-16 bg-muted rounded w-full pt-4 border-t"></div>
+              )}{" "}
+              {/* Price breakdown */}
+              <div className="h-12 bg-primary/80 rounded-md w-full"></div>{" "}
+              {/* Book button */}
+            </div>
+            <div className="mt-6 pt-4 border-t">
+              <div className="h-8 bg-muted rounded w-full mb-2"></div>{" "}
+              {/* Save/Share */}
+              <div className="h-4 bg-muted rounded w-3/4 mx-auto"></div>{" "}
+              {/* Policy text */}
+            </div>
+          </>
+        )}
       </Card>
     );
   }
@@ -239,210 +259,228 @@ export default function EventBookingCardClient({
         className
       )}
     >
-      {/* Header with Price and Spots Left Badge */}
-      <div className="flex items-start justify-between pb-4 mb-4 border-b">
-        <div>
-          {event.isFree ? (
-            <span className="text-3xl font-bold text-emerald-600">FREE</span>
-          ) : (
-            <>
-              <span className="text-3xl font-bold text-foreground">
-                {formatCurrency(event.price, event.currency)}
-              </span>
-              <span className="text-sm text-muted-foreground ml-1">
-                / person
-              </span>
-            </>
-          )}
-        </div>
-        {selectedSession &&
-          spotsLeftForSelectedSession !== undefined &&
-          spotsLeftForSelectedSession > 0 &&
-          spotsLeftForSelectedSession <= 10 && (
-            <Badge
-              variant="secondary"
-              className="text-xs bg-green-100 text-green-700 border-green-200 dark:bg-green-500/20 dark:text-green-300 dark:border-green-500/30"
-            >
-              {spotsLeftForSelectedSession} spot
-              {spotsLeftForSelectedSession !== 1 ? "s" : ""} left
-            </Badge>
-          )}
-        {isSelectedSessionSoldOut && !event.isFree && (
-          <Badge
-            variant="outline"
-            className="text-destructive border-destructive text-xs"
-          >
-            Sold Out
-          </Badge>
-        )}
-      </div>
-
-      <CardContent className="p-0 space-y-4">
-        {/* Date & Time Selection */}
-        {(availableSessions.length > 0 || !event.isFree) && ( // Show if sessions or if paid (to show "no sessions")
-          <div className="grid gap-1.5">
-            <Label htmlFor="session-select" className="text-sm font-medium">
-              Select Date & Time
-            </Label>
-            <Select
-              value={selectedSessionKey}
-              onValueChange={setSelectedSessionKey}
-              disabled={availableSessions.length === 0}
-            >
-              <SelectTrigger id="session-select" className="h-11 text-sm">
-                <SelectValue
-                  placeholder={
-                    availableSessions.length > 0
-                      ? "Choose available session"
-                      : "No sessions available"
-                  }
-                />
-              </SelectTrigger>
-              <SelectContent>
-                {availableSessions.map((session) => (
-                  <SelectItem
-                    key={session.key}
-                    value={session.key}
-                    disabled={
-                      session.status === "sold-out" ||
-                      (session.spotsLeft ?? 0) === 0
-                    }
-                  >
-                    {session.label} -{" "}
-                    {(session.spotsLeft ?? 0) > 0
-                      ? `${session.spotsLeft} spot${
-                          session.spotsLeft !== 1 ? "s" : ""
-                        } left`
-                      : "Sold Out"}
-                  </SelectItem>
-                ))}
-                {availableSessions.length === 0 && (
-                  <p className="p-2 text-center text-xs text-muted-foreground">
-                    Currently no upcoming sessions.
-                  </p>
-                )}
-              </SelectContent>
-            </Select>
-          </div>
-        )}
-
-        {/* Tickets (Guests) -  Show if not free, OR if free and there's a session selected/available, OR if free and no sessions (general registration) */}
-        {(!event.isFree ||
-          (event.isFree &&
-            (selectedSession || availableSessions.length === 0))) &&
-          !isSelectedSessionSoldOut && (
-            <div className="grid gap-1.5">
-              <Label htmlFor="guest-count" className="text-sm font-medium">
-                Tickets
-              </Label>
-              <div className="flex items-center justify-between border rounded-md h-11 px-1">
-                <span className="text-sm text-muted-foreground pl-2">
-                  Adults
+      {isPastEvent ? (
+        <CardContent className="p-0 space-y-4 text-center">
+          <p className="text-lg font-semibold text-muted-foreground">
+            This event has already taken place.
+          </p>
+          <p className="text-sm text-muted-foreground">
+            Thank you for your interest!
+          </p>
+          {/* Optional: Add a newsletter signup or similar */}
+        </CardContent>
+      ) : (
+        <>
+          {/* Header with Price and Spots Left Badge */}
+          <div className="flex items-start justify-between pb-4 mb-4 border-b">
+            <div>
+              {event.isFree ? (
+                <span className="text-3xl font-bold text-emerald-600">
+                  FREE
                 </span>
-                <div className="flex items-center">
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => handleGuestChange(-1)}
-                    disabled={guestCount <= 1}
-                    className="h-8 w-8"
-                    aria-label="Decrease ticket count"
-                  >
-                    <Minus className="h-4 w-4" />
-                  </Button>
-                  <span
-                    id="guest-count"
-                    className="w-8 text-center text-sm font-medium tabular-nums"
-                  >
-                    {guestCount}
+              ) : (
+                <>
+                  <span className="text-3xl font-bold text-foreground">
+                    {formatCurrency(event.price, event.currency)}
                   </span>
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => handleGuestChange(1)}
-                    disabled={guestCount >= maxGuests}
-                    className="h-8 w-8"
-                    aria-label="Increase ticket count"
-                  >
-                    <Plus className="h-4 w-4" />
-                  </Button>
-                </div>
-              </div>
+                  <span className="text-sm text-muted-foreground ml-1">
+                    / person
+                  </span>
+                </>
+              )}
             </div>
-          )}
+            {selectedSession &&
+              spotsLeftForSelectedSession !== undefined &&
+              spotsLeftForSelectedSession > 0 &&
+              spotsLeftForSelectedSession <= 10 && (
+                <Badge
+                  variant="secondary"
+                  className="text-xs bg-green-100 text-green-700 border-green-200 dark:bg-green-500/20 dark:text-green-300 dark:border-green-500/30"
+                >
+                  {spotsLeftForSelectedSession} spot
+                  {spotsLeftForSelectedSession !== 1 ? "s" : ""} left
+                </Badge>
+              )}
+            {isSelectedSessionSoldOut && !event.isFree && (
+              <Badge
+                variant="outline"
+                className="text-destructive border-destructive text-xs"
+              >
+                Sold Out
+              </Badge>
+            )}
+          </div>
 
-        {/* Price Breakdown */}
-        {!event.isFree && guestCount > 0 && !isSelectedSessionSoldOut && (
-          <div className="space-y-1.5 pt-4 border-t">
-            <div className="flex justify-between text-sm">
-              <span className="text-muted-foreground">
-                {formatCurrency(event.price, event.currency)} × {guestCount}
-              </span>
-              <span>{formatCurrency(subtotal, event.currency)}</span>
-            </div>
-            {serviceFee > 0 && (
-              <div className="flex justify-between text-sm">
-                <span className="text-muted-foreground flex items-center">
-                  Service fee{" "}
-                  <Info className="w-3 h-3 ml-1 text-muted-foreground/70 cursor-help" />
-                </span>
-                <span>{formatCurrency(serviceFee, event.currency)}</span>
+          <CardContent className="p-0 space-y-4">
+            {/* Date & Time Selection */}
+            {(availableSessions.length > 0 || !event.isFree) && ( // Show if sessions or if paid (to show "no sessions")
+              <div className="grid gap-1.5">
+                <Label htmlFor="session-select" className="text-sm font-medium">
+                  Select Date & Time
+                </Label>
+                <Select
+                  value={selectedSessionKey}
+                  onValueChange={setSelectedSessionKey}
+                  disabled={availableSessions.length === 0}
+                >
+                  <SelectTrigger id="session-select" className="h-11 text-sm">
+                    <SelectValue
+                      placeholder={
+                        availableSessions.length > 0
+                          ? "Choose available session"
+                          : "No sessions available"
+                      }
+                    />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {availableSessions.map((session) => (
+                      <SelectItem
+                        key={session.key}
+                        value={session.key}
+                        disabled={
+                          session.status === "sold-out" ||
+                          (session.spotsLeft ?? 0) === 0
+                        }
+                      >
+                        {session.label} -{" "}
+                        {(session.spotsLeft ?? 0) > 0
+                          ? `${session.spotsLeft} spot${
+                              session.spotsLeft !== 1 ? "s" : ""
+                            } left`
+                          : "Sold Out"}
+                      </SelectItem>
+                    ))}
+                    {availableSessions.length === 0 && (
+                      <p className="p-2 text-center text-xs text-muted-foreground">
+                        Currently no upcoming sessions.
+                      </p>
+                    )}
+                  </SelectContent>
+                </Select>
               </div>
             )}
-            <div className="flex justify-between font-semibold text-lg pt-2 border-t">
-              <span className="text-foreground">Total ({event.currency})</span>
-              <span className="text-foreground">
-                {formatCurrency(total, event.currency)}
-              </span>
-            </div>
-          </div>
-        )}
 
-        <Button
-          className="w-full text-base font-semibold h-12 mt-2"
-          size="lg"
-          onClick={handleBooking}
-          disabled={!isBookable}
-        >
-          <TicketIcon className="mr-2 h-5 w-5" />
-          {!isBookable && isSelectedSessionSoldOut
-            ? "Sold Out"
-            : "Book Experience"}
-        </Button>
-      </CardContent>
-
-      <CardFooter className="p-0 pt-5 mt-5 flex-col items-stretch space-y-3 border-t">
-        <div className="flex justify-between items-center">
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setIsWishlisted(!isWishlisted)}
-            className="text-sm text-muted-foreground hover:text-primary group px-1 h-auto rounded-md"
-          >
-            <Heart
-              className={cn(
-                "mr-1.5 h-4 w-4 group-hover:fill-primary/10 transition-colors",
-                isWishlisted && "fill-primary text-primary"
+            {/* Tickets (Guests) -  Show if not free, OR if free and there's a session selected/available, OR if free and no sessions (general registration) */}
+            {(!event.isFree ||
+              (event.isFree &&
+                (selectedSession || availableSessions.length === 0))) &&
+              !isSelectedSessionSoldOut && (
+                <div className="grid gap-1.5">
+                  <Label htmlFor="guest-count" className="text-sm font-medium">
+                    Tickets
+                  </Label>
+                  <div className="flex items-center justify-between border rounded-md h-11 px-1">
+                    <span className="text-sm text-muted-foreground pl-2">
+                      Adults
+                    </span>
+                    <div className="flex items-center">
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="icon"
+                        onClick={() => handleGuestChange(-1)}
+                        disabled={guestCount <= 1}
+                        className="h-8 w-8"
+                        aria-label="Decrease ticket count"
+                      >
+                        <Minus className="h-4 w-4" />
+                      </Button>
+                      <span
+                        id="guest-count"
+                        className="w-8 text-center text-sm font-medium tabular-nums"
+                      >
+                        {guestCount}
+                      </span>
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="icon"
+                        onClick={() => handleGuestChange(1)}
+                        disabled={guestCount >= maxGuests}
+                        className="h-8 w-8"
+                        aria-label="Increase ticket count"
+                      >
+                        <Plus className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  </div>
+                </div>
               )}
-            />
-            {isWishlisted ? "Saved" : "Save"}
-          </Button>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={handleShare}
-            className="text-sm text-muted-foreground hover:text-primary group px-1 h-auto rounded-md"
-          >
-            <Share2 className="mr-1.5 h-4 w-4" />
-            Share
-          </Button>
-        </div>
-        <p className="text-xs text-center text-muted-foreground leading-snug px-1">
-          {cancellationPolicyText}
-        </p>
-      </CardFooter>
+
+            {/* Price Breakdown */}
+            {!event.isFree && guestCount > 0 && !isSelectedSessionSoldOut && (
+              <div className="space-y-1.5 pt-4 border-t">
+                <div className="flex justify-between text-sm">
+                  <span className="text-muted-foreground">
+                    {formatCurrency(event.price, event.currency)} × {guestCount}
+                  </span>
+                  <span>{formatCurrency(subtotal, event.currency)}</span>
+                </div>
+                {serviceFee > 0 && (
+                  <div className="flex justify-between text-sm">
+                    <span className="text-muted-foreground flex items-center">
+                      Service fee{" "}
+                      <Info className="w-3 h-3 ml-1 text-muted-foreground/70 cursor-help" />
+                    </span>
+                    <span>{formatCurrency(serviceFee, event.currency)}</span>
+                  </div>
+                )}
+                <div className="flex justify-between font-semibold text-lg pt-2 border-t">
+                  <span className="text-foreground">
+                    Total ({event.currency})
+                  </span>
+                  <span className="text-foreground">
+                    {formatCurrency(total, event.currency)}
+                  </span>
+                </div>
+              </div>
+            )}
+
+            <Button
+              className="w-full text-base font-semibold h-12 mt-2"
+              size="lg"
+              onClick={handleBooking}
+              disabled={!isBookable}
+            >
+              <TicketIcon className="mr-2 h-5 w-5" />
+              {!isBookable && isSelectedSessionSoldOut
+                ? "Sold Out"
+                : "Book Experience"}
+            </Button>
+          </CardContent>
+
+          <CardFooter className="p-0 pt-5 mt-5 flex-col items-stretch space-y-3 border-t">
+            <div className="flex justify-between items-center">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setIsWishlisted(!isWishlisted)}
+                className="text-sm text-muted-foreground hover:text-primary group px-1 h-auto rounded-md"
+              >
+                <Heart
+                  className={cn(
+                    "mr-1.5 h-4 w-4 group-hover:fill-primary/10 transition-colors",
+                    isWishlisted && "fill-primary text-primary"
+                  )}
+                />
+                {isWishlisted ? "Saved" : "Save"}
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={handleShare}
+                className="text-sm text-muted-foreground hover:text-primary group px-1 h-auto rounded-md"
+              >
+                <Share2 className="mr-1.5 h-4 w-4" />
+                Share
+              </Button>
+            </div>
+            <p className="text-xs text-center text-muted-foreground leading-snug px-1">
+              {cancellationPolicyText}
+            </p>
+          </CardFooter>
+        </>
+      )}
     </Card>
   );
 }

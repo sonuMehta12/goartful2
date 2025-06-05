@@ -2,11 +2,11 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { TicketIcon as Ticket, Heart, Share2 } from "lucide-react";
+import { TicketIcon as Ticket, Heart, Share2, Calendar } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import type { Event } from "@/lib/types/event";
 import { formatCurrency, cn } from "@/lib/utils";
-import { format, parseISO } from "date-fns";
+import { format, parseISO, isPast, isToday } from "date-fns";
 
 interface FloatingBookingBarClientProps {
   event: Pick<
@@ -19,7 +19,6 @@ interface FloatingBookingBarClientProps {
     | "policies"
     | "slug"
   >;
-  // Removed mainBookingCardId as we simplify scroll logic
 }
 
 export default function FloatingBookingBarClient({
@@ -27,7 +26,7 @@ export default function FloatingBookingBarClient({
 }: FloatingBookingBarClientProps) {
   const [isVisible, setIsVisible] = useState(false);
   const isMounted = useRef(false);
-  const [isWishlisted, setIsWishlisted] = useState(false); // Local wishlist state
+  const [isWishlisted, setIsWishlisted] = useState(false);
 
   useEffect(() => {
     isMounted.current = true;
@@ -36,16 +35,14 @@ export default function FloatingBookingBarClient({
     };
   }, []);
 
-  // Simplified visibility logic: show when scrolled past a certain point (e.g., 300px or hero height)
   useEffect(() => {
-    const heroElement = document.getElementById("event-hero-media"); // Assuming hero has this ID
+    const heroElement = document.getElementById("event-hero-media");
 
     const toggleVisibility = () => {
       if (!isMounted.current) return;
       const scrollY = window.pageYOffset;
-      const heroHeight = heroElement ? heroElement.offsetHeight : 300; // Default if hero not found
+      const heroHeight = heroElement ? heroElement.offsetHeight : 300;
 
-      // Show if scrolled past ~70% of hero or a fixed amount, and on screens smaller than lg
       if (scrollY > heroHeight * 0.7 && window.innerWidth < 1024) {
         setIsVisible(true);
       } else {
@@ -54,17 +51,75 @@ export default function FloatingBookingBarClient({
     };
 
     window.addEventListener("scroll", toggleVisibility, { passive: true });
-    toggleVisibility(); // Initial check
+    toggleVisibility();
     return () => window.removeEventListener("scroll", toggleVisibility);
   }, []);
 
+  // Enhanced logic to determine event status
+  const getEventStatus = () => {
+    if (!event.upcomingDates || event.upcomingDates.length === 0) {
+      return { status: "past", message: "This event has concluded" };
+    }
+
+    const now = new Date();
+    const futureDates = event.upcomingDates.filter((session) => {
+      const sessionDate = parseISO(session.date);
+      return !isPast(sessionDate) || isToday(sessionDate);
+    });
+
+    // All dates are in the past
+    if (futureDates.length === 0) {
+      return {
+        status: "past",
+        message: "This event has concluded. Thanks for your interest!",
+      };
+    }
+
+    // Check if any future dates are bookable
+    const bookableDates = futureDates.filter(
+      (session) =>
+        (session.spotsLeft ?? Infinity) > 0 &&
+        session.status !== "sold-out" &&
+        session.status !== "cancelled"
+    );
+
+    if (bookableDates.length === 0) {
+      // Future dates exist but all are sold out/cancelled
+      return {
+        status: "unavailable",
+        message: "Currently unavailable",
+      };
+    }
+
+    return {
+      status: "available",
+      message: event.isFree ? "Register / Inquire" : "Book / Inquire",
+    };
+  };
+
+  const eventStatus = getEventStatus();
+
   const handleBookViaWhatsApp = () => {
+    if (eventStatus.status === "past") {
+      // For past events, send a general inquiry message
+      const message = `Hi! I saw the event "${event.name}" and I'm interested in similar events or future occurrences. Could you let me know about upcoming events?`;
+      const whatsappNumber = "919650779490";
+      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+        message
+      )}`;
+      window.open(whatsappUrl, "_blank");
+      return;
+    }
+
+    // Original logic for available events
     const firstAvailableSession = event.upcomingDates?.find(
       (s) =>
+        !isPast(parseISO(s.date)) &&
         (s.spotsLeft ?? Infinity) > 0 &&
         s.status !== "sold-out" &&
         s.status !== "cancelled"
     );
+
     const sessionDetail = firstAvailableSession
       ? ` for ${format(parseISO(firstAvailableSession.date), "MMM dd")} at ${
           firstAvailableSession.startTime
@@ -72,7 +127,7 @@ export default function FloatingBookingBarClient({
       : " (general inquiry)";
 
     const message = `Hi! I'd like to inquire about booking the event "${event.name}"${sessionDetail}.`;
-    const whatsappNumber = "919650779490"; // YOUR WHATSAPP NUMBER
+    const whatsappNumber = "919650779490";
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
       message
     )}`;
@@ -80,7 +135,6 @@ export default function FloatingBookingBarClient({
   };
 
   const handleShare = async () => {
-    /* ... (keep your existing handleShare logic) ... */
     const shareUrl = `${window.location.origin}/events/${event.slug}`;
     const shareTitle = event.name;
     if (navigator.share) {
@@ -106,17 +160,8 @@ export default function FloatingBookingBarClient({
     return null;
   }
 
-  const isCurrentlyBookable =
-    event.isFree ||
-    event.upcomingDates?.some(
-      (s) =>
-        (s.spotsLeft ?? Infinity) > 0 &&
-        s.status !== "sold-out" &&
-        s.status !== "cancelled"
-    );
-
   const policyText =
-    event.policies?.cancellation?.split(".")[0] || // First sentence
+    event.policies?.cancellation?.split(".")[0] ||
     (event.policies?.cancellation?.toLowerCase().includes("rain or shine")
       ? "Event is rain or shine."
       : "See cancellation policy.");
@@ -127,9 +172,20 @@ export default function FloatingBookingBarClient({
         {/* Price Info */}
         <div className="flex flex-col">
           <span className="text-xs text-muted-foreground">
-            {event.isFree ? "Entry" : "From"}
+            {eventStatus.status === "past"
+              ? "Was"
+              : event.isFree
+              ? "Entry"
+              : "From"}
           </span>
-          <span className="text-lg font-bold text-foreground leading-tight">
+          <span
+            className={cn(
+              "text-lg font-bold leading-tight",
+              eventStatus.status === "past"
+                ? "text-muted-foreground"
+                : "text-foreground"
+            )}
+          >
             {event.isFree
               ? "FREE"
               : formatCurrency(event.price, event.currency)}
@@ -168,27 +224,39 @@ export default function FloatingBookingBarClient({
       <Button
         onClick={handleBookViaWhatsApp}
         className={cn(
-          "w-full font-semibold py-2.5 text-[15px] shadow-md h-11", // Slightly smaller text
-          !isCurrentlyBookable &&
+          "w-full font-semibold py-2.5 text-[15px] shadow-md h-11",
+          eventStatus.status === "past" &&
+            "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+          eventStatus.status === "unavailable" &&
             "bg-muted text-muted-foreground hover:bg-muted cursor-not-allowed"
         )}
         size="lg"
-        disabled={!isCurrentlyBookable}
+        disabled={eventStatus.status === "unavailable"}
       >
-        <Ticket className="w-4 h-4 mr-1.5" />
-        {!isCurrentlyBookable
-          ? "Currently Unavailable"
-          : event.isFree
-          ? "Register / Inquire"
-          : "Book / Inquire"}
+        {eventStatus.status === "past" ? (
+          <>
+            <Calendar className="w-4 h-4 mr-1.5" />
+            Inquire About Similar Events
+          </>
+        ) : (
+          <>
+            <Ticket className="w-4 h-4 mr-1.5" />
+            {eventStatus.message}
+          </>
+        )}
       </Button>
 
-      {/* Policy Text */}
-      {policyText && (
+      {/* Status Message for Past Events */}
+      {eventStatus.status === "past" ? (
+        <p className="text-[11px] text-muted-foreground text-center mt-1.5 leading-tight px-1">
+          {eventStatus.message} We&apos;d love to help you find similar upcoming
+          events.
+        </p>
+      ) : policyText ? (
         <p className="text-[11px] text-muted-foreground text-center mt-1.5 leading-tight px-1">
           {policyText}
         </p>
-      )}
+      ) : null}
     </div>
   );
 }

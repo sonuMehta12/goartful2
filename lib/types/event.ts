@@ -66,7 +66,7 @@ export interface UpcomingDateSession {
   endTime?: string;
   spotsLeft: number;
   totalSpots?: number;
-  status?: "available" | "sold-out" | "cancelled";
+  status?: "available" | "sold-out" | "cancelled" | "past";
 }
 
 export interface PolicyDetails {
@@ -131,7 +131,7 @@ export interface Event {
     endTime?: string;
     spotsLeft: number;
     totalSpots: number;
-    status: "available" | "sold-out" | "cancelled";
+    status: "available" | "sold-out" | "cancelled" | "past";
   }>;
   price: number;
   currency: string;

@@ -38,14 +38,14 @@ export const EVENTS_DATA: Event[] = [
     isFeatured: true,
     isTrending: true,
     status: "active",
-    date: getFutureDateString(4), // Approx. 1.5 months from now
+    date: "2025-06-13", // Approx. 1.5 months from now
     startTime: "6:00 PM",
     endTime: "08:00 PM",
     duration: "2 hours / Day (Multi-Day Options)", // Clarified duration
     upcomingDates: [
       // Assuming this festival might run for a weekend
       {
-        date: getFutureDateString(3), // Friday
+        date: "2025-06-13", // Friday
         startTime: "6:00 PM",
         endTime: "09:00 PM",
         spotsLeft: 15, // General admission spots for Friday
@@ -53,7 +53,7 @@ export const EVENTS_DATA: Event[] = [
         status: "available",
       },
       {
-        date: getFutureDateString(4), // Saturday
+        date: "2025-06-14", // Saturday
         startTime: "10:00 AM",
         endTime: "10:00 PM",
         spotsLeft: 15,

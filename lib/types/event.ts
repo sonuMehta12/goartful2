@@ -120,7 +120,7 @@ export interface Event {
   tags: Tag[];
   isFeatured: boolean;
   isTrending: boolean;
-  status: "upcoming" | "active" | "past" | "cancelled";
+  status: "upcoming" | "active" | "past" | "cancelled" | "sold-out";
   date: string;
   startTime: string;
   endTime: string;

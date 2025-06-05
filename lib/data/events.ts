@@ -155,9 +155,37 @@ export const EVENTS_DATA: Event[] = [
       ],
       isVerified: true,
     },
-    averageRating: 0, // Example from 150 reviews
-    reviewCount: 0,
-    reviews: [],
+    averageRating: 4.8, // Example from 150 reviews
+    reviewCount: 21,
+    reviews: [
+      {
+        id: "r1-1",
+        name: "Riya Kapoor",
+        rating: 5,
+        comment:
+          "This was such a refreshing experience! I never thought painting could be so therapeutic. The guided exercises helped me express emotions I didn't even know I had. Plus, meeting others who share the same work-life struggles was so comforting.",
+        date: "2025-06-14",
+        verified: true,
+      },
+      {
+        id: "r1-2",
+        name: "Rahul Verma",
+        rating: 4.5,
+        comment:
+          "I loved the focus on mindfulness and emotional expression rather than just technique. The atmosphere was so supportive and non-judgmental. I left feeling lighter and more connected to myself and others.",
+        date: "2025-06-13",
+        verified: true,
+      },
+      {
+        id: "r1-3",
+        name: "Sneha Agarwal",
+        rating: 5,
+        comment:
+          "A wonderful way to unwind after a hectic week! The art materials provided were top-notch, and the food from Bikanervala was delicious. I highly recommend this to anyone looking for a creative outlet.",
+        date: "2025-06-13",
+        verified: true,
+      },
+    ],
     skillLevel: "Everyone Welcome",
     ageRequirement: "All Ages",
     highlights: [

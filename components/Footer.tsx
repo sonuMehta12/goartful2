@@ -124,17 +124,17 @@ const Footer = () => {
             </h3>
             <div className="flex justify-center lg:justify-start gap-3 sm:gap-4 mb-6">
               <SocialMediaLink
-                href="https://linkedin.com/company/goartful"
+                href="https://linkedin.com/company/goartful_com"
                 label="LinkedIn"
                 icon={Linkedin}
               />
               <SocialMediaLink
-                href="https://instagram.com/goartful"
+                href="https://instagram.com/goartful_com"
                 label="Instagram"
                 icon={Instagram}
               />
               <SocialMediaLink
-                href="https://twitter.com/goartful"
+                href="https://twitter.com/goartful_com"
                 label="YouTube"
                 icon={Youtube}
               />

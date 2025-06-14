@@ -1,91 +1,158 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import {
-  CheckCircle,
-  Edit3,
-  CalendarPlus,
-  Sparkles,
   TrendingUp,
-  PackageCheck,
+  Play,
+  ArrowRight,
   Users,
-} from "lucide-react"; // Icons for steps & benefits
+  Calendar,
+  Zap,
+} from "lucide-react";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
 
-interface StepDetailProps {
+interface StepCardProps {
   icon: React.ElementType;
   title: string;
   description: string;
-  points?: string[]; // Optional bullet points for emphasis
-  imgSrc: string;
+  ctaText: string;
+  ctaLink: string;
+  mobileImgSrc: string;
+  tabletImgSrc: string;
   imgAlt: string;
-  reverseOrder?: boolean;
-  imgOverlayText?: string;
+  backgroundColor: string;
+  textColor: string;
 }
 
-const StepDetail: React.FC<StepDetailProps> = ({
+const StepCard: React.FC<StepCardProps> = ({
   icon: Icon,
   title,
   description,
-  points,
-  imgSrc,
+  ctaText,
+  ctaLink,
+  mobileImgSrc,
+  tabletImgSrc,
   imgAlt,
-  reverseOrder = false,
-  imgOverlayText,
+  backgroundColor,
+  textColor,
 }) => (
-  <div className="grid md:grid-cols-2 gap-10 md:gap-12 items-center py-8 md:py-12">
-    <div
-      className={cn(
-        "relative aspect-video sm:aspect-[16/10] rounded-xl overflow-hidden shadow-2xl group",
-        reverseOrder ? "md:order-last" : ""
-      )}
-    >
-      <Image
-        src={imgSrc}
-        alt={imgAlt}
-        fill
-        className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-        sizes="(min-width: 1280px) 550px, (min-width: 768px) 50vw, 100vw"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-70 group-hover:opacity-100"></div>
-      {imgOverlayText && (
-        <div className="absolute bottom-4 left-4 bg-black/60 text-white text-xs sm:text-sm px-3 py-1.5 rounded-md backdrop-blur-sm">
-          {imgOverlayText}
+  <div
+    className={`rounded-3xl p-6 md:p-8 ${backgroundColor} relative overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300`}
+    style={{ minHeight: "320px" }}
+  >
+    <div className="flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-8 h-full">
+      {/* Text Content */}
+      <div className="flex-1 z-10 relative">
+        <div className="flex items-center gap-3 mb-4">
+          <div
+            className={`w-10 h-10 rounded-full ${
+              textColor === "text-white" ? "bg-white/20" : "bg-black/10"
+            } flex items-center justify-center`}
+          >
+            <Icon className={`w-5 h-5 ${textColor}`} />
+          </div>
+          <h3
+            className={`text-xl md:text-2xl font-bold ${textColor} leading-tight`}
+          >
+            {title}
+          </h3>
         </div>
-      )}
-    </div>
-    <div
-      className={cn(
-        "space-y-3 md:space-y-4",
-        reverseOrder ? "md:order-first" : ""
-      )}
-    >
-      <div className="flex items-center gap-3 mb-2">
-        <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
-          <Icon className="w-5 h-5 md:w-6 md:h-6" />
-        </div>
-        <h3 className="text-2xl md:text-3xl font-bold text-foreground tracking-tight">
-          {title}
-        </h3>
+        <p
+          className={`text-sm md:text-base ${textColor} opacity-90 leading-relaxed mb-6`}
+        >
+          {description}
+        </p>
+
+        {/* CTA Button */}
+        <Button
+          asChild
+          variant={textColor === "text-white" ? "secondary" : "default"}
+          size="sm"
+          className="font-semibold group transition-all duration-300 hover:shadow-md"
+        >
+          <Link href={ctaLink}>
+            {ctaText}
+            <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
+          </Link>
+        </Button>
       </div>
-      <p className="text-md md:text-lg text-muted-foreground leading-relaxed">
-        {description}
-      </p>
-      {points && points.length > 0 && (
-        <ul className="space-y-2 mt-4">
-          {points.map((point, index) => (
-            <li key={index} className="flex items-start">
-              <CheckCircle className="w-5 h-5 text-green-500 mr-2.5 mt-0.5 shrink-0" />
-              <span className="text-sm text-muted-foreground">{point}</span>
-            </li>
-          ))}
-        </ul>
-      )}
+
+      {/* Image Container */}
+      <div className="relative w-full md:w-48 lg:w-56 h-32 md:h-40 flex-shrink-0">
+        {/* Mobile Image */}
+        <div className="block md:hidden relative w-full h-full rounded-2xl overflow-hidden shadow-md">
+          <Image
+            src={mobileImgSrc}
+            alt={imgAlt}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 0px"
+          />
+        </div>
+
+        {/* Tablet/Desktop Image */}
+        <div className="hidden md:block relative w-full h-full rounded-2xl overflow-hidden shadow-md">
+          <Image
+            src={tabletImgSrc}
+            alt={imgAlt}
+            fill
+            className="object-cover"
+            sizes="(min-width: 768px) 300px, 0px"
+          />
+        </div>
+      </div>
     </div>
   </div>
 );
 
 const HowItWorksForArtistsSection = () => {
+  const steps = [
+    {
+      icon: Users,
+      title: "Join GoArtful",
+      description:
+        "Become our creative partner in 2 minutes. Register free and help transform India's art scene together.",
+      ctaText: "Join for Free",
+      ctaLink: "/register-artist",
+      mobileImgSrc:
+        "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      tabletImgSrc:
+        "https://images.unsplash.com/photo-1517673139395-f07ee914f697?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      imgAlt: "Artist joining GoArtful community",
+      backgroundColor: "bg-yellow-400",
+      textColor: "text-black",
+    },
+    {
+      icon: Calendar,
+      title: "Create Your Experience",
+      description:
+        "Choose from 100+ free venues, add your workshop details, and select the support you need from us.",
+      ctaText: "Create Event",
+      ctaLink: "/create-event",
+      mobileImgSrc:
+        "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      tabletImgSrc:
+        "https://images.unsplash.com/photo-1586953135293-37fe6da73de6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      imgAlt: "Artist creating workshop experience",
+      backgroundColor: "bg-blue-500",
+      textColor: "text-white",
+    },
+    {
+      icon: Zap,
+      title: "Go Live & Earn",
+      description:
+        "Go live, share with friends and your network, and let GoArtful help you connect with the right people.",
+      ctaText: "See Live Events",
+      ctaLink: "/live-events",
+      mobileImgSrc:
+        "https://images.unsplash.com/photo-1558509027-9c492a587180?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      tabletImgSrc:
+        "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      imgAlt: "Artists connecting and earning through live events",
+      backgroundColor: "bg-green-600",
+      textColor: "text-white",
+    },
+  ];
+
   return (
     <section id="how-it-works-artists" className="py-16 lg:py-24 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -136,8 +203,8 @@ const HowItWorksForArtistsSection = () => {
               <strong className="text-primary">
                 the rest we will take care from logistics to marketing,
               </strong>{" "}
-              It’s never been easier to connect with art lovers and build your
-              creative legacy.
+              It&apos;s never been easier to connect with art lovers and build
+              your creative legacy.
             </p>
             <div className="pt-3">
               <Button
@@ -157,61 +224,61 @@ const HowItWorksForArtistsSection = () => {
         {/* Horizontal Separator */}
         <div className="relative text-center my-12 lg:my-16">
           <hr className="border-border/60" />
-          <Sparkles className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-10 w-10 text-amber-500 bg-background p-2 rounded-full border border-border" />
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-10 w-10 bg-amber-500 rounded-full flex items-center justify-center border border-border">
+            <svg
+              className="w-5 h-5 text-white"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+          </div>
         </div>
 
-        {/* Step-by-Step Breakdown */}
+        {/* Step-by-Step Title */}
         <div className="text-center mb-12 lg:mb-16">
           <h3 className="text-3xl sm:text-4xl font-bold text-foreground mb-3 tracking-tight">
             How It Works: Your Simple Path to Hosting
           </h3>
         </div>
+        <div className="space-y-6 md:space-y-8 max-w-5xl mx-auto">
+          {steps.map((step, index) => (
+            <StepCard
+              key={index}
+              icon={step.icon}
+              title={step.title}
+              description={step.description}
+              ctaText={step.ctaText}
+              ctaLink={step.ctaLink}
+              mobileImgSrc={step.mobileImgSrc}
+              tabletImgSrc={step.tabletImgSrc}
+              imgAlt={step.imgAlt}
+              backgroundColor={step.backgroundColor}
+              textColor={step.textColor}
+            />
+          ))}
+        </div>
 
-        <div className="space-y-12 md:space-y-20">
-          <StepDetail
-            icon={Edit3}
-            title="1. Craft Your Artist Showcase"
-            description="Begin by creating your unique GoArtful artist profile. This is where your story unfolds – share your artistic journey, highlight your signature style, and upload captivating images of your work. Clearly define the kinds of inspiring experiences you envision offering."
-            points={[
-              "Easy, guided profile setup.",
-              "Showcase your portfolio & past work.",
-              "Clearly communicate your artistic identity.",
-            ]}
-            imgSrc="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=70"
-            imgAlt="Artist working on their profile on a laptop, surrounded by art supplies."
-            imgOverlayText="Your Story, Your Art"
-          />
-
-          <StepDetail
-            icon={CalendarPlus}
-            title="2. Design & Launch Your Experience (Logistics Made Easy!)"
-            description="Transform your ideas into bookable events. Detail your workshop or session, set your preferred dates, times, and pricing. Choose flexible venues – your home studio, local cafés, parks, or online. And the best part of GoArtful? We'll assist with arranging supplies and key logistics, letting you focus on the creative aspects!"
-            points={[
-              "Flexible scheduling and venue options.",
-              "Transparent pricing you control.",
-              "Launch Phase: GoArtful assists with supplies & logistics!",
-              "Clearly list what's included for participants.",
-            ]}
-            imgSrc="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=70" // Example: artist sketching out plans
-            imgAlt="Artist planning an event, with calendar and art supplies visible."
-            reverseOrder={true}
-            imgOverlayText="Your Experience, Your Way"
-          />
-
-          <StepDetail
-            icon={Users} // Changed icon to better reflect "Connect, Transform, Empower"
-            title="3. Connect, Transform & Empower"
-            description="This is where your art creates magic. Welcome participants, share your invaluable skills, and guide them on a transformative creative journey. GoArtful helps you get discovered by local art lovers. Foster genuine connections, empower others through your passion, and build a thriving community around your art while earning sustainably. Your art has the power to touch lives – let's amplify it together."
-            points={[
-              "Inspire and guide participants.",
-              "Build meaningful community connections.",
-              "Receive bookings (via direct WhatsApp for now).",
-              "Grow your artistic reputation and income.",
-            ]}
-            imgSrc="https://images.unsplash.com/photo-1558509027-9c492a587180?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=70" // Example: joyful interaction during a workshop
-            imgAlt="Artist interacting with enthusiastic participants during a creative session."
-            imgOverlayText="Share Your Gift"
-          />
+        {/* Final CTA Section */}
+        <div className="text-center mt-16 lg:mt-20">
+          <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-3xl p-8 md:p-12 max-w-3xl mx-auto">
+            <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+              Ready to start your artistic journey?
+            </h3>
+            <p className="text-muted-foreground mb-6 text-lg">
+              Join thousands of artists already earning through their passion
+            </p>
+            <Button
+              asChild
+              size="lg"
+              className="font-semibold text-lg px-10 py-6 group transition-all duration-300 ease-in-out hover:shadow-lg"
+            >
+              <Link href="/register-artist">
+                Get Started Today
+                <TrendingUp className="w-5 h-5 ml-3 transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
+            </Button>
+          </div>
         </div>
       </div>
     </section>

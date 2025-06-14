@@ -50,7 +50,7 @@ const HeroSection = () => {
                 size="lg"
                 className="font-semibold text-lg px-8 py-7 hover:bg-muted/50"
               >
-                <Link href="#how-it-works-artists">Learn how it works</Link>
+                <Link href="#how-it-works-artists">Learn more</Link>
               </Button>
             </div>
             <div className="flex items-center justify-center lg:justify-start text-sm text-muted-foreground space-x-2">

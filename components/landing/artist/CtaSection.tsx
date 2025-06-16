@@ -25,9 +25,7 @@ const CtaSection = () => {
           size="lg"
           className="bg-white hover:bg-gray-100 text-primary font-bold rounded-full text-lg px-10 py-7 shadow-2xl transform hover:scale-105 transition-transform duration-300 ease-in-out"
         >
-          <Link href="/register-artist">
-            Claim Your Artist Spot (It&apos;s Free!)
-          </Link>
+          <Link href="/register-artist">Join Now (It&apos;s Free!)</Link>
         </Button>
         <p className="text-xs text-primary-foreground/70 mt-6">
           Early artists get special perks & dedicated support. Don&apos;t miss

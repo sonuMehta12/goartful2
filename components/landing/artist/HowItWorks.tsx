@@ -17,18 +17,15 @@ interface StepCardProps {
   description: string;
   ctaText: string;
   ctaLink: string;
-  imgSrc: string; // Simplified to a single image source
+  imgSrc: string;
   imgAlt: string;
   backgroundColor: string;
   textColor: string;
-  // New prop to control the top offset for sticky positioning
   stickyOffset?: string;
-  // New prop for z-index to ensure correct stacking order
-  zIndex?: string;
+  zIndex?: number; // Changed to number for better control
 }
 
 // --- DESIGN PRINCIPLE: Componentization & Readability ---
-// The StepCard is well-componentized. Let's refine its internal structure.
 const StepCard: React.FC<StepCardProps> = ({
   icon: Icon,
   title,
@@ -39,12 +36,12 @@ const StepCard: React.FC<StepCardProps> = ({
   imgAlt,
   backgroundColor,
   textColor,
-  stickyOffset = "top-0", // Default to top-0 if not provided
-  zIndex = "z-10", // Default z-index
+  stickyOffset = "top-0",
+  zIndex = 10,
 }) => (
-  // Added 'sticky' and dynamic 'top' and 'z-index' classes
   <div
-    className={`rounded-3xl p-6 md:p-8 lg:p-12 ${backgroundColor} relative overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 sticky ${stickyOffset} ${zIndex}`}
+    className={`rounded-3xl p-6 md:p-8 lg:p-12 ${backgroundColor} relative overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 sticky ${stickyOffset}`}
+    style={{ zIndex }} // Using inline style for dynamic z-index
   >
     <div className={`flex flex-col md:flex-row items-center gap-8 lg:gap-16`}>
       {/* --- REFINED: Text Content --- */}
@@ -74,7 +71,7 @@ const StepCard: React.FC<StepCardProps> = ({
         <Button
           asChild
           variant={textColor === "text-white" ? "secondary" : "default"}
-          size="lg" // Larger button for better clickability
+          size="lg"
           className="font-semibold group transition-all duration-300 hover:shadow-md text-sm"
         >
           <Link href={ctaLink}>
@@ -86,12 +83,12 @@ const StepCard: React.FC<StepCardProps> = ({
 
       {/* --- FIXED: Image Container --- */}
       <div className="w-full md:w-2/5 lg:w-1/3 flex-shrink-0 z-0 mt-6 md:mt-0">
-        <div className="relative aspect-[4/3] rounded-2xl overflow-hidden ">
+        <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
           <Image
             src={imgSrc}
             alt={imgAlt}
             fill
-            className="object-cover" // Changed to object-cover for better fitting
+            className="object-cover"
             sizes="(max-width: 768px) 80vw, 40vw"
             priority={true}
           />
@@ -111,14 +108,11 @@ export const HowItWorksForArtistsSection = () => {
         "Become our creative partner in minutes. Register for free and help us transform India's art scene together.",
       ctaText: "Join for Free",
       ctaLink: "/register-artist",
-      // Using the actual images from your screenshot
       imgSrc:
         "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1750059969/Frame_114_jz1cbp.png",
       imgAlt: "Artist registration form on GoArtful",
-      backgroundColor: "bg-blue-500", // Swapped colors for better flow
+      backgroundColor: "bg-blue-500",
       textColor: "text-white",
-      stickyOffset: "top-0", // First card sticks at the very top
-      zIndex: "z-10", // Highest z-index so it's on top initially
     },
     {
       icon: Calendar,
@@ -128,12 +122,10 @@ export const HowItWorksForArtistsSection = () => {
       ctaText: "Start Creating",
       ctaLink: "/create-event",
       imgSrc:
-        "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1750057529/Group_50_kcsh1y.png", // Recreated image from your screenshot
+        "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1750057529/Group_50_kcsh1y.png",
       imgAlt: "Creating a workshop event on GoArtful",
       backgroundColor: "bg-yellow-400",
       textColor: "text-black",
-      stickyOffset: "top-4", // Second card sticks 16px from the top
-      zIndex: "z-20", // Middle z-index
     },
     {
       icon: Zap,
@@ -143,19 +135,17 @@ export const HowItWorksForArtistsSection = () => {
       ctaText: "See Live Events",
       ctaLink: "/live-events",
       imgSrc:
-        "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1750057529/Group_54_dfebrt.png", // Recreated image from your screenshot
+        "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1750057529/Group_54_dfebrt.png",
       imgAlt: "Sharing a live event on social media",
       backgroundColor: "bg-green-600",
       textColor: "text-white",
-      stickyOffset: "top-8", // Third card sticks 32px from the top
-      zIndex: "z-30", // Lowest z-index
     },
   ];
 
   return (
     <section
       id="how-it-works-artists"
-      className="py-20 lg:py-28 bg-gray-50 dark:bg-gray-900" // Use a subtle background color
+      className="py-20 lg:py-28 bg-gray-50 dark:bg-gray-900"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* --- RE-DESIGNED: Top Section (Video + Intro) --- */}
@@ -168,7 +158,6 @@ export const HowItWorksForArtistsSection = () => {
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-105"
             />
-            {/* Gradient overlay for better text visibility and modern feel */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="bg-white/20 backdrop-blur-sm p-4 rounded-full transition-all duration-300 group-hover:bg-primary/80 group-hover:scale-110">
@@ -214,15 +203,16 @@ export const HowItWorksForArtistsSection = () => {
         </div>
 
         {/* --- REFINED: Step Cards Section --- */}
-        {/* Added a relative parent and min-h to create scroll space */}
         <div className="relative space-y-8 max-w-6xl mx-auto min-h-[150vh]">
           {steps.map((step, index) => (
             <StepCard
               key={index}
               {...step}
-              // Pass calculated sticky offset and z-index based on index
-              stickyOffset={`top-${4 * index}`} // Example: top-0, top-4, top-8
-              zIndex={`z-${30 - index * 10}`} // Example: z-30, z-20, z-10
+              // Fixed: Higher index = higher z-index so later cards stack on top
+              stickyOffset={
+                index === 0 ? "top-0" : index === 1 ? "top-4" : "top-8"
+              }
+              zIndex={10 + index} // First card: z-10, Second: z-11, Third: z-12
             />
           ))}
         </div>

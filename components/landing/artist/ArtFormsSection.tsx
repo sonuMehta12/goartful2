@@ -1,9 +1,13 @@
+// src/components/ArtFormsCarousel.tsx
+
 "use client";
 
-import { useState } from "react";
-import Image from "next/image"; // Added missing Image import
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { useState, useEffect, useCallback } from "react";
+import Image from "next/image";
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
+import { Card } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 import {
   Paintbrush,
   Music,
@@ -14,23 +18,20 @@ import {
   BookOpen,
   ChefHat,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
 
+// Interface for ArtForm
 interface ArtForm {
-  icon: React.ElementType;
   title: string;
   description: string;
-  bgColorClass?: string;
-  iconColorClass?: string;
-  imgSrc?: {
+  imgSrc: {
     src: string;
     alt: string;
   };
 }
 
+// Data for the carousel slides
 const allArtForms: ArtForm[] = [
   {
-    icon: Paintbrush,
     title: "Painting & Drawing",
     description:
       "Host oil, acrylic, watercolor, or digital workshops. Share techniques and inspire.",
@@ -40,7 +41,6 @@ const allArtForms: ArtForm[] = [
     },
   },
   {
-    icon: Hammer,
     title: "Sculpture & Pottery",
     description:
       "Share the joy of shaping clay, wood, or metal in hands-on 3D art forms.",
@@ -50,7 +50,6 @@ const allArtForms: ArtForm[] = [
     },
   },
   {
-    icon: Scissors,
     title: "Fiber Arts & Crafts",
     description:
       "From knitting to macrame, connect through the tactile world of fiber art and crafts.",
@@ -60,7 +59,6 @@ const allArtForms: ArtForm[] = [
     },
   },
   {
-    icon: Music,
     title: "Music & Sound",
     description:
       "Create intimate concerts, interactive music workshops, or sound healing sessions.",
@@ -70,7 +68,6 @@ const allArtForms: ArtForm[] = [
     },
   },
   {
-    icon: Camera,
     title: "Photography & Digital Media",
     description:
       "Teach photography, videography, digital illustration, or graphic design skills.",
@@ -80,7 +77,6 @@ const allArtForms: ArtForm[] = [
     },
   },
   {
-    icon: Drama,
     title: "Performing Arts",
     description:
       "Host acting workshops, improv sessions, storytelling circles, or dance classes.",
@@ -90,7 +86,6 @@ const allArtForms: ArtForm[] = [
     },
   },
   {
-    icon: ChefHat,
     title: "Culinary Arts",
     description:
       "Share your passion for food through cooking classes, baking workshops, or unique gastronomic experiences.",
@@ -100,7 +95,6 @@ const allArtForms: ArtForm[] = [
     },
   },
   {
-    icon: BookOpen,
     title: "Literary Arts & Writing",
     description:
       "Host creative writing workshops, poetry slams, book clubs, or calligraphy sessions.",
@@ -111,15 +105,56 @@ const allArtForms: ArtForm[] = [
   },
 ];
 
-const INITIAL_VISIBLE_FORMS = 6;
+// Helper component for the dots
+const DotButton = ({
+  selected,
+  onClick,
+}: {
+  selected: boolean;
+  onClick: () => void;
+}) => (
+  <button
+    className={cn(
+      "h-2 w-2 rounded-full ring-2 ring-offset-2 ring-offset-background ring-transparent transition-all duration-300",
+      selected ? "w-4 bg-primary" : "bg-primary/20"
+    )}
+    type="button"
+    onClick={onClick}
+  />
+);
 
-const ArtFormsSection = () => {
-  const [visibleFormsCount, setVisibleFormsCount] = useState(
-    INITIAL_VISIBLE_FORMS
+const ArtFormsCarousel = () => {
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    {
+      loop: true,
+      align: "start",
+    },
+    [Autoplay({ delay: 2000, stopOnInteraction: true })]
   );
-  const showMoreArtForms = () => setVisibleFormsCount(allArtForms.length);
-  const showLessArtForms = () => setVisibleFormsCount(INITIAL_VISIBLE_FORMS);
-  const visibleArtForms = allArtForms.slice(0, visibleFormsCount);
+
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
+
+  const scrollTo = useCallback(
+    (index: number) => emblaApi?.scrollTo(index),
+    [emblaApi]
+  );
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap());
+    const onReInit = () => {
+      setSelectedIndex(emblaApi.selectedScrollSnap());
+      setScrollSnaps(emblaApi.scrollSnapList());
+    };
+    setScrollSnaps(emblaApi.scrollSnapList());
+    emblaApi.on("select", onSelect);
+    emblaApi.on("reInit", onReInit);
+    return () => {
+      emblaApi.off("select", onSelect);
+      emblaApi.off("reInit", onReInit);
+    };
+  }, [emblaApi]);
 
   return (
     <section className="py-16 lg:py-24 bg-background">
@@ -135,70 +170,47 @@ const ArtFormsSection = () => {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12">
-          {visibleArtForms.map((form) => (
-            <Card
-              key={form.title}
-              className="overflow-hidden transition-all duration-300 hover:shadow-2xl group bg-card border flex flex-col"
-            >
+        <div className="overflow-hidden" ref={emblaRef}>
+          <div className="flex -ml-4">
+            {allArtForms.map((form, index) => (
+              //  ↓↓↓  THE ONLY CHANGE IS ON THIS LINE  ↓↓↓
               <div
-                className={cn(
-                  "relative h-48 sm:h-56 flex items-center justify-center overflow-hidden",
-                  form.bgColorClass || "bg-muted/30"
-                )}
+                className="flex-[0_0_45%] sm:flex-[0_0_33.33%] md:flex-[0_0_25%] lg:flex-[0_0_20%] pl-4"
+                key={index}
               >
-                {form.imgSrc && (
+                {/* ↑↑↑  THE ONLY CHANGE IS ON THIS LINE  ↑↑↑ */}
+                <Card className="overflow-hidden rounded-2xl relative aspect-[4/5] group border-none">
                   <Image
                     src={form.imgSrc.src}
                     alt={form.imgSrc.alt}
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105 opacity-70 group-hover:opacity-100"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-80 group-hover:opacity-100 transition-opacity" />
-                <form.icon
-                  className={cn(
-                    "absolute w-10 h-10 z-10 transition-transform duration-300 group-hover:scale-110 group-hover:text-white",
-                    form.iconColorClass || "text-primary/70",
-                    form.imgSrc && "text-white/80"
-                  )}
-                />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+
+                  <div className="absolute inset-0 flex items-center justify-center"></div>
+
+                  <h3 className="absolute bottom-5 left-5 text-xl font-bold text-white">
+                    {form.title}
+                  </h3>
+                </Card>
               </div>
-              <CardContent className="p-6 flex flex-col flex-grow">
-                <h3 className="text-xl font-semibold text-foreground mb-2">
-                  {form.title}
-                </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed flex-grow">
-                  {form.description}
-                </p>
-              </CardContent>
-            </Card>
-          ))}
+            ))}
+          </div>
         </div>
 
-        {allArtForms.length > INITIAL_VISIBLE_FORMS && (
-          <div className="text-center">
-            <Button
-              variant={
-                visibleFormsCount < allArtForms.length ? "default" : "outline"
-              }
-              size="lg"
-              onClick={
-                visibleFormsCount < allArtForms.length
-                  ? showMoreArtForms
-                  : showLessArtForms
-              }
-              className="font-semibold min-w-[200px]"
-            >
-              {visibleFormsCount < allArtForms.length
-                ? `Explore All ${allArtForms.length} Forms`
-                : "Show Fewer Art Forms"}
-            </Button>
-          </div>
-        )}
+        <div className="flex justify-center items-center gap-3 mt-8">
+          {scrollSnaps.map((_, index) => (
+            <DotButton
+              key={index}
+              selected={index === selectedIndex}
+              onClick={() => scrollTo(index)}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );
 };
 
-export default ArtFormsSection;
+export default ArtFormsCarousel;

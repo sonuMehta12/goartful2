@@ -4,11 +4,10 @@ import {
   Users,
   DollarSign,
   Zap,
-  BarChartBig,
-  Briefcase,
+  Monitor,
+  MapPin,
   Settings2,
-  ShieldCheck,
-} from "lucide-react"; // Refined icons
+} from "lucide-react";
 
 interface Benefit {
   icon: React.ElementType;
@@ -26,6 +25,29 @@ const benefits: Benefit[] = [
     iconBgClass: "bg-green-500/10 text-green-600",
   },
   {
+    icon: MapPin,
+    title: "Host Anywhere, Your Way",
+    description:
+      "Use any space—your home, cafés, parks, or partner studios. No studio rent or initial equipment investment barriers.",
+    iconBgClass: "bg-orange-500/10 text-orange-600",
+  },
+  {
+    icon: Settings2,
+    title: "We Handle the Logistics",
+    description:
+      "Focus on your art, we'll provide supplies and space with zero cost, payments, and the essential tools to run your experiences smoothly.",
+    iconBgClass: "bg-amber-500/10 text-amber-600",
+  },
+
+  {
+    icon: Monitor,
+    title: "Professional Artist Platform",
+    description:
+      "Get your premium portfolio website and professional dashboard to showcase your work, manage events, track customers, and monitor all your earnings in one place.",
+    iconBgClass: "bg-purple-500/10 text-purple-600",
+  },
+
+  {
     icon: Users,
     title: "Connect with Real Art Lovers",
     description:
@@ -33,32 +55,11 @@ const benefits: Benefit[] = [
     iconBgClass: "bg-blue-500/10 text-blue-600",
   },
   {
-    icon: Briefcase, // Representing flexibility and ease
-    title: "Host Anywhere, Your Way",
-    description:
-      "Use any space—your home, cafés, parks, or partner studios. No studio rent or initial equipment investment barriers.",
-    iconBgClass: "bg-purple-500/10 text-purple-600",
-  },
-  {
-    icon: Settings2, // Representing tools & support
-    title: "We Handle the Logistics",
-    description:
-      "Focus on your art, we'll provide you supplies and space with zero cost, payments, and the essential tools to run and manage your experiences smoothly.",
-    iconBgClass: "bg-amber-500/10 text-amber-600",
-  },
-  {
     icon: Zap,
     title: "Artist-First Low Commission",
     description:
       "Keep more of what you earn. No monthly fees, just a transparent, small commission when you make a sale through GoArtful.",
     iconBgClass: "bg-teal-500/10 text-teal-600",
-  },
-  {
-    icon: BarChartBig, // Representing growth
-    title: "Grow Beyond Experiences (Future)",
-    description:
-      "We're starting with experiences, with a vision for a marketplace to sell your art globally and a skill-up platform to teach online.",
-    iconBgClass: "bg-indigo-500/10 text-indigo-600",
   },
 ];
 

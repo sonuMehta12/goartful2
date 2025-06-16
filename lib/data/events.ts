@@ -24,8 +24,9 @@ export const EVENTS_DATA: Event[] = [
     tagline:
       "Transform stress into art, emotions into colors, and strangers into connections",
     description:
-      "Step away from your screens, deadlines, and daily pressures. Join Noida's first therapeutic art experience where you'll discover the healing power of mindful painting. This isn't about creating perfect art—it's about creating space for yourself. In our fast-paced professional lives, we rarely pause to check in with our inner world. This 2-hour journey combines art therapy techniques with mindfulness practices, helping you process emotions, reduce stress, and connect authentically with others who understand the modern work-life struggle.",
+      "Step away from your screens, deadlines, and daily pressures. Join Noida's first therapeutic art experience where you'll discover the healing power of mindful painting.",
     shortDescription: "An Evening of Artful Expression & Connection",
+
     type: "Art Workshop",
     category: { id: "Art Workshop", name: "Art Workshop" },
     tags: [
@@ -41,7 +42,7 @@ export const EVENTS_DATA: Event[] = [
     date: "2025-06-19", // Approx. 1.5 months from now
     startTime: "6:00 PM",
     endTime: "08:00 PM",
-    duration: "2 hours / Day (Multi-Day Options)", // Clarified duration
+    duration: "2 hours", // Clarified duration
     upcomingDates: [
       // Assuming this festival might run for a weekend
       {
@@ -64,7 +65,6 @@ export const EVENTS_DATA: Event[] = [
     price: 799, // Price per day or for a pass, e.g., ₹799.00
     currency: "INR",
     isFree: false,
-    // ticketsLeft: (can be derived from the most relevant upcomingDate.spotsLeft, or be a general "Tickets available")
     capacity: 15, // Max capacity for any given day, for general reference
     ticketsLeft: 15,
     heroImage: {
@@ -112,11 +112,19 @@ export const EVENTS_DATA: Event[] = [
         url: "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1748969461/Akansha_Sharma_aexlhb.jpg", // Replace with an actual foundation logo or generic event icon
         alt: "Akansha Sharma",
       },
+      introVideoUrl:
+        "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+      introVodeoPosterUrl:
+        "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg",
+      portfolioUrl: "https://www.instagram.com/akansha.sharma_/",
+      hostRating: 4.8,
+      hostReviewCount: 25,
+      instagramHandle: "akansha.sharma_",
+      verified: true,
       title: "Artist & Associate Dentist",
       bio: "I am Akanksha Sharma , an acrylic and watercolor artist. Creative art has been my go to especially in times when pressed by overwhelming emotions as it provides a healthy medium of expressing oneself . I wish to help others to utilise this meditative experience and thus introduce to them a tool they can access to process their feelings.",
       experience: "1+ years doing art workshops and community events",
       eventsHosted: 2, // Number of significant events
-      verified: true,
       // languages, responseTime might not be relevant for an organization
     },
     venue: {
@@ -186,6 +194,84 @@ export const EVENTS_DATA: Event[] = [
         verified: true,
       },
     ],
+    attendeeMoments: [
+      {
+        id: "am1-1",
+        mediaUrl:
+          "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1748940564/Summer_HERO_veqoki.webp", // From your gallery
+        mediaType: "image",
+        altText: "Attendee capturing the vibrant festival atmosphere.",
+        caption: "Loved the energy at the Summer Art Fest! #GoArtful",
+        attendee: {
+          name: "Priya S.",
+          avatarUrl: "https://i.pravatar.cc/150?u=priya",
+        },
+        timestamp: "2 days ago",
+      },
+      {
+        id: "am1-2",
+        mediaUrl:
+          "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1748940564/SUmmer-Step2_brwfr0.webp",
+        mediaType: "image",
+        altText: "My artwork in progress during the workshop.",
+        caption: "So much fun learning new techniques!",
+        attendee: {
+          name: "Rohan M.",
+          avatarUrl: "https://i.pravatar.cc/150?u=rohan",
+        },
+        timestamp: "June 10, 2024",
+      },
+      {
+        id: "am1-3",
+        mediaUrl:
+          "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1748941319/myqhrnp1y3dse2axeg0l_mgsoal.png",
+        mediaType: "image",
+        altText: "Connecting with fellow art enthusiasts.",
+        caption: "Met some amazing people. ✨",
+        attendee: {
+          name: "Aisha K.",
+          avatarUrl: "https://i.pravatar.cc/150?u=aisha",
+        },
+        timestamp: "June 9, 2024",
+      },
+      {
+        id: "am1-4",
+        mediaUrl:
+          "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1748969809/WhatsApp_Image_2025-06-03_at_14.57.35_88e14e43_ki3y57.jpg",
+        mediaType: "image",
+        altText: "Enjoying the delicious food at the event.",
+        caption: "Art + Food = Perfect Evening!",
+        attendee: { name: "Vikram J." /* no avatarUrl for this one */ },
+        timestamp: "1 week ago",
+      },
+      {
+        id: "am1-5",
+        mediaUrl:
+          "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1748969809/WhatsApp_Image_2025-06-03_at_14.57.35_b18b86ca_wlkol7.jpg",
+        mediaType: "image",
+        altText: "My final creation from the workshop!",
+        caption: "So proud of what I made! Thanks GoArtful!",
+        attendee: {
+          name: "Sneha P.",
+          avatarUrl: "https://i.pravatar.cc/150?u=sneha",
+        },
+        timestamp: "June 8, 2024",
+      },
+      {
+        // Add a 6th item for testing partial visibility
+        id: "am1-6",
+        mediaUrl:
+          "https://img.traveltriangle.com/blog/wp-content/uploads/2019/09/Restaurants-In-Bikaner.jpg", // Different image
+        mediaType: "image",
+        altText: "Chilling at Bikanervala after the workshop!",
+        caption: "Great end to a creative session.",
+        attendee: {
+          name: "Amit B.",
+          avatarUrl: "https://i.pravatar.cc/150?u=amit",
+        },
+        timestamp: "3 days ago",
+      },
+    ],
     skillLevel: "Everyone Welcome",
     ageRequirement: "All Ages",
     highlights: [
@@ -242,18 +328,11 @@ export const EVENTS_DATA: Event[] = [
     ],
     materialsIncluded: [
       "All painting materials (canvas, paints, brushes, aprons)",
-      "Expert facilitation with art therapy techniques",
       "Food/refreshments up to ₹250 from Bikanervala menu",
       "Take-home artwork as your personal mood memoir",
-      "Post-experience connection with a like-minded creative community",
     ], // Typically not applicable for a festival like this for attendees
-    foodIncluded: [
-      "Included food/refreshments up to ₹250 from Bikanervala menu.",
-    ],
-    whatToBring: [
-      "Just yourself, an open mind, and a willingness to explore your creativity!",
-      "Appetite for delicious food and new experiences.",
-    ],
+    foodIncluded: [],
+    whatToBring: [],
     prerequisites:
       "None! Just a curiosity to explore your emotions through art and a desire to connect.",
     policies: {
@@ -291,7 +370,8 @@ export const EVENTS_DATA: Event[] = [
     ],
     videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", // Placeholder (rickroll, replace with actual video)
     videoPosterUrl:
-      "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1748940564/Summer_HERO_veqoki.webp", // A poster for the video
+      "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1748940564/Summer_HERO_veqoki.webp",
+    goodToKnow: [],
   },
 
   // Event 2: Myths We Inherit Art Exhibition (Past Event)
@@ -589,6 +669,7 @@ export const EVENTS_DATA: Event[] = [
       "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1749134006/Myth_gallery_2_-_Copy_qjxmq1.jpg", // Placeholder
     videoPosterUrl:
       "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1749134006/Myth_gallery_2_-_Copy_qjxmq1.jpg",
+    goodToKnow: [],
   },
   // Event ID "2" (Philosophy & Painting - needs similar full population)
   // ... (Ensure Event 2 is also fully populated for all fields) ...

@@ -1,153 +1,141 @@
-// components/event-detail/EventLogistics.tsx
-import { Event } from "@/lib/types/event";
+import type { Event } from "@/lib/types/event";
 import {
-  Check,
-  Users,
-  Gift,
-  ClipboardList,
-  XCircle,
+  PackageCheck,
+  ShoppingBag,
   Info,
-  ListChecks,
-  PackageOpen,
+  Sparkles,
+  ClipboardList,
   Shirt,
-} from "lucide-react";
+  ShieldAlert,
+  FileCheck,
+} from "lucide-react"; // Refined icons
 
-interface DetailSectionProps {
-  title: string;
-  items?: string[] | null;
-  icon?: React.ElementType;
-  emptyMessage?: string;
+interface ListItemProps {
+  text: string;
+  icon?: React.ElementType; // Allow passing specific icon for "Things to Know"
 }
 
-const DetailSection: React.FC<DetailSectionProps> = ({
-  title,
-  items,
-  icon: Icon,
-  emptyMessage = "Not specified.",
-}) => {
-  if (!items || items.length === 0) {
-    // Optionally render nothing or a message if items are empty, depending on design
-    // return null;
-  }
-
-  return (
-    <div>
-      <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center">
-        {Icon && <Icon className="w-5 h-5 mr-2.5 text-primary" />}
-        {title}
-      </h3>
-      {!items || items.length === 0 ? (
-        <p className="text-sm text-muted-foreground">{emptyMessage}</p>
-      ) : (
-        <ul className="space-y-1.5 list-inside list-disc pl-1">
-          {items.map((item, index) => (
-            <li
-              key={index}
-              className="text-sm text-muted-foreground flex items-start"
-            >
-              <Check className="w-4 h-4 text-green-500 mr-2 mt-0.5 shrink-0" />
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
-};
+const ListItem: React.FC<ListItemProps> = ({ text, icon: ItemIcon }) => (
+  <li className="flex items-start">
+    {ItemIcon ? (
+      <ItemIcon className="w-4 h-4 text-primary mr-2.5 mt-0.5 shrink-0" />
+    ) : (
+      <FileCheck className="w-4 h-4 text-green-500 mr-2.5 mt-0.5 shrink-0" />
+    )}
+    <span className="text-sm text-muted-foreground">{text}</span>
+  </li>
+);
 
 interface EventLogisticsProps {
   event: Pick<
     Event,
-    | "highlights"
     | "materialsIncluded"
     | "foodIncluded"
     | "whatToBring"
     | "whatToWear"
     | "prerequisites"
-    | "perfectFor"
+    | "policies"
   >;
 }
 
 export default function EventLogistics({ event }: EventLogisticsProps) {
   const {
-    highlights,
     materialsIncluded,
     foodIncluded,
     whatToBring,
     whatToWear,
     prerequisites,
-    perfectFor,
+    policies,
   } = event;
 
-  // Only render the section if there's at least one piece of logistic info
-  const hasLogistics =
-    highlights?.length ||
-    materialsIncluded?.length ||
-    foodIncluded?.length ||
-    whatToBring?.length ||
-    whatToWear?.length ||
-    prerequisites;
+  const whatsIncludedItems: string[] = [];
+  if (materialsIncluded) whatsIncludedItems.push(...materialsIncluded);
+  if (foodIncluded) whatsIncludedItems.push(...foodIncluded);
 
-  if (!hasLogistics) {
-    return null;
+  const thingsToKnowItems: { text: string; icon?: React.ElementType }[] = [];
+  if (whatToBring)
+    whatToBring.forEach((item) =>
+      thingsToKnowItems.push({ text: item, icon: ShoppingBag })
+    );
+  if (whatToWear)
+    whatToWear.forEach((item) =>
+      thingsToKnowItems.push({ text: item, icon: Shirt })
+    );
+  if (prerequisites)
+    thingsToKnowItems.push({
+      text: `Prerequisites: ${prerequisites}`,
+      icon: Info,
+    });
+  if (policies?.cancellation) {
+    // Extract first sentence of cancellation policy or a short summary
+    const cancellationSnippet =
+      policies.cancellation.split(".")[0] + "." ||
+      "Cancellation policy applies.";
+    thingsToKnowItems.push({
+      text: `Cancellation: ${cancellationSnippet}`,
+      icon: ShieldAlert,
+    });
+  }
+  // Add any other "important notes" you might define on the event object
+
+  const hasContent =
+    whatsIncludedItems.length > 0 || thingsToKnowItems.length > 0;
+
+  if (!hasContent) {
+    return null; // Don't render the section if there's nothing to show
   }
 
   return (
-    <section className="py-8 border-t">
-      <h2 className="text-2xl font-semibold text-foreground mb-6">
-        Logistics & Preparation
-      </h2>
-      <div className="grid md:grid-cols-2 gap-x-8 gap-y-6">
-        {highlights && highlights.length > 0 && (
-          <DetailSection
-            title="Event Highlights"
-            items={highlights}
-            icon={ListChecks}
-          />
-        )}
-        {perfectFor && perfectFor.length > 0 && (
-          <DetailSection
-            title="Perfect For who ?"
-            items={perfectFor}
-            icon={Users} /* Re-using Users for perfect for */
-          />
-        )}
-        {materialsIncluded && materialsIncluded.length > 0 && (
-          <DetailSection
-            title="Materials Included"
-            items={materialsIncluded}
-            icon={PackageOpen}
-          />
-        )}
-        {foodIncluded && foodIncluded.length > 0 && (
-          <DetailSection
-            title="Food & Refreshments"
-            items={foodIncluded}
-            icon={Gift}
-          /> /* Re-using Gift for food */
-        )}
-        {whatToBring && whatToBring.length > 0 && (
-          <DetailSection
-            title="What to Bring"
-            items={whatToBring}
-            icon={ClipboardList} /* Changed icon */
-          />
-        )}
-        {whatToWear && whatToWear.length > 0 && (
-          <DetailSection title="What to Wear" items={whatToWear} icon={Shirt} />
-        )}
+    <section id="event-essentials" className="py-10 sm:py-12 border-t">
+      {" "}
+      {/* Added ID */}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mb-8 text-center sm:text-left">
+          <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
+            Your Event Essentials
+          </h2>
+          <p className="mt-1 text-muted-foreground">
+            Everything you need to know to prepare for an amazing experience.
+          </p>
+        </div>
 
-        {prerequisites && (
-          <div className="md:col-span-2 pt-2">
-            {" "}
-            {/* Prerequisites can take full width if other items are sparse */}
-            <h3 className="text-lg font-semibold text-foreground mb-2 flex items-center">
-              <Info className="w-5 h-5 mr-2.5 text-primary" />
-              Prerequisites
-            </h3>
-            <p className="text-sm text-muted-foreground">{prerequisites}</p>
-          </div>
-        )}
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+          {/* Column 1: What's Included */}
+          {whatsIncludedItems.length > 0 && (
+            <div className="bg-card border border-border p-6 rounded-xl shadow-sm">
+              <h3 className="text-xl font-semibold text-foreground mb-4 flex items-center">
+                <PackageCheck className="w-6 h-6 mr-3 text-primary" />
+                What's Included
+              </h3>
+              <ul className="space-y-2">
+                {whatsIncludedItems.map((item, index) => (
+                  <ListItem key={`included-${index}`} text={item} />
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Column 2: Good to Know */}
+          {thingsToKnowItems.length > 0 && (
+            <div className="bg-card border border-border p-6 rounded-xl shadow-sm">
+              <h3 className="text-xl font-semibold text-foreground mb-4 flex items-center">
+                <ClipboardList className="w-6 h-6 mr-3 text-primary" />
+                Good to Know
+              </h3>
+              <ul className="space-y-2.5">
+                {" "}
+                {/* Increased spacing slightly */}
+                {thingsToKnowItems.map((item, index) => (
+                  <ListItem
+                    key={`know-${index}`}
+                    text={item.text}
+                    icon={item.icon}
+                  />
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
       </div>
     </section>
   );

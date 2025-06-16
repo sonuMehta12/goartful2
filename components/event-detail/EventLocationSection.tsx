@@ -1,271 +1,122 @@
 // components/event-detail/EventLocationSection.tsx
-import type { Venue } from "@/lib/types/event"; // Our refined Venue type
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import type { Venue } from "@/lib/types/event";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import {
-  MapPin,
-  ExternalLink,
-  ParkingCircle,
-  TramFront,
-  Accessibility as AccessibilityIconLucide,
-  Wind,
-  LayoutGrid,
-  Car,
-  Info,
-  ShieldCheck,
-  Users,
-  Wifi, // Added more specific icons
-} from "lucide-react";
-import { Separator } from "@/components/ui/separator"; // Optional for visual separation
+import { MapPin, ExternalLink, Navigation, Info } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface EventLocationSectionProps {
-  venue: Venue;
+  venue?: Venue | null; // Make venue prop optional to handle cases where it might be missing
 }
-
-// Enhanced icon mapping helper
-const getDetailIcon = (
-  detailType: string,
-  detailText: string
-): React.ElementType => {
-  const lowerText = detailText.toLowerCase();
-  switch (detailType) {
-    case "amenity":
-      if (lowerText.includes("wifi")) return Wifi;
-      if (lowerText.includes("parking")) return ParkingCircle; // Covered by howToGetThere.parking
-      if (lowerText.includes("restroom")) return Users;
-      if (lowerText.includes("water") || lowerText.includes("station"))
-        return Wind;
-      if (lowerText.includes("lounge")) return LayoutGrid;
-      if (lowerText.includes("climate") || lowerText.includes("air condition"))
-        return Wind; // Reusing Wind for AC
-      if (
-        lowerText.includes("food") ||
-        lowerText.includes("stall") ||
-        lowerText.includes("cafe")
-      )
-        return Info; // Generic for food
-      break;
-    case "accessibility":
-      if (
-        lowerText.includes("wheelchair") ||
-        lowerText.includes("ramp") ||
-        lowerText.includes("accessible entrance")
-      )
-        return AccessibilityIconLucide;
-      if (lowerText.includes("elevator")) return AccessibilityIconLucide; // General accessibility
-      if (lowerText.includes("service animal")) return ShieldCheck; // Using Shield for allowed/policy
-      if (lowerText.includes("large print") || lowerText.includes("braille"))
-        return Info; // Generic info
-      if (
-        lowerText.includes("asl") ||
-        lowerText.includes("interpreters") ||
-        lowerText.includes("hearing loop")
-      )
-        return Info;
-      break;
-  }
-  return Info; // Default icon
-};
 
 export default function EventLocationSection({
   venue,
 }: EventLocationSectionProps) {
   if (!venue) {
-    // This case should ideally be handled by the parent page (e.g., not rendering this section if venue is missing)
-    // but as a safeguard:
+    // If you always expect a venue, the parent should handle not rendering this.
+    // But as a safeguard, or if it's truly optional:
     return (
-      <section id="location-venue" className="py-10 sm:py-12 border-t">
-        <div className="container mx-auto px-4 text-center text-muted-foreground">
-          Venue information is currently unavailable.
+      <section id="event-location" className="py-10 sm:py-12 border-t">
+        <div className="container mx-auto px-4 text-center">
+          <p className="text-muted-foreground">
+            Venue information is currently being finalized.
+          </p>
         </div>
       </section>
     );
   }
 
-  const hasHowToGetThereInfo =
-    venue.directions ||
-    (venue.howToGetThere &&
-      (venue.howToGetThere.publicTransport?.length ||
-        venue.howToGetThere.byCar ||
-        venue.howToGetThere.parking ||
-        venue.howToGetThere.notes));
-
   return (
-    <section id="location-venue" className="py-10 sm:py-12 border-t">
+    <section id="event-location" className="py-8 sm:py-12 border-t">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-8 text-center sm:text-left">
-          <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
-            Venue & Getting There
+        {/* Section Header */}
+        <div className="mb-6 sm:mb-8 text-center sm:text-left">
+          <h2 className="text-2xl sm:text-3xl font-bold text-foreground flex items-center sm:justify-start justify-center">
+            <MapPin className="w-6 h-6 sm:w-7 sm:h-7 mr-3 text-primary shrink-0" />
+            Where You'll Be Creating
           </h2>
-          {venue.name && (
-            <p className="mt-1 text-muted-foreground">
-              Find your way to{" "}
-              <span className="font-medium text-foreground">{venue.name}</span>{" "}
-              and see what&apos;s available.
-            </p>
-          )}
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-8 items-start">
-          {/* Left Column: Venue Image & Address Block */}
-          <div className="lg:col-span-5 xl:col-span-4 space-y-6">
-            {venue.venueImage?.url && (
-              <div className="relative aspect-[4/3] sm:aspect-[16/10] rounded-lg overflow-hidden shadow-lg group transition-all duration-300 ease-in-out hover:shadow-xl">
+        {/* Location Card - No padding for image */}
+        <div className="bg-card rounded-xl border border-border overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
+          <div className="grid md:grid-cols-2 md:min-h-[300px]">
+            {/* Image Section - Full width, no padding */}
+            <div className="relative w-full h-64 md:h-full">
+              {venue.venueImage?.url ? (
                 <Image
                   src={venue.venueImage.url}
                   alt={venue.venueImage.alt || `Image of ${venue.name}`}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform"
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  priority
                 />
-              </div>
-            )}
-            <Card className="border-border shadow-sm">
-              <CardHeader className="pb-3">
-                {" "}
-                {/* Reduced pb */}
-                <CardTitle className="text-xl flex items-center text-foreground">
-                  <MapPin className="w-5 h-5 mr-2.5 text-primary" />
+              ) : (
+                // Fallback if no image
+                <div className="w-full h-full bg-muted flex items-center justify-center">
+                  <MapPin className="w-12 h-12 text-muted-foreground/50" />
+                </div>
+              )}
+            </div>
+
+            {/* Content Section - Centered */}
+            <div className="p-4 sm:p-6 lg:p-8 flex flex-col justify-center">
+              {/* Venue Information */}
+              <div className="space-y-3 sm:space-y-4 mb-6">
+                <h3 className="text-xl sm:text-2xl font-bold text-foreground leading-tight">
                   {venue.name}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="text-sm text-muted-foreground space-y-1 pt-0">
-                <p>{venue.address}</p>
-                <p>
-                  {venue.city}, {venue.state} {venue.zipCode}
-                </p>
-                {venue.mapUrl && (
-                  <Button
-                    variant="link"
-                    size="sm"
-                    asChild
-                    className="px-0 mt-2 h-auto text-sm font-medium"
+                </h3>
+
+                <address className="text-sm sm:text-base text-muted-foreground not-italic leading-relaxed">
+                  {venue.address && (
+                    <p className="font-medium text-foreground/80">
+                      {venue.address}
+                    </p>
+                  )}
+                  <p>
+                    {venue.city}, {venue.state} {venue.zipCode}
+                  </p>
+                </address>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex flex-col sm:flex-row gap-3">
+                {/* Primary Action - Get Directions */}
+                <Button
+                  variant="default"
+                  size="default"
+                  className="flex-1 sm:flex-none font-semibold group"
+                  asChild
+                >
+                  <a
+                    href="#" // Replace with actual directions URL
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Get directions to ${venue.name}`}
                   >
-                    <a
-                      href={venue.mapUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center"
-                    >
-                      View on Map{" "}
-                      <ExternalLink className="w-3.5 h-3.5 ml-1.5" />
-                    </a>
-                  </Button>
-                )}
-              </CardContent>
-            </Card>
-          </div>
+                    <Navigation className="w-4 h-4 mr-2" />
+                    Get Directions
+                    <ExternalLink className="w-3 h-3 ml-2 transition-transform group-hover:translate-x-0.5" />
+                  </a>
+                </Button>
 
-          {/* Right Column: How to Reach, Amenities, Accessibility */}
-          <div className="lg:col-span-7 xl:col-span-8 space-y-6">
-            {hasHowToGetThereInfo && (
-              <Card className="border-border shadow-sm">
-                <CardHeader>
-                  <CardTitle className="text-xl text-foreground">
-                    How to Reach
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4 text-sm">
-                  {venue.directions && (
-                    <div className="pb-3">
-                      <h4 className="font-medium text-foreground mb-1">
-                        General Directions:
-                      </h4>
-                      <p className="text-muted-foreground whitespace-pre-line leading-relaxed">
-                        {venue.directions}
-                      </p>
-                    </div>
-                  )}
-                  {venue.howToGetThere?.publicTransport &&
-                    venue.howToGetThere.publicTransport.length > 0 && (
-                      <div className="pt-3 border-t border-dashed">
-                        <h4 className="font-medium text-foreground mb-1.5 flex items-center">
-                          <TramFront className="w-4 h-4 mr-2 text-primary" /> By
-                          Public Transport:
-                        </h4>
-                        <ul className="list-disc list-outside pl-5 space-y-1 text-muted-foreground">
-                          {venue.howToGetThere.publicTransport.map(
-                            (item, idx) => (
-                              <li key={`pt-${idx}`}>{item}</li>
-                            )
-                          )}
-                        </ul>
-                      </div>
-                    )}
-                  {venue.howToGetThere?.byCar && (
-                    <div className="pt-3 border-t border-dashed">
-                      <h4 className="font-medium text-foreground mb-1.5 flex items-center">
-                        <Car className="w-4 h-4 mr-2 text-primary" /> By Car:
-                      </h4>
-                      <p className="text-muted-foreground whitespace-pre-line leading-relaxed">
-                        {venue.howToGetThere.byCar}
-                      </p>
-                    </div>
-                  )}
-                  {venue.howToGetThere?.parking && (
-                    <div className="pt-3 border-t border-dashed">
-                      <h4 className="font-medium text-foreground mb-1.5 flex items-center">
-                        <ParkingCircle className="w-4 h-4 mr-2 text-primary" />{" "}
-                        Parking:
-                      </h4>
-                      <p className="text-muted-foreground whitespace-pre-line leading-relaxed">
-                        {venue.howToGetThere.parking}
-                      </p>
-                    </div>
-                  )}
-                  {venue.howToGetThere?.notes && (
-                    <div className="pt-3 mt-3 border-t border-dashed">
-                      <p className="text-xs text-muted-foreground italic">
-                        {venue.howToGetThere.notes}
-                      </p>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            )}
-
-            {venue.amenities && venue.amenities.length > 0 && (
-              <Card className="border-border shadow-sm">
-                <CardHeader>
-                  <CardTitle className="text-xl text-foreground">
-                    Amenities On-site
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 text-sm">
-                  {venue.amenities.map((amenity, idx) => {
-                    const Icon = getDetailIcon("amenity", amenity);
-                    return (
-                      <div key={`am-${idx}`} className="flex items-center">
-                        <Icon className="w-4 h-4 mr-2.5 text-primary shrink-0" />
-                        <span className="text-muted-foreground">{amenity}</span>
-                      </div>
-                    );
-                  })}
-                </CardContent>
-              </Card>
-            )}
-
-            {venue.accessibility && venue.accessibility.length > 0 && (
-              <Card className="border-border shadow-sm">
-                <CardHeader>
-                  <CardTitle className="text-xl text-foreground">
-                    Accessibility Features
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 text-sm">
-                  {venue.accessibility.map((item, idx) => {
-                    const Icon = getDetailIcon("accessibility", item);
-                    return (
-                      <div key={`ac-${idx}`} className="flex items-center">
-                        <Icon className="w-4 h-4 mr-2.5 text-primary shrink-0" />
-                        <span className="text-muted-foreground">{item}</span>
-                      </div>
-                    );
-                  })}
-                </CardContent>
-              </Card>
-            )}
+                {/* Secondary Action - View Details */}
+                <Button
+                  variant="outline"
+                  size="default"
+                  className="flex-1 sm:flex-none font-medium group"
+                  asChild
+                >
+                  <a
+                    href="#" // Replace with actual venue details URL
+                    aria-label={`View details about ${venue.name}`}
+                  >
+                    <Info className="w-4 h-4 mr-2" />
+                    View Details
+                  </a>
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

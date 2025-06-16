@@ -4,7 +4,7 @@ import { Event } from "@/lib/types/event";
 import EventDescriptionHostVenue from "./EventDescriptionHostVenue";
 import EventWhatYoullDo from "./WhatYoullDo"; // Assuming this is a client component
 import EventLogistics from "./EventLogistics"; // Assuming this is a client component
-import EventGalleryClient from "./EventGalleryClient"; // Assuming it's a client component
+import EventMomentsCarousel from "./EventMomentsCarousel"; // Assuming it's a client component
 import EventReviewsClient from "./EventReviewsClient"; // Assuming this is a client component
 import EventPoliciesClient from "./EventPoliciesClient"; // Assuming this is a client component
 import EventLocationSection from "./EventLocationSection";
@@ -21,6 +21,8 @@ interface EventMainContentProps {
     | "averageRating"
     | "reviewCount"
     | "reviews"
+    | "attendeeMoments"
+    | "name"
     | "policies"
     | "faqs"
     | "category"
@@ -48,20 +50,19 @@ export default function EventMainContent({ event }: EventMainContentProps) {
         <EventWhatYoullDo items={event.whatYoullDo} />
       )}
 
-      {/* Gallery Section */}
-      {event.galleryImages && event.galleryImages.length > 0 && (
-        <EventGalleryClient images={event.galleryImages} />
-      )}
-
       {/* Logistics: Highlights, Materials, What to Bring/Wear, Prerequisites */}
       <EventLogistics event={event} />
 
       {/* Location Details Section */}
       <EventLocationSection venue={event.venue} />
 
-      {/* We can have a dedicated EventLocationSection.tsx that uses event.venue */}
-      {/* For now, assuming EventDescriptionHostVenue covers basic venue display */}
-
+      {event.attendeeMoments && event.attendeeMoments.length > 0 && (
+        <EventMomentsCarousel
+          moments={event.attendeeMoments}
+          eventName={event.name}
+          options={{ align: "start", slidesToScroll: 1 }} // Customize Embla options here
+        />
+      )}
       {/* Reviews Section */}
       <EventReviewsClient
         eventId={(event as any).id}

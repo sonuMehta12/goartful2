@@ -1,3 +1,5 @@
+import React from "react";
+
 export interface ImageAsset {
   url: string;
   alt: string;
@@ -11,12 +13,23 @@ export interface Tag {
   id: string;
   name: string;
 }
+export interface GoodToKnowItem {
+  icon?: React.ElementType; // Optional specific icon from Lucide
+  text: string;
+  category: "bring" | "wear" | "policy" | "prerequisite" | "note"; // To help with styling or grouping if needed
+}
 
 export interface Host {
   id: string;
   name: string;
   tagline?: string;
   avatar: ImageAsset;
+  introVideoUrl?: string | null;
+  introVodeoPosterUrl?: string | null;
+  portfolioUrl?: string | null;
+  hostRating?: number | null;
+  hostReviewCount?: number | null;
+  instagramHandle?: string | null;
   verified: boolean;
   title?: string;
   bio?: string;
@@ -60,6 +73,24 @@ export interface Review {
   verified?: boolean;
 }
 
+export interface AttendeeInfo {
+  name: string;
+  avatarUrl?: string | null; // Optional: URL to attendee's avatar
+  // Could add profileLink to their GoArtful profile if that exists later
+}
+
+export interface AttendeeMomentItem {
+  id: string; // Unique ID for the moment
+  mediaUrl: string; // URL for the image or video
+  mediaType: "image" | "video";
+  altText: string; // Alt text for the image, or description for video
+  caption?: string | null; // Optional short caption from the attendee
+  attendee: AttendeeInfo;
+  timestamp: string; // ISO string for the moment's creation time
+  // Optional: Could link back to the specific event it's from
+  // eventId?: string;
+  // eventName?: string;
+}
 export interface UpcomingDateSession {
   date: string; // ISO Date string "YYYY-MM-DD"
   startTime: string; // "HH:MM" or "HH:MM AM/PM" e.g., "12:00 PM"
@@ -141,6 +172,7 @@ export interface Event {
   galleryImages: GalleryImageItem[] | null;
   host: Host;
   venue: Venue;
+  attendeeMoments?: AttendeeMomentItem[] | null;
   averageRating: number;
   reviewCount: number;
   reviews: Review[] | null;
@@ -149,6 +181,7 @@ export interface Event {
   highlights: string[];
   perfectFor: string[];
   whatYoullDo: WhatYoullDoItem[];
+  goodToKnow: GoodToKnowItem[];
   materialsIncluded?: string[] | null;
   foodIncluded?: string[] | null;
   whatToBring?: string[] | null;

@@ -69,7 +69,6 @@ export default function EventWhatYoullDo({ items }: EventWhatYoullDoProps) {
                 <p className="text-base text-muted-foreground leading-relaxed">
                   {" "}
                   {/* Adjusted text size */}
-                  {activity.description}
                 </p>
               </div>
             </div>

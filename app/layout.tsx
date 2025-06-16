@@ -57,6 +57,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           height="1"
           width="1"
           alt="Facebook Pixel"
+          className="hidden"
           style={{ display: "none" }}
           src="https://www.facebook.com/tr?id=1271271444528924&ev=PageView&noscript=1"
         />

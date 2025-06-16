@@ -8,16 +8,6 @@ import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import {
-  Paintbrush,
-  Music,
-  Scissors,
-  Hammer,
-  Camera,
-  Drama,
-  BookOpen,
-  ChefHat,
-} from "lucide-react";
 
 // Interface for ArtForm
 interface ArtForm {

@@ -15,11 +15,11 @@ const CtaSection = () => {
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-6 tracking-tight">
           Join the artful movement.
         </h2>
-        <p className="text-lg sm:text-xl text-primary-foreground/90 mb-10 max-w-2xl mx-auto leading-relaxed">
+        {/* <p className="text-lg sm:text-xl text-primary-foreground/90 mb-10 max-w-2xl mx-auto leading-relaxed">
           Join GoArtful today. Start sharing your unique art experiences,
           connect with a vibrant community, and build the creative career
           you&apos;ve always dreamed of. Less hustle, more art.
-        </p>
+        </p> */}
         <Button
           asChild
           size="lg"

@@ -76,7 +76,7 @@ const BenefitsGrid = () => {
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             We provide the platform, tools, and community support designed for
-            independent Indian artists to thrive.
+            independent artists to thrive.
           </p>
         </div>
 

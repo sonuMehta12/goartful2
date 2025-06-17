@@ -196,7 +196,7 @@ export const HowItWorksForArtistsSection = () => {
         </div>
 
         {/* --- Step Cards Section (Grouped & Spaced) --- */}
-        <div className="relative space-y-8 max-w-6xl mx-auto min-h-[150vh] bg-white/90 dark:bg-background/80 rounded-2xl shadow-xl p-8 border border-primary/10 mt-[80px]">
+        <div className="relative space-y-8 max-w-6xl mx-auto min-h-[150vh] bg-white/90 dark:bg-background/80 rounded-2xl shadow-xl  border border-primary/10 mt-[80px]">
           {steps.map((step, index) => (
             <StepCard
               key={index}

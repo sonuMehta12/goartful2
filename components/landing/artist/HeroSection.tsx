@@ -40,7 +40,7 @@ const carouselImages = [
 const HeroSection = () => {
   const [isClient, setIsClient] = useState(false);
   const autoplayOptions = {
-    delay: 3000,
+    delay: 2000,
     stopOnInteraction: true,
     stopOnMouseEnter: true,
   };
@@ -99,7 +99,7 @@ const HeroSection = () => {
             <span className="block sm:inline">On Your Terms.</span>
           </h1>
           <p className="text-lg sm:text-xl text-muted-foreground mb-8 sm:mb-10 max-w-2xl mx-auto">
-            Be your own boss with GoArtful. Share your passion through unique
+            Share your passion through unique
             art experiences, connect with genuine art lovers, and build a
             reliable creative income without gatekeepers.
           </p>

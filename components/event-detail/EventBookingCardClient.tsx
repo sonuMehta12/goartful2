@@ -407,6 +407,35 @@ export default function EventBookingCardClient({
                 </div>
               )}
 
+            {/* Price Breakdown */}
+            {!event.isFree && guestCount > 0 && !isSelectedSessionSoldOut && (
+              <div className="space-y-1.5 pt-4 border-t">
+                <div className="flex justify-between text-sm">
+                  <span className="text-muted-foreground">
+                    {formatCurrency(event.price, event.currency)} × {guestCount}
+                  </span>
+                  <span>{formatCurrency(subtotal, event.currency)}</span>
+                </div>
+                {serviceFee > 0 && (
+                  <div className="flex justify-between text-sm">
+                    <span className="text-muted-foreground flex items-center">
+                      Service fee{" "}
+                      <Info className="w-3 h-3 ml-1 text-muted-foreground/70 cursor-help" />
+                    </span>
+                    <span>{formatCurrency(serviceFee, event.currency)}</span>
+                  </div>
+                )}
+                <div className="flex justify-between font-semibold text-lg pt-2 border-t">
+                  <span className="text-foreground">
+                    Total ({event.currency})
+                  </span>
+                  <span className="text-foreground">
+                    {formatCurrency(total, event.currency)}
+                  </span>
+                </div>
+              </div>
+            )}
+
             <Button
               className="w-full text-base font-semibold h-12 mt-2"
               size="lg"

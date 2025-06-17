@@ -26,7 +26,7 @@ const allArtForms: ArtForm[] = [
     description:
       "Host oil, acrylic, watercolor, or digital workshops. Share techniques and inspire.",
     imgSrc: {
-      src: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
+      src: "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1750165165/painting_ikaw2b.png",
       alt: "Painting & Drawing Workshop",
     },
   },
@@ -35,7 +35,7 @@ const allArtForms: ArtForm[] = [
     description:
       "Share the joy of shaping clay, wood, or metal in hands-on 3D art forms.",
     imgSrc: {
-      src: "https://images.unsplash.com/photo-1558865869-17fa03072c92?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
+      src: "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1750165594/ceramic-pottery-tools-still-life_23-2150197293_ynnanm.avif",
       alt: "Sculpture & Pottery Workshop",
     },
   },
@@ -44,7 +44,7 @@ const allArtForms: ArtForm[] = [
     description:
       "From knitting to macrame, connect through the tactile world of fiber art and crafts.",
     imgSrc: {
-      src: "https://images.unsplash.com/photo-1604665350291-1a719037a640?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
+      src: "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1750165167/fiber_ydzfmc.png",
       alt: "Fiber Arts Workshop",
     },
   },
@@ -53,7 +53,7 @@ const allArtForms: ArtForm[] = [
     description:
       "Create intimate concerts, interactive music workshops, or sound healing sessions.",
     imgSrc: {
-      src: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
+      src: "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1750165166/music_qtf8kx.png",
       alt: "Music Workshop",
     },
   },
@@ -62,28 +62,20 @@ const allArtForms: ArtForm[] = [
     description:
       "Teach photography, videography, digital illustration, or graphic design skills.",
     imgSrc: {
-      src: "https://images.unsplash.com/photo-1495745520369-5f01c05a0a09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
+      src: "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1750165165/photography_caxbjf.png",
       alt: "Photography Workshop",
     },
   },
   {
     title: "Performing Arts",
     description:
-      "Host acting workshops, improv sessions, storytelling circles, or dance classes.",
+      "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1750165164/performace_amod9y.png.",
     imgSrc: {
-      src: "https://images.unsplash.com/photo-1503095396549-405faf685952?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
+      src: "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1750165164/performace_amod9y.png",
       alt: "Performing Arts Workshop",
     },
   },
-  {
-    title: "Culinary Arts",
-    description:
-      "Share your passion for food through cooking classes, baking workshops, or unique gastronomic experiences.",
-    imgSrc: {
-      src: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
-      alt: "Culinary Arts Workshop",
-    },
-  },
+
   {
     title: "Literary Arts & Writing",
     description:
@@ -150,7 +142,7 @@ const ArtFormsCarousel = () => {
     <section className="py-16 lg:py-24 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 lg:mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4 tracking-tight">
+          <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-foreground mb-4 tracking-tight">
             Host Any Creative Experience
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">

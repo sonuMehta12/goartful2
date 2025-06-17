@@ -36,7 +36,7 @@ const StepCard: React.FC<StepCardProps> = ({
   imgAlt,
   backgroundColor,
   textColor,
-  stickyOffset = "top-0",
+  stickyOffset = "top-[80px]",
   zIndex = 10,
 }) => (
   <div
@@ -105,7 +105,7 @@ export const HowItWorksForArtistsSection = () => {
       icon: Users,
       title: "1. Join GoArtful",
       description:
-        "Become our creative partner in minutes. Register for free and help us transform India's art scene together.",
+        "Register for free and become part of India's creative movement.",
       ctaText: "Join for Free",
       ctaLink: "/register-artist",
       imgSrc:
@@ -117,8 +117,7 @@ export const HowItWorksForArtistsSection = () => {
     {
       icon: Calendar,
       title: "2. Create Your Experience",
-      description:
-        "Choose from 100+ free venues, add your workshop details, and select the support you need from us.",
+      description: "Pick a venue, add your workshop, and set your schedule.",
       ctaText: "Start Creating",
       ctaLink: "/create-event",
       imgSrc:
@@ -130,8 +129,7 @@ export const HowItWorksForArtistsSection = () => {
     {
       icon: Zap,
       title: "3. Go Live & Earn",
-      description:
-        "Launch your event, share it with your network, and let GoArtful's platform connect you with the right audience.",
+      description: "Launch your event and get paid for your passion.",
       ctaText: "See Live Events",
       ctaLink: "/live-events",
       imgSrc:
@@ -148,34 +146,30 @@ export const HowItWorksForArtistsSection = () => {
       className="py-20 lg:py-28 bg-gray-50 dark:bg-gray-900"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* --- RE-DESIGNED: Top Section (Video + Intro) --- */}
+        {/* --- Modern Video Player --- */}
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-20 lg:mb-28">
-          {/* --- IMPROVED: Modern Video Player --- */}
-          <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl group cursor-pointer transition-all duration-300 hover:shadow-primary/30 hover:scale-[1.02]">
-            <Image
-              src="https://i.pinimg.com/736x/19/db/31/19db31732931019b73bedcf17924f814.jpg"
-              alt="GoArtful explainer video thumbnail - artist guiding a workshop"
-              fill
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="bg-white/20 backdrop-blur-sm p-4 rounded-full transition-all duration-300 group-hover:bg-primary/80 group-hover:scale-110">
-                <Play className="w-10 h-10 text-white" fill="white" />
-              </div>
-            </div>
+          <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl group cursor-pointer transition-all duration-300 hover:shadow-primary/30 hover:scale-[1.02] bg-black">
+            <video
+              className="w-full h-full object-cover"
+              controls
+              poster="https://i.pinimg.com/736x/19/db/31/19db31732931019b73bedcf17924f814.jpg"
+            >
+              <source
+                src="https://www.w3schools.com/html/mov_bbb.mp4"
+                type="video/mp4"
+              />
+              Your browser does not support the video tag.
+            </video>
           </div>
-
-          {/* --- REFINED: Intro Text & CTA --- */}
           <div className="space-y-6 text-center lg:text-left">
-            <h2 className="text-4xl lg:text-5xl font-extrabold text-gray-900 dark:text-white tracking-tight leading-tight">
-              Share Your Art. Inspire Others. Build Your Business.
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2 tracking-tight">
+              Share Your Art. Build Your Business.
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-lg mx-auto lg:mx-0">
-              GoArtful gives you the platform, tools, and support to turn your
-              passion into a thriving career. Host workshops, connect with art
-              lovers, and grow your brand.
-            </p>
+            <ul className="text-lg text-gray-600 dark:text-gray-300 max-w-lg mx-auto lg:mx-0 space-y-2">
+              <li>• Free to join, easy to start</li>
+              <li>• 100+ venues, full support</li>
+              <li>• Get paid for your passion</li>
+            </ul>
             <div className="pt-4">
               <Button
                 asChild
@@ -191,33 +185,35 @@ export const HowItWorksForArtistsSection = () => {
           </div>
         </div>
 
-        {/* --- IMPROVED: Section Header --- */}
+        {/* --- Section Header --- */}
         <div className="text-center mb-16">
           <h3 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
             Your Simple Path to Hosting
           </h3>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            We&apos;ve streamlined the process into three easy steps. From setup
-            to payday, we&apos;re with you all the way.
+            Just three steps to start earning from your art.
           </p>
         </div>
 
-        {/* --- REFINED: Step Cards Section --- */}
-        <div className="relative space-y-8 max-w-6xl mx-auto min-h-[150vh]">
+        {/* --- Step Cards Section (Grouped & Spaced) --- */}
+        <div className="relative space-y-8 max-w-6xl mx-auto min-h-[150vh] bg-white/90 dark:bg-background/80 rounded-2xl shadow-xl p-8 border border-primary/10 mt-[80px]">
           {steps.map((step, index) => (
             <StepCard
               key={index}
               {...step}
-              // Fixed: Higher index = higher z-index so later cards stack on top
               stickyOffset={
-                index === 0 ? "top-0" : index === 1 ? "top-4" : "top-8"
+                index === 0
+                  ? "top-[80px]"
+                  : index === 1
+                  ? "top-[100px]"
+                  : "top-[120px]"
               }
-              zIndex={10 + index} // First card: z-10, Second: z-11, Third: z-12
+              zIndex={10 + index}
             />
           ))}
         </div>
 
-        {/* --- IMPROVED: Final CTA Section --- */}
+        {/* --- Final CTA Section --- */}
         <div className="text-center mt-20 lg:mt-28">
           <div className="bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-3xl p-8 md:p-12 max-w-4xl mx-auto">
             <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">

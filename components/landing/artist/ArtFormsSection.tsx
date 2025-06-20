@@ -146,7 +146,7 @@ const ArtFormsCarousel = () => {
             Host Any Creative Experience
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            GoArtful celebrates all forms of creativity. Whether you&apos;re a
+            GoVibeful celebrates all forms of creativity. Whether you&apos;re a
             painter, musician, craftsman, or performer, find your space to share
             and inspire.
           </p>

@@ -22,7 +22,7 @@ const FounderSection = ({
               <Image
                 // Replace with your actual photo, ideally one that's professional yet approachable
                 src="/imgs/Sonu-Kumar-min.png"
-                alt={`Photo of ${founderName}, Founder of GoArtful`}
+                alt={`Photo of ${founderName}, Founder of GoVibeful`}
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
               />
@@ -30,7 +30,7 @@ const FounderSection = ({
           </div>
           <div className="lg:col-span-7 xl:col-span-8 text-center lg:text-left">
             <p className="text-sm font-semibold uppercase tracking-wider text-primary mb-2">
-              The Heart Behind GoArtful
+              The Heart Behind GoVibeful
             </p>
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6 leading-snug tracking-tight">
               Meet Our Founder, {founderName}
@@ -47,7 +47,7 @@ const FounderSection = ({
               <p>
                 In late 2024, I realized my true calling wasn&apos;t just
                 supporting others&apos; visions, but building a platform that
-                could empower an entire creative community. GoArtful is that
+                could empower an entire creative community. GoVibeful is that
                 vision realized – a commitment to every artist I&apos;ve met,
                 and a testament to the incredible, transformative potential I
                 see in the Indian art scene. This isn&apos;t just a company;

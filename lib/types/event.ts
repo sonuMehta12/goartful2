@@ -76,7 +76,7 @@ export interface Review {
 export interface AttendeeInfo {
   name: string;
   avatarUrl?: string | null; // Optional: URL to attendee's avatar
-  // Could add profileLink to their GoArtful profile if that exists later
+  // Could add profileLink to their GoVibeful profile if that exists later
 }
 
 export interface AttendeeMomentItem {

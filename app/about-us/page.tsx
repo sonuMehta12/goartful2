@@ -9,15 +9,15 @@ import JoinUsCta from "@/components/about/JoinUsCta";
 import { Separator } from "@/components/ui/separator"; // For visual breaks
 
 export const metadata: Metadata = {
-  title: "Our Story: The Heart Behind GoArtful",
+  title: "Our Story: The Heart Behind GoVibeful",
   description:
-    "Learn about GoArtful's mission to empower Indian artists, our journey, values, and the vision to make art an experience for everyone.",
+    "Learn about GoVibeful's mission to empower Indian artists, our journey, values, and the vision to make art an experience for everyone.",
   openGraph: {
-    title: "Our Story: The Heart Behind GoArtful",
+    title: "Our Story: The Heart Behind GoVibeful",
     description:
-      "Discover the passion and purpose driving GoArtful's mission to revolutionize art experiences in India.",
+      "Discover the passion and purpose driving GoVibeful's mission to revolutionize art experiences in India.",
     // Add a specific OG image for this page
-    // images: [{ url: '/og-image-about.jpg', width: 1200, height: 630, alt: 'About GoArtful' }],
+    // images: [{ url: '/og-image-about.jpg', width: 1200, height: 630, alt: 'About GoVibeful' }],
   },
 };
 

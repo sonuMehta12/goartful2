@@ -28,7 +28,7 @@ const allFaqs: FaqItem[] = [
     id: "faq-2",
     question: "Is there any fee to join?",
     answer:
-      " It’s 100% free to get started. GoArtful has no monthly fees. You'll only pay a small, transparent commission when you make a sale through our platform.",
+      " It’s 100% free to get started. GoVibeful has no monthly fees. You'll only pay a small, transparent commission when you make a sale through our platform.",
   },
   {
     id: "faq-3",
@@ -66,7 +66,7 @@ const FaqSection = () => {
             Your Questions, Answered
           </h2>
           <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-            Everything you need to know about starting your GoArtful journey.
+            Everything you need to know about starting your GoVibeful journey.
           </p>
         </div>
 

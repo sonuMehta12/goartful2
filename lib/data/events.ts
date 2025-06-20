@@ -201,7 +201,7 @@ export const EVENTS_DATA: Event[] = [
           "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1748940564/Summer_HERO_veqoki.webp", // From your gallery
         mediaType: "image",
         altText: "Attendee capturing the vibrant festival atmosphere.",
-        caption: "Loved the energy at the Summer Art Fest! #GoArtful",
+        caption: "Loved the energy at the Summer Art Fest! #GoVibeful",
         attendee: {
           name: "Priya S.",
           avatarUrl: "https://i.pravatar.cc/150?u=priya",
@@ -250,7 +250,7 @@ export const EVENTS_DATA: Event[] = [
           "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1748969809/WhatsApp_Image_2025-06-03_at_14.57.35_b18b86ca_wlkol7.jpg",
         mediaType: "image",
         altText: "My final creation from the workshop!",
-        caption: "So proud of what I made! Thanks GoArtful!",
+        caption: "So proud of what I made! Thanks GoVibeful!",
         attendee: {
           name: "Sneha P.",
           avatarUrl: "https://i.pravatar.cc/150?u=sneha",

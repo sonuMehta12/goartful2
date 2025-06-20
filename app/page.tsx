@@ -1,7 +1,13 @@
 // app/page.tsx
 "use client"; // <= IMPORTANT: This page now needs to be a Client Component
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
 import { EventCard } from "@/components/events/EventCard";
 import { EVENTS_DATA } from "@/lib/data/events";
 import type { Event } from "@/lib/types/event"; // Import Event type
@@ -21,6 +27,182 @@ import { isWithinInterval, parseISO, startOfDay, endOfDay } from "date-fns";
 // If we need dynamic title based on filters, that's more advanced.
 
 const ITEMS_PER_PAGE = 9; // Number of events per page
+
+// Hero carousel data with responsive images
+const heroSlides = [
+  {
+    id: "slide1",
+    images: {
+      mobile:
+        "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1750446721/Frame_2782-min_1_br88xd.png",
+      tablet:
+        "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1750446638/Frame_2782-min_dk0ybm.png",
+      desktop:
+        "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1750446638/Frame_2782-min_dk0ybm.png",
+    },
+    alt: "Art workshop with people painting",
+    url: "/join-artful",
+  },
+];
+
+// Hero Carousel Component
+const HeroCarousel = () => {
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    {
+      loop: true,
+      align: "center",
+      skipSnaps: false,
+      watchDrag: heroSlides.length > 1, // Only enable dragging if multiple slides
+    },
+    [
+      Autoplay({
+        delay: 5000,
+        stopOnInteraction: true,
+        playOnInit: heroSlides.length > 1,
+      }),
+    ]
+  );
+
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
+
+  const scrollPrev = useCallback(
+    () => emblaApi && emblaApi.scrollPrev(),
+    [emblaApi]
+  );
+  const scrollNext = useCallback(
+    () => emblaApi && emblaApi.scrollNext(),
+    [emblaApi]
+  );
+  const scrollTo = useCallback(
+    (index: number) => emblaApi && emblaApi.scrollTo(index),
+    [emblaApi]
+  );
+
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    const onSelect = () => {
+      setSelectedIndex(emblaApi.selectedScrollSnap());
+    };
+
+    setScrollSnaps(emblaApi.scrollSnapList());
+    emblaApi.on("select", onSelect);
+    onSelect();
+
+    return () => {
+      emblaApi.off("select", onSelect);
+    };
+  }, [emblaApi]);
+
+  return (
+    <section className="mb-4 sm:mb-4 relative">
+      <div className="overflow-hidden" ref={emblaRef}>
+        <div className="flex">
+          {heroSlides.map((slide) => (
+            <div
+              key={slide.id}
+              className="relative min-w-0 flex-[0_0_100%] h-[150px] sm:h-[300px]"
+            >
+              {slide.url ? (
+                <Link href={slide.url} className="block w-full h-full">
+                  {/* Mobile image (default) */}
+                  <Image
+                    src={slide.images.mobile}
+                    alt={slide.alt}
+                    fill
+                    className="object-cover sm:hidden"
+                    priority
+                  />
+                  {/* Tablet image */}
+                  <Image
+                    src={slide.images.tablet}
+                    alt={slide.alt}
+                    fill
+                    className="object-cover hidden sm:block md:hidden"
+                    priority
+                  />
+                  {/* Desktop image */}
+                  <Image
+                    src={slide.images.desktop}
+                    alt={slide.alt}
+                    fill
+                    className="object-cover hidden md:block"
+                    priority
+                  />
+                </Link>
+              ) : (
+                <div className="w-full h-full">
+                  {/* Mobile image (default) */}
+                  <Image
+                    src={slide.images.mobile}
+                    alt={slide.alt}
+                    fill
+                    className="object-cover sm:hidden"
+                    priority
+                  />
+                  {/* Tablet image */}
+                  <Image
+                    src={slide.images.tablet}
+                    alt={slide.alt}
+                    fill
+                    className="object-cover hidden sm:block md:hidden"
+                    priority
+                  />
+                  {/* Desktop image */}
+                  <Image
+                    src={slide.images.desktop}
+                    alt={slide.alt}
+                    fill
+                    className="object-cover hidden md:block"
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-black/30"></div>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Only show navigation buttons if there are multiple slides */}
+      {heroSlides.length > 1 && (
+        <>
+          <button
+            className="absolute left-4 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background p-2 rounded-full shadow-md z-10 opacity-70 hover:opacity-100 transition-opacity"
+            onClick={scrollPrev}
+            aria-label="Previous slide"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+          <button
+            className="absolute right-4 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background p-2 rounded-full shadow-md z-10 opacity-70 hover:opacity-100 transition-opacity"
+            onClick={scrollNext}
+            aria-label="Next slide"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
+
+          {/* Dots indicator */}
+          <div className="flex justify-center gap-2 mt-4">
+            {scrollSnaps.map((_, index) => (
+              <button
+                key={index}
+                className={`w-2 h-2 rounded-full transition-all duration-200 ${
+                  index === selectedIndex
+                    ? "bg-primary w-4"
+                    : "bg-muted hover:bg-muted-foreground/50"
+                }`}
+                onClick={() => scrollTo(index)}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </section>
+  );
+};
 
 export default function HomePage() {
   const [filters, setFilters] = useState<SearchFilters>(INITIAL_FILTERS);
@@ -162,15 +344,8 @@ export default function HomePage() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8 sm:py-12">
-      <section className="text-center mb-10 sm:mb-12">
-        <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-foreground">
-          Discover Unique Art Experiences
-        </h1>
-        <p className="mt-3 text-md sm:text-lg text-muted-foreground max-w-xl mx-auto">
-          Your curated guide to the most inspiring art events and workshops.
-        </p>
-      </section>
+    <div className="container mx-auto px-4 py-4 sm:py-12">
+      <HeroCarousel />
 
       {/* Mobile Search Trigger */}
       <div className="md:hidden mb-6">

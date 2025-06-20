@@ -29,7 +29,7 @@ const benefits: Benefit[] = [
     icon: Users,
     title: "Free to Join",
     description:
-      "Join GoArtful for free No monthly fees. Just a small commission — and only when you earn through us.",
+      "Join GoVibeful for free No monthly fees. Just a small commission — and only when you earn through us.",
     iconBgClass: "bg-blue-500/10 text-blue-600",
   },
 
@@ -76,13 +76,13 @@ const benefits: Benefit[] = [
 const BenefitsGrid = () => {
   return (
     <section
-      id="why-goartful"
+      id="why-GoVibeful"
       className="py-16 lg:py-24 bg-secondary/20 dark:bg-secondary/10"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 lg:mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4 leading-tight tracking-tight">
-            Why Artists Choose GoArtful
+            Why Artists Choose GoVibeful
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             We provide the platform, tools, and community support designed for

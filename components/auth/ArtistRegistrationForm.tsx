@@ -64,11 +64,8 @@ interface EnhancedInputProps
   onSuffixIconClick?: () => void;
   LeftAddon?: string;
 }
-const EnhancedInput = React.forwardRef<
-  HTMLInputElement,
-  EnhancedInputProps
-> /* ... your full EnhancedInput code ... */(
-  (
+const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
+  /* ... your full EnhancedInput code ... */ (
     { className, Icon, SuffixIcon, onSuffixIconClick, LeftAddon, ...props },
     ref
   ) => {
@@ -507,7 +504,7 @@ export default function ArtistRegistrationForm() {
                     htmlFor="guidelines-check"
                     className="text-sm font-medium cursor-pointer"
                   >
-                    I have read, understood, and agree to abide by GoArtful's{" "}
+                    I have read, understood, and agree to abide by GoVibeful's{" "}
                     <Link
                       href="/community-guidelines"
                       target="_blank"
@@ -540,7 +537,7 @@ export default function ArtistRegistrationForm() {
                     htmlFor="terms-check"
                     className="text-sm font-medium cursor-pointer"
                   >
-                    I accept GoArtful's{" "}
+                    I accept GoVibeful's{" "}
                     <Link
                       href="/terms-of-service"
                       target="_blank"

@@ -19,7 +19,7 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     quote:
-      "GoArtful helps me focus on teaching my craft, not marketing. I've reached so many new students in my city and finally have a consistent income from my workshops!",
+      "GoVibeful helps me focus on teaching my craft, not marketing. I've reached so many new students in my city and finally have a consistent income from my workshops!",
     authorName: "Priya K.",
     authorRole: "Mandala Artist, Bangalore",
     avatarInitials: "PK",
@@ -28,7 +28,7 @@ const testimonials: Testimonial[] = [
   },
   {
     quote:
-      "The low commission and no monthly fees were a game-changer. I use local cafes for my sessions – no studio needed! GoArtful made it incredibly simple.",
+      "The low commission and no monthly fees were a game-changer. I use local cafes for my sessions – no studio needed! GoVibeful made it incredibly simple.",
     authorName: "Rohan M.",
     authorRole: "Calligraphy Instructor, Delhi",
     avatarInitials: "RM",
@@ -37,7 +37,7 @@ const testimonials: Testimonial[] = [
   },
   {
     quote:
-      "As a solo artist, handling bookings and payments was a headache. GoArtful handles the logistics, so I can just share my passion for pottery.",
+      "As a solo artist, handling bookings and payments was a headache. GoVibeful handles the logistics, so I can just share my passion for pottery.",
     authorName: "Aisha B.",
     authorRole: "Ceramic Artist, Mumbai",
     avatarInitials: "AB",
@@ -55,7 +55,7 @@ const TestimonialsSection = () => {
             Hear from Our Thriving Artists
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Real stories from independent Indian artists growing with GoArtful.
+            Real stories from independent Indian artists growing with GoVibeful.
           </p>
         </div>
 

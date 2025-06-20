@@ -214,7 +214,7 @@ const HeroSection = () => {
               className="font-semibold text-lg px-8 py-7 group transition-all duration-300 ease-in-out hover:shadow-lg transform hover:scale-105"
             >
               <Link href="/register-artist">
-                Start Hosting on GoArtful
+                Start Hosting on GoVibeful
                 <ArrowRight className="w-5 h-5 ml-2.5 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
             </Button>

@@ -14,9 +14,9 @@ import {
 import { Separator } from "@/components/ui/separator";
 
 export const metadata: Metadata = {
-  title: "Become a GoArtful Host | Create & Share Your Art",
+  title: "Become a GoVibeful Host | Create & Share Your Art",
   description:
-    "Join GoArtful's vibrant community of Indian artists. Easily set up your profile, design unique art experiences, and start earning by sharing your passion.",
+    "Join GoVibeful's vibrant community of Indian artists. Easily set up your profile, design unique art experiences, and start earning by sharing your passion.",
 };
 
 export default function RegisterArtistPage() {
@@ -38,10 +38,10 @@ export default function RegisterArtistPage() {
           <Link
             href="/"
             className="inline-flex items-center gap-2.5 mb-20 group focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-4 focus:ring-offset-primary/50 rounded-lg p-1 -m-1"
-            aria-label="Go to GoArtful homepage"
+            aria-label="Go to GoVibeful homepage"
           >
             <Palette className="w-9 h-9 text-white transition-transform duration-300 group-hover:rotate-[12deg]" />
-            <span className="text-3xl font-bold text-white">GoArtful</span>
+            <span className="text-3xl font-bold text-white">GoVibeful</span>
           </Link>
 
           <div className="space-y-5">
@@ -49,7 +49,7 @@ export default function RegisterArtistPage() {
               Share Your Art, Ignite Experiences.
             </h1>
             <p className="text-lg text-white/80 leading-relaxed">
-              GoArtful empowers you to transform your passion into impactful
+              GoVibeful empowers you to transform your passion into impactful
               experiences, connect with a vibrant community, and build a
               sustainable creative income—on your terms.
             </p>
@@ -59,7 +59,7 @@ export default function RegisterArtistPage() {
         <div className="relative z-10 mt-auto space-y-5">
           <Separator className="bg-white/20" />
           <h3 className="text-md font-semibold text-white/90">
-            Why Host with GoArtful?
+            Why Host with GoVibeful?
           </h3>
           <ul className="space-y-3 text-sm text-white/80">
             <li className="flex items-start gap-3">
@@ -105,9 +105,9 @@ export default function RegisterArtistPage() {
             <Link
               href="/"
               className="lg:hidden inline-flex items-center gap-2 mb-6 text-xl font-bold text-primary"
-              aria-label="Go to GoArtful homepage"
+              aria-label="Go to GoVibeful homepage"
             >
-              <Palette className="w-7 h-7" /> GoArtful
+              <Palette className="w-7 h-7" /> GoVibeful
             </Link>
             <p className="text-xs font-medium text-primary uppercase tracking-wider mb-1">
               Start Your Artist Journey
@@ -158,7 +158,7 @@ export default function RegisterArtistPage() {
           </p>
         </div>
         <p className="text-xs text-muted-foreground/70 text-center mt-10 max-w-sm">
-          By creating an account, you agree to GoArtful's{" "}
+          By creating an account, you agree to GoVibeful's{" "}
           <Link
             href="/terms"
             target="_blank"

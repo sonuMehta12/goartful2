@@ -37,7 +37,7 @@ const footerLinksColumns: LinkColumn[] = [
     isPartnership: true,
     links: [
       { href: "/join-artful", label: "Become a Creative Partner" },
-      { href: "/partner-with-us", label: "Partner with GoArtful" },
+      { href: "/partner-with-us", label: "Partner with GoVibeful" },
       { href: "/investors", label: "For Investors" },
     ],
   },
@@ -124,17 +124,17 @@ const Footer = () => {
             </h3>
             <div className="flex justify-center lg:justify-start gap-3 sm:gap-4 mb-6">
               <SocialMediaLink
-                href="https://linkedin.com/company/goartful_com"
+                href="https://linkedin.com/company/GoVibeful_com"
                 label="LinkedIn"
                 icon={Linkedin}
               />
               <SocialMediaLink
-                href="https://instagram.com/goartful_com"
+                href="https://instagram.com/GoVibeful_com"
                 label="Instagram"
                 icon={Instagram}
               />
               <SocialMediaLink
-                href="https://twitter.com/goartful_com"
+                href="https://twitter.com/GoVibeful_com"
                 label="YouTube"
                 icon={Youtube}
               />
@@ -163,8 +163,8 @@ const Footer = () => {
         <div className="mt-12 border-t border-border pt-8 text-center lg:mt-16">
           <p className="text-xs text-muted-foreground flex flex-col sm:flex-row items-center justify-center gap-1">
             <span className="flex items-center">
-              <Copyright className="w-3.5 h-3.5 mr-1" /> {currentYear} Goartful.
-              All rights reserved.
+              <Copyright className="w-3.5 h-3.5 mr-1" /> {currentYear}{" "}
+              GoVibeful. All rights reserved.
             </span>
             <span className="hidden sm:inline">|</span>
             <span>

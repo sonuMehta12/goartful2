@@ -11,8 +11,8 @@ const JoinUsCta = () => {
         </h2>
         <p className="text-lg sm:text-xl text-primary-foreground/80 mb-10 max-w-2xl mx-auto leading-relaxed">
           Whether you&apos;re an artist ready to share your gift, or an
-          enthusiast eager to explore your creative side, the GoArtful community
-          welcomes you.
+          enthusiast eager to explore your creative side, the GoVibeful
+          community welcomes you.
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           <Button
@@ -21,7 +21,7 @@ const JoinUsCta = () => {
             className="bg-white hover:bg-gray-100 text-primary font-bold text-lg px-8 py-7 shadow-2xl transform hover:scale-105 transition-transform duration-300 ease-in-out group"
           >
             <Link href="/join-artful">
-              Become a GoArtful Artist{" "}
+              Become a GoVibeful Artist{" "}
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
             </Link>
           </Button>

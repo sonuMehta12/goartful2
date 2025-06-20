@@ -32,7 +32,7 @@ const OurStorySection = () => {
                 .
               </p>
               <p>
-                That&apos;s how GoArtful was conceived – not just as a
+                That&apos;s how GoVibeful was conceived – not just as a
                 marketplace, but as a bridge connecting artists directly with
                 those who yearn to{" "}
                 <strong className="text-foreground font-medium">

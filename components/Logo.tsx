@@ -26,7 +26,7 @@ export default function Logo({ className }: { className?: string }) {
   return (
     <Link
       href="/"
-      aria-label="GoArtful Home"
+      aria-label="GoVibeful Home"
       className={cn("flex items-center group", className)}
     >
       <div className="relative">
@@ -35,16 +35,16 @@ export default function Logo({ className }: { className?: string }) {
         <Image
           key={currentLogo} // Adding a key helps React re-render the Image component correctly when src changes
           src={currentLogo}
-          alt="GoArtful Logo"
+          alt="GoVibeful Logo"
           width={150} // Base width of your logo image file (e.g., the dimensions of your largest version)
           height={60} // Base height of your logo image file (maintaining aspect ratio)
           className="h-8 w-auto sm:h-9 md:h-10 transition-opacity duration-300 group-hover:opacity-90"
           priority // Good for LCP if logo is prominent
         />
       </div>
-      {/* If you want the text "goArtful" next to the logo: */}
+      {/* If you want the text "GoVibeful" next to the logo: */}
       {/* <span className="font-bold text-xl text-foreground group-hover:text-primary transition-colors duration-200 ease-in-out ml-2">
-        goArtful
+        GoVibeful
       </span> */}
     </Link>
   );

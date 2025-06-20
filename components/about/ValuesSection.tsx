@@ -44,8 +44,8 @@ const ValuesSection = () => {
             The Soul of Our Canvas: Our Core Values
           </h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            These principles guide every decision we make at GoArtful, shaping a
-            platform built for and by the creative community.
+            These principles guide every decision we make at GoVibeful, shaping
+            a platform built for and by the creative community.
           </p>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">

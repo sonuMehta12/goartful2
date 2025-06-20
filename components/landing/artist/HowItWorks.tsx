@@ -110,7 +110,7 @@ export const HowItWorksForArtistsSection = () => {
       ctaLink: "/register-artist",
       imgSrc:
         "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1750059969/Frame_114_jz1cbp.png",
-      imgAlt: "Artist registration form on GoArtful",
+      imgAlt: "Artist registration form on GoVibeful",
       backgroundColor: "bg-blue-500",
       textColor: "text-white",
     },
@@ -123,7 +123,7 @@ export const HowItWorksForArtistsSection = () => {
       ctaLink: "/create-event",
       imgSrc:
         "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1750057529/Group_50_kcsh1y.png",
-      imgAlt: "Creating a workshop event on GoArtful",
+      imgAlt: "Creating a workshop event on GoVibeful",
       backgroundColor: "bg-yellow-400",
       textColor: "text-black",
     },
@@ -177,7 +177,7 @@ export const HowItWorksForArtistsSection = () => {
                 className="font-bold text-lg px-8 py-7 group transition-all duration-300 ease-in-out hover:shadow-lg w-full sm:w-auto"
               >
                 <Link href="/register-artist">
-                  Become a GoArtful Artist
+                  Become a GoVibeful Artist
                   <TrendingUp className="w-5 h-5 ml-2.5 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
               </Button>

@@ -14,7 +14,7 @@ const ImpactSection = () => {
       icon: Users,
       title: "Fostering Genuine Connections",
       description:
-        "GoArtful is more than transactions; it's about building a community where artists and art lovers share, learn, and grow together in authentic, local settings.",
+        "GoVibeful is more than transactions; it's about building a community where artists and art lovers share, learn, and grow together in authentic, local settings.",
     },
     {
       icon: Lightbulb,
@@ -29,7 +29,7 @@ const ImpactSection = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center mb-12 lg:mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4 tracking-tight">
-            The GoArtful Ripple Effect
+            The GoVibeful Ripple Effect
           </h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
             More than just a platform, we aim to create lasting positive change

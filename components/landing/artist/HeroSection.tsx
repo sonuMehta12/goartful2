@@ -19,21 +19,24 @@ const carouselImages = [
     bg: "bg-green-500",
     img: "https://images.unsplash.com/photo-1628359355624-855775b5c9c4?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YXJ0aXN0fGVufDB8fDB8fHww",
     headline: "Connect with right audience",
-    subheadline: "Connect with art lovers and buyers who truly understand  your art and story and pay your fairly.",
+    subheadline:
+      "Connect with art lovers and buyers who truly understand  your art and story and pay your fairly.",
   },
   {
     id: "yellow",
     bg: "bg-yellow-400",
     img: "https://plus.unsplash.com/premium_photo-1673676883851-761e734d6cec?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGFydGlzdHxlbnwwfHwwfHx8MA%3D%3D",
-    headline: "Host anywhere, your way",
-    subheadline: "Use any space, 100s partner venue to your home. studio and cafés, No studio rent or logistic barriers..",
+    headline: "Fully free managed workshop",
+    subheadline:
+      "Get all your workshop support free from logistics to marketing.",
   },
   {
     id: "blue",
     bg: "bg-blue-500",
     img: "https://images.unsplash.com/photo-1551180452-aea351b23949?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGFydGlzdHxlbnwwfHwwfHx8MA%3D%3D",
-    headline: "Earn Up To ₹1 Lakh",
-    subheadline: "Earn by hosting Artful experiences, selling your artwork to the right audience, and more.e.",
+    headline: "Get 100% payout",
+    subheadline:
+      "Get  up to 9k paid on the first 3 workshops guaranteed! Regardless of workshop success.",
   },
 ];
 
@@ -99,16 +102,19 @@ const HeroSection = () => {
             <span className="block sm:inline">On Your Terms.</span>
           </h1>
           <p className="text-lg sm:text-xl text-muted-foreground mb-8 sm:mb-10 max-w-2xl mx-auto">
-            Share your passion through unique
-            art experiences, connect with genuine art lovers, and build a
-            reliable creative income without gatekeepers.
+            Share your passion through unique art experiences, connect with
+            genuine art lovers, and build a reliable creative income without
+            gatekeepers.
           </p>
         </div>
 
         {/* Embla Carousel Section */}
         {isClient && carouselImages.length > 0 && (
           <div className="relative group mb-10 sm:mb-12">
-            <div className="embla_hero overflow-hidden rounded-2xl" ref={emblaRef}>
+            <div
+              className="embla_hero overflow-hidden rounded-2xl"
+              ref={emblaRef}
+            >
               <div className="embla__container_hero flex">
                 {carouselImages.map((slide, index) => (
                   <div
@@ -116,7 +122,10 @@ const HeroSection = () => {
                     key={slide.id}
                   >
                     {/* Image with inner stroke and large radius */}
-                    <div className="bg-white p-1 rounded-3xl shadow-inner mb-6" style={{ boxShadow: 'inset 0 0 0 4px #e5e7eb' }}>
+                    <div
+                      className="bg-white p-1 rounded-3xl shadow-inner mb-6"
+                      style={{ boxShadow: "inset 0 0 0 4px #e5e7eb" }}
+                    >
                       <div className="overflow-hidden rounded-2xl">
                         <Image
                           src={slide.img}
@@ -128,8 +137,24 @@ const HeroSection = () => {
                       </div>
                     </div>
                     {/* Headline and subheadline */}
-                    <h3 className={`text-xl font-bold ${slide.bg === 'bg-yellow-400' ? 'text-gray-900' : 'text-white'} mb-2 text-center drop-shadow-lg`}>{slide.headline}</h3>
-                    <p className={`${slide.bg === 'bg-yellow-400' ? 'text-gray-900' : 'text-white/90'} text-base text-center max-w-xs mx-auto drop-shadow-md`}>{slide.subheadline}</p>
+                    <h3
+                      className={`text-xl font-bold ${
+                        slide.bg === "bg-yellow-400"
+                          ? "text-gray-900"
+                          : "text-white"
+                      } mb-2 text-center drop-shadow-lg`}
+                    >
+                      {slide.headline}
+                    </h3>
+                    <p
+                      className={`${
+                        slide.bg === "bg-yellow-400"
+                          ? "text-gray-900"
+                          : "text-white/90"
+                      } text-base text-center max-w-xs mx-auto drop-shadow-md`}
+                    >
+                      {slide.subheadline}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -196,7 +221,11 @@ const HeroSection = () => {
           </div>
           <div className="flex items-center justify-center text-sm text-muted-foreground space-x-2">
             <Sparkles className="w-5 h-5 text-amber-500" />
-            <span>Join a growing community of inspiring Indian artists!</span>
+            <span>
+              {" "}
+              GoVibeFul is onboarding 25 passionate artists, dancers, musicians
+              & creators to launch with us. Be the face of the movement.
+            </span>
           </div>
         </div>
       </div>

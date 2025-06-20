@@ -40,7 +40,7 @@ const StepCard: React.FC<StepCardProps> = ({
   zIndex = 10,
 }) => (
   <div
-    className={`rounded-3xl p-6 md:p-8 lg:p-12 ${backgroundColor} relative overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 sticky ${stickyOffset}`}
+    className={`rounded-2xl p-6 md:p-8 lg:p-12 ${backgroundColor} relative overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 sticky ${stickyOffset}`}
     style={{ zIndex }} // Using inline style for dynamic z-index
   >
     <div className={`flex flex-col md:flex-row items-center gap-8 lg:gap-16`}>
@@ -103,10 +103,10 @@ export const HowItWorksForArtistsSection = () => {
   const steps: Omit<StepCardProps, "isReversed">[] = [
     {
       icon: Users,
-      title: "1. Join GoArtful",
+      title: "1. Apply as an Artist",
       description:
-        "Register for free and become part of India's creative movement.",
-      ctaText: "Join for Free",
+        "Apply for free and become part of India's creative movement.",
+      ctaText: "Apply Now",
       ctaLink: "/register-artist",
       imgSrc:
         "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1750059969/Frame_114_jz1cbp.png",
@@ -117,7 +117,8 @@ export const HowItWorksForArtistsSection = () => {
     {
       icon: Calendar,
       title: "2. Create Your Experience",
-      description: "Pick a venue, add your workshop, and set your schedule.",
+      description:
+        "Design the workshop, add theme, price, date, time & location of the workshop or Let us help you to design.",
       ctaText: "Start Creating",
       ctaLink: "/create-event",
       imgSrc:
@@ -165,11 +166,10 @@ export const HowItWorksForArtistsSection = () => {
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2 tracking-tight">
               Share Your Art. Build Your Business.
             </h2>
-            <ul className="text-lg text-gray-600 dark:text-gray-300 max-w-lg mx-auto lg:mx-0 space-y-2">
-              <li>• Free to join, easy to start</li>
-              <li>• 100+ venues, full support</li>
-              <li>• Get paid for your passion</li>
-            </ul>
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-lg mx-auto lg:mx-0 space-y-2">
+              Anyone can host an artful experience with us, no prior experience
+              needed. Free to join & easy to start with full Support
+            </p>
             <div className="pt-4">
               <Button
                 asChild
@@ -188,11 +188,11 @@ export const HowItWorksForArtistsSection = () => {
         {/* --- Section Header --- */}
         <div className="text-center mb-16">
           <h3 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
-            Your Simple Path to Hosting
+            Start Hosting Workshops in just 3 Simple Steps
           </h3>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          {/* <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             Just three steps to start earning from your art.
-          </p>
+          </p> */}
         </div>
 
         {/* --- Step Cards Section (Grouped & Spaced) --- */}
@@ -217,11 +217,12 @@ export const HowItWorksForArtistsSection = () => {
         <div className="text-center mt-20 lg:mt-28">
           <div className="bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-3xl p-8 md:p-12 max-w-4xl mx-auto">
             <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
-              Ready to Start Your Artistic Journey?
+              Only 25 Artist Spots Available
             </h3>
             <p className="text-gray-600 dark:text-gray-300 mb-8 text-lg">
-              Join thousands of artists already earning through their passion.
-              Your next chapter starts here.
+              This is your chance to be one of the Founding Artists on
+              GoVibeFul, we only accepting few due to limited budgest and team
+              size, don&apos;t miss out.
             </p>
             <Button
               asChild

@@ -15,11 +15,9 @@ const CtaSection = () => {
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-6 tracking-tight">
           Join the artful movement.
         </h2>
-        {/* <p className="text-lg sm:text-xl text-primary-foreground/90 mb-10 max-w-2xl mx-auto leading-relaxed">
-          Join GoArtful today. Start sharing your unique art experiences,
-          connect with a vibrant community, and build the creative career
-          you&apos;ve always dreamed of. Less hustle, more art.
-        </p> */}
+        <p className="text-lg sm:text-xl text-primary-foreground/90 mb-10 max-w-2xl mx-auto leading-relaxed">
+          This is your chance to influence the world with your art and story.
+        </p>
         <Button
           asChild
           size="lg"
@@ -28,8 +26,8 @@ const CtaSection = () => {
           <Link href="/register-artist">Join Now (It&apos;s Free!)</Link>
         </Button>
         <p className="text-xs text-primary-foreground/70 mt-6">
-          Early artists get special perks & dedicated support. Don&apos;t miss
-          out!
+          Join the 25 founding artists of GoVibeful! We&apos;re accepting only a
+          few due to limited budget and team size. Don&apos;t miss out!
         </p>
       </div>
     </section>

@@ -20,16 +20,15 @@ interface FaqItem {
 const allFaqs: FaqItem[] = [
   {
     id: "faq-1",
-    question:
-      "When is GoArtful launching and how can I join as an early artist?",
+    question: " Who can apply?",
     answer:
-      "GoArtful is set to launch in October 2025! We're inviting passionate Indian artists to join as early adopters now. Register your interest to get early access, updates, and special benefits.",
+      " Any artist, dancer, singer, actor, creator, or hobbyist with something to teach!",
   },
   {
     id: "faq-2",
-    question: "What's GoArtful's commission? Are there monthly fees?",
+    question: "Is there any fee to join?",
     answer:
-      "We believe in your success. GoArtful has no monthly fees. You'll only pay a small, transparent commission when you make a sale through our platform – ensuring you keep the majority of your earnings. We're artist-first!",
+      " It’s 100% free to get started. GoArtful has no monthly fees. You'll only pay a small, transparent commission when you make a sale through our platform.",
   },
   {
     id: "faq-3",
@@ -45,19 +44,12 @@ const allFaqs: FaqItem[] = [
   },
   {
     id: "faq-5",
-    question: "How will GoArtful help me find participants?",
-    answer:
-      "We actively market GoArtful to art enthusiasts across India. Our platform features smart discovery, personalized recommendations, and community tools to connect your experiences with the right audience.",
-  },
-  {
-    id: "faq-6",
-    question: "How are payments handled?",
-    answer:
-      "For our initial phase (MVP via WhatsApp booking), you'll handle payments directly. As we evolve, GoArtful will integrate secure online payment processing to simplify transactions for you and your participants.",
+    question: " Do I need a large following?",
+    answer: " No. If you're passionate and skilled, we’ll help you grow",
   },
 ];
 
-const INITIAL_VISIBLE_FAQS = 4;
+const INITIAL_VISIBLE_FAQS = 5;
 
 const FaqSection = () => {
   const [visibleFaqsCount, setVisibleFaqsCount] =

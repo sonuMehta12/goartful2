@@ -7,6 +7,7 @@ import {
   Monitor,
   MapPin,
   Settings2,
+  Settings,
 } from "lucide-react";
 
 interface Benefit {
@@ -19,47 +20,45 @@ interface Benefit {
 const benefits: Benefit[] = [
   {
     icon: DollarSign,
-    title: "Build Sustainable Creative Income",
+    title: "Earn up to ₹1 Lakh Monthly",
     description:
-      "Transform your art into a reliable monthly income stream, on your terms. Be your own boss with no gatekeepers.",
+      "Earn by hosting GoVibeful experiences, selling your artwork to the right audience, and more.",
     iconBgClass: "bg-green-500/10 text-green-600",
+  },
+  {
+    icon: Settings2,
+    title: "Full Event Support",
+    description:
+      "No need to carry supplies, design sessions, or handle setup—GoVibeful takes care of it all for you.",
+    iconBgClass: "bg-amber-500/10 text-amber-600",
+  },
+  {
+    icon: Zap,
+    title: "No Platform Fee for First 3 Months",
+    description:
+      "Enjoy zero monthly fees. We only take a small commission when you earn through us.",
+    iconBgClass: "bg-teal-500/10 text-teal-600",
   },
   {
     icon: MapPin,
     title: "Host Anywhere, Your Way",
     description:
-      "Use any space—your home, cafés, parks, or partner studios. No studio rent or initial equipment investment barriers.",
+      "Use any space—your home, cafés, studios, or 100+ partner venues. No studio rent or logistics barriers.",
     iconBgClass: "bg-orange-500/10 text-orange-600",
   },
   {
-    icon: Settings2,
-    title: "We Handle the Logistics",
+    icon: Settings,
+    title: "Full Control & Transparency",
     description:
-      "Focus on your art, we'll provide supplies and space with zero cost, payments, and the essential tools to run your experiences smoothly.",
-    iconBgClass: "bg-amber-500/10 text-amber-600",
+      "Complete freedom over your events, pricing, and customer relationships—no hidden rules.",
+    iconBgClass: "bg-gray-500/10 text-gray-600",
   },
-
-  {
-    icon: Monitor,
-    title: "Professional Artist Platform",
-    description:
-      "Get your premium portfolio website and professional dashboard to showcase your work, manage events, track customers, and monitor all your earnings in one place.",
-    iconBgClass: "bg-purple-500/10 text-purple-600",
-  },
-
   {
     icon: Users,
-    title: "Connect with Real Art Lovers",
+    title: "Free Marketing & Exposure",
     description:
-      "Less hustle on social media. We provide marketing and sales support to connect you with a genuine audience ready to experience your art.",
+      "Less stress on social media. We help you reach the right audience with tailored marketing support.",
     iconBgClass: "bg-blue-500/10 text-blue-600",
-  },
-  {
-    icon: Zap,
-    title: "Artist-First Low Commission",
-    description:
-      "Keep more of what you earn. No monthly fees, just a transparent, small commission when you make a sale through GoArtful.",
-    iconBgClass: "bg-teal-500/10 text-teal-600",
   },
 ];
 

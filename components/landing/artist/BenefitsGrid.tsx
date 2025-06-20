@@ -18,46 +18,57 @@ interface Benefit {
 }
 
 const benefits: Benefit[] = [
+  /*
+
+
+
+
+
+*/
+  {
+    icon: Users,
+    title: "Free to Join",
+    description:
+      "Join GoArtful for free No monthly fees. Just a small commission — and only when you earn through us.",
+    iconBgClass: "bg-blue-500/10 text-blue-600",
+  },
+
   {
     icon: DollarSign,
-    title: "Earn up to ₹1 Lakh Monthly",
+    title: "Earn up to ₹1 Lakh/Month",
     description:
-      "Earn by hosting GoVibeful experiences, selling your artwork to the right audience, and more.",
+      "Monetize your talent by hosting workshops, selling your artwork, and offering immersive artful experiences. and more.",
     iconBgClass: "bg-green-500/10 text-green-600",
   },
+
   {
     icon: Settings2,
     title: "Full Event Support",
     description:
-      "No need to carry supplies, design sessions, or handle setup—GoVibeful takes care of it all for you.",
+      "No need to carry supplies, design sessions, or handles venues setup, GoVibeful takes care of it all for you.",
     iconBgClass: "bg-amber-500/10 text-amber-600",
-  },
-  {
-    icon: Zap,
-    title: "No Platform Fee for First 3 Months",
-    description:
-      "Enjoy zero monthly fees. We only take a small commission when you earn through us.",
-    iconBgClass: "bg-teal-500/10 text-teal-600",
   },
   {
     icon: MapPin,
     title: "Host Anywhere, Your Way",
     description:
-      "Use any space—your home, cafés, studios, or 100+ partner venues. No studio rent or logistics barriers.",
+      "From cozy cafés to creative studios and even your home — host workshops on your terms using 100+ partner spaces without any rental fees.",
     iconBgClass: "bg-orange-500/10 text-orange-600",
   },
+
   {
     icon: Settings,
     title: "Full Control & Transparency",
     description:
-      "Complete freedom over your events, pricing, and customer relationships—no hidden rules.",
+      "Set your pricing, decide your schedule, and own your customer relationships — with no hidden policies or restrictions.",
     iconBgClass: "bg-gray-500/10 text-gray-600",
   },
+
   {
     icon: Users,
     title: "Free Marketing & Exposure",
     description:
-      "Less stress on social media. We help you reach the right audience with tailored marketing support.",
+      "Less stress on social media. We help you reach the right audience with dedicated marketing support tailored to your talent.",
     iconBgClass: "bg-blue-500/10 text-blue-600",
   },
 ];
@@ -75,7 +86,7 @@ const BenefitsGrid = () => {
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             We provide the platform, tools, and community support designed for
-            independent artists to thrive.
+            to establish you as a professional creator with a growing community.
           </p>
         </div>
 

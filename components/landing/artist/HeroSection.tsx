@@ -15,6 +15,14 @@ type EmblaApiType = EmblaCarouselType;
 
 const carouselImages = [
   {
+    id: "blue",
+    bg: "bg-blue-500",
+    img: "https://images.unsplash.com/photo-1551180452-aea351b23949?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGFydGlzdHxlbnwwfHwwfHx8MA%3D%3D",
+    headline: "Get 100% payout",
+    subheadline:
+      "Get  up to 9k paid on the first 3 workshops guaranteed! Regardless of workshop success.",
+  },
+  {
     id: "green",
     bg: "bg-green-500",
     img: "https://images.unsplash.com/photo-1628359355624-855775b5c9c4?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YXJ0aXN0fGVufDB8fDB8fHww",
@@ -29,14 +37,6 @@ const carouselImages = [
     headline: "Fully free managed workshop",
     subheadline:
       "Get all your workshop support free from logistics to marketing.",
-  },
-  {
-    id: "blue",
-    bg: "bg-blue-500",
-    img: "https://images.unsplash.com/photo-1551180452-aea351b23949?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGFydGlzdHxlbnwwfHwwfHx8MA%3D%3D",
-    headline: "Get 100% payout",
-    subheadline:
-      "Get  up to 9k paid on the first 3 workshops guaranteed! Regardless of workshop success.",
   },
 ];
 

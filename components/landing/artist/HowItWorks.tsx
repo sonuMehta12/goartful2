@@ -109,7 +109,7 @@ export const HowItWorksForArtistsSection = () => {
       ctaText: "Apply Now",
       ctaLink: "/register-artist",
       imgSrc:
-        "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1750059969/Frame_114_jz1cbp.png",
+        "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1750495123/Group_53_ei18jm.png",
       imgAlt: "Artist registration form on GoVibeful",
       backgroundColor: "bg-blue-500",
       textColor: "text-white",

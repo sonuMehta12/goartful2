@@ -8,7 +8,7 @@ import { useEffect, useState } from "react"; // For handling theme on client
 import { cn } from "@/lib/utils"; // Assuming you have a utility for classNames
 export default function Logo({ className }: { className?: string }) {
   const { theme, systemTheme } = useTheme();
-  const [currentLogo, setCurrentLogo] = useState("/logo.png"); // Default to light logo
+  const [currentLogo, setCurrentLogo] = useState("https://res.cloudinary.com/dv9mzq2bv/image/upload/v1750494572/Asset_9_ojb1rg.png"); // Default to light logo
 
   useEffect(() => {
     // Determine the effective theme (system, light, or dark)
@@ -17,9 +17,9 @@ export default function Logo({ className }: { className?: string }) {
     const effectiveTheme = theme === "system" ? systemTheme : theme;
 
     if (effectiveTheme === "dark") {
-      setCurrentLogo("/imgs/logo-dark.svg"); // Dark mode logo
+      setCurrentLogo("https://res.cloudinary.com/dv9mzq2bv/image/upload/v1750494572/Asset_10_light_lxmtpf.png"); // Dark mode logo
     } else {
-      setCurrentLogo("/imgs/logo-light.svg"); // Light mode logo
+      setCurrentLogo("https://res.cloudinary.com/dv9mzq2bv/image/upload/v1750494572/Asset_9_ojb1rg.png"); // Light mode logo
     }
   }, [theme, systemTheme]);
 

@@ -34,11 +34,11 @@ const heroSlides = [
     id: "slide1",
     images: {
       mobile:
-        "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1750446721/Frame_2782-min_1_br88xd.png",
+        "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1750494093/Frame_278_vuyvnf.png",
       tablet:
         "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1750446638/Frame_2782-min_dk0ybm.png",
       desktop:
-        "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1750446638/Frame_2782-min_dk0ybm.png",
+        "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1750494094/Frame_277_awhfad.png",
     },
     alt: "Art workshop with people painting",
     url: "/join-artful",
@@ -97,7 +97,7 @@ const HeroCarousel = () => {
 
   return (
     <section className="mb-4 sm:mb-4 relative">
-      <div className="overflow-hidden" ref={emblaRef}>
+      <div className="overflow-hidden rounded-sm md:rounded-lg" ref={emblaRef}>
         <div className="flex">
           {heroSlides.map((slide) => (
             <div
@@ -344,7 +344,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-4 sm:py-12">
+    <div className="container mx-auto px-4 py-4 sm:py-4">
       <HeroCarousel />
 
       {/* Mobile Search Trigger */}

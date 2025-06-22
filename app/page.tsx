@@ -7,6 +7,7 @@ import Link from "next/link";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 import { EventCard } from "@/components/events/EventCard";
 import { EVENTS_DATA } from "@/lib/data/events";
@@ -34,17 +35,18 @@ const heroSlides = [
     id: "slide1",
     images: {
       mobile:
-        "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1750494093/Frame_278_vuyvnf.png",
+        "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1750587532/image_5co_1_ym8asc.png",
       tablet:
-        "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1750446638/Frame_2782-min_dk0ybm.png",
+        "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1750587181/Frame_277_bfnnao.png",
       desktop:
-        "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1750494094/Frame_277_awhfad.png",
+        "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1750587532/image_5co_1_ym8asc.png",
     },
-    alt: "Art workshop with people painting",
+    alt: "Join the artful moments",
     url: "/join-artful",
   },
 ];
 
+// Hero Carousel Component - IMPROVED
 // Hero Carousel Component
 const HeroCarousel = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel(
@@ -102,62 +104,97 @@ const HeroCarousel = () => {
           {heroSlides.map((slide) => (
             <div
               key={slide.id}
-              className="relative min-w-0 flex-[0_0_100%] h-[150px] sm:h-[300px]"
+              className="relative min-w-0 flex-[0_0_100%] h-[200px]  rounded-sm md:rounded-lg sm:h-[300px] md:h-[200px] lg:h-[300px]"
             >
               {slide.url ? (
                 <Link href={slide.url} className="block w-full h-full">
-                  {/* Mobile image (default) */}
-                  <Image
-                    src={slide.images.mobile}
-                    alt={slide.alt}
-                    fill
-                    className="object-cover sm:hidden"
-                    priority
-                  />
-                  {/* Tablet image */}
-                  <Image
-                    src={slide.images.tablet}
-                    alt={slide.alt}
-                    fill
-                    className="object-cover hidden sm:block md:hidden"
-                    priority
-                  />
-                  {/* Desktop image */}
-                  <Image
-                    src={slide.images.desktop}
-                    alt={slide.alt}
-                    fill
-                    className="object-cover hidden md:block"
-                    priority
-                  />
+                  <div className="relative w-full h-full rounded-sm md:rounded-lg overflow-hidden">
+                    {/* Mobile Image */}
+                    <Image
+                      src={slide.images.mobile}
+                      alt={slide.alt}
+                      fill
+                      className="object-cover w-full h-full rounded-sm md:rounded-lg overflow-hidden block md:hidden"
+                      priority
+                      sizes="(max-width: 768px) 100vw, 0vw"
+                    />
+                    {/* Tablet Image */}
+                    <Image
+                      src={slide.images.tablet}
+                      alt={slide.alt}
+                      fill
+                      className="object-cover w-full h-full rounded-sm md:rounded-lg overflow-hidden hidden md:block lg:hidden"
+                      priority
+                      sizes="(min-width: 768px) and (max-width: 1023px) 100vw, 0vw"
+                    />
+                    {/* Desktop Image */}
+                    <Image
+                      src={slide.images.desktop}
+                      alt={slide.alt}
+                      fill
+                      className="object-cover w-full h-full rounded-sm md:rounded-lg overflow-hidden hidden lg:block"
+                      priority
+                      sizes="(min-width: 1024px) 100vw, 0vw"
+                    />
+                    
+                    {/* Content Overlay - No dark background */}
+                    <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 z-10">
+                      <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2 drop-shadow-2xl">
+                        {slide.alt}
+                      </h3>
+                      <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/95 mb-4 drop-shadow-xl max-w-2xl">
+                      GoVibeFul is onboarding 25 passionate artists & creators to launch with us. Be the face of the movement
+                      </p>
+                      <Button className="bg-primary text-white px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-3 rounded-lg text-sm sm:text-base md:text-lg font-semibold shadow-2xl hover:bg-primary/90 transition-all duration-300 hover:scale-105">
+                        Join the movement
+                      </Button>
+                    </div>
+                  </div>
                 </Link>
               ) : (
                 <div className="w-full h-full">
-                  {/* Mobile image (default) */}
-                  <Image
-                    src={slide.images.mobile}
-                    alt={slide.alt}
-                    fill
-                    className="object-cover sm:hidden"
-                    priority
-                  />
-                  {/* Tablet image */}
-                  <Image
-                    src={slide.images.tablet}
-                    alt={slide.alt}
-                    fill
-                    className="object-cover hidden sm:block md:hidden"
-                    priority
-                  />
-                  {/* Desktop image */}
-                  <Image
-                    src={slide.images.desktop}
-                    alt={slide.alt}
-                    fill
-                    className="object-cover hidden md:block"
-                    priority
-                  />
-                  <div className="absolute inset-0 bg-black/30"></div>
+                  <div className="relative w-full h-full rounded-sm md:rounded-lg overflow-hidden">
+                    {/* Mobile Image */}
+                    <Image
+                      src={slide.images.mobile}
+                      alt={slide.alt}
+                      fill
+                      className="object-cover w-full h-full block md:hidden"
+                      priority
+                      sizes="(max-width: 768px) 100vw, 0vw"
+                    />
+                    {/* Tablet Image */}
+                    <Image
+                      src={slide.images.tablet}
+                      alt={slide.alt}
+                      fill
+                      className="object-cover w-full h-full hidden md:block lg:hidden"
+                      priority
+                      sizes="(min-width: 768px) and (max-width: 1023px) 100vw, 0vw"
+                    />
+                    {/* Desktop Image */}
+                    <Image
+                      src={slide.images.desktop}
+                      alt={slide.alt}
+                      fill
+                      className="object-cover w-full h-full hidden lg:block"
+                      priority
+                      sizes="(min-width: 1024px) 100vw, 0vw"
+                    />
+                    
+                    {/* Content Overlay - No dark background */}
+                    <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 z-10">
+                      <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2 drop-shadow-2xl">
+                        {slide.alt}
+                      </h3>
+                      <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/95 mb-4 drop-shadow-xl max-w-2xl">
+                        Find Out Why To Join
+                      </p>
+                      <Button className="bg-primary text-white px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-3 rounded-lg text-sm sm:text-base md:text-lg font-semibold shadow-2xl hover:bg-primary/90 transition-all duration-300 hover:scale-105">
+                        Find Out Why To Join
+                      </Button>
+                    </div>
+                  </div>
                 </div>
               )}
             </div>
@@ -169,18 +206,18 @@ const HeroCarousel = () => {
       {heroSlides.length > 1 && (
         <>
           <button
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background p-2 rounded-full shadow-md z-10 opacity-70 hover:opacity-100 transition-opacity"
+            className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-background/90 hover:bg-background p-2 sm:p-3 rounded-full shadow-lg z-20 opacity-80 hover:opacity-100 transition-all duration-200 hover:scale-110"
             onClick={scrollPrev}
             aria-label="Previous slide"
           >
-            <ChevronLeft className="h-5 w-5" />
+            <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" />
           </button>
           <button
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background p-2 rounded-full shadow-md z-10 opacity-70 hover:opacity-100 transition-opacity"
+            className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-background/90 hover:bg-background p-2 sm:p-3 rounded-full shadow-lg z-20 opacity-80 hover:opacity-100 transition-all duration-200 hover:scale-110"
             onClick={scrollNext}
             aria-label="Next slide"
           >
-            <ChevronRight className="h-5 w-5" />
+            <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" />
           </button>
 
           {/* Dots indicator */}
@@ -188,9 +225,9 @@ const HeroCarousel = () => {
             {scrollSnaps.map((_, index) => (
               <button
                 key={index}
-                className={`w-2 h-2 rounded-full transition-all duration-200 ${
+                className={`w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full transition-all duration-300 hover:scale-125 ${
                   index === selectedIndex
-                    ? "bg-primary w-4"
+                    ? "bg-primary w-4 sm:w-5"
                     : "bg-muted hover:bg-muted-foreground/50"
                 }`}
                 onClick={() => scrollTo(index)}

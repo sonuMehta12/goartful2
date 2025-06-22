@@ -120,7 +120,7 @@ export const HowItWorksForArtistsSection = () => {
       description:
         "Design the workshop, add theme, price, date, time & location of the workshop or Let us help you to design.",
       ctaText: "Start Creating",
-      ctaLink: "/create-event",
+      ctaLink: "/register-artist",
       imgSrc:
         "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1750057529/Group_50_kcsh1y.png",
       imgAlt: "Creating a workshop event on GoVibeful",
@@ -132,7 +132,7 @@ export const HowItWorksForArtistsSection = () => {
       title: "3. Go Live & Earn",
       description: "Launch your event and get paid for your passion.",
       ctaText: "See Live Events",
-      ctaLink: "/live-events",
+      ctaLink: "/",
       imgSrc:
         "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1750057529/Group_54_dfebrt.png",
       imgAlt: "Sharing a live event on social media",
@@ -217,7 +217,7 @@ export const HowItWorksForArtistsSection = () => {
         <div className="text-center mt-20 lg:mt-28">
           <div className="bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-3xl p-8 md:p-12 max-w-4xl mx-auto">
             <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
-              Only 25 Artist Spots Available
+            Be One of the First 25 Founding Artists 
             </h3>
             <p className="text-gray-600 dark:text-gray-300 mb-8 text-lg">
               This is your chance to be one of the Founding Artists on

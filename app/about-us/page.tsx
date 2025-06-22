@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import AboutHero from "@/components/about/AboutHero";
 import OurStorySection from "@/components/about/OurStorySection";
-import MissionVisionSection from "@/components/about/MissionVisionSection";
+// import MissionVisionSection from "@/components/about/MissionVisionSection";
 import ValuesSection from "@/components/about/ValuesSection";
 import FounderSection from "@/components/about/FounderSection";
 import ImpactSection from "@/components/about/ImpactSection";
@@ -31,11 +31,11 @@ export default function AboutUsPage() {
         <Separator className="my-12 md:my-16 lg:my-20 bg-border/70" />
       </div>
 
-      <MissionVisionSection />
+      {/* <MissionVisionSection /> */}
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      {/* <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <Separator className="my-12 md:my-16 lg:my-20 bg-border/70" />
-      </div>
+      </div> */}
 
       <ValuesSection />
 
@@ -43,10 +43,7 @@ export default function AboutUsPage() {
         <Separator className="my-12 md:my-16 lg:my-20 bg-border/70" />
       </div>
 
-      <FounderSection
-        founderName="Sonu Mehta"
-        founderLinkedin="https://www.linkedin.com/in/sonu-kumar-aa4085290/"
-      />
+      <FounderSection />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <Separator className="my-12 md:my-16 lg:my-20 bg-border/70" />

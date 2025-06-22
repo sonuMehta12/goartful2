@@ -20,7 +20,6 @@ const footerLinksColumns: LinkColumn[] = [
     title: "Company",
     links: [
       { href: "/about-us", label: "About Us" },
-      { href: "/careers", label: "Careers" },
       { href: "/press", label: "Press" },
     ],
   },
@@ -83,7 +82,7 @@ const Footer = () => {
             <p className="text-xs text-muted-foreground leading-relaxed max-w-xs mx-auto lg:mx-0">
               {" "}
               {/* Added max-w-xs for better text flow */}
-              New Delhi, India
+              New Delhi | Bangalore 
               <br />
               Connecting artists, creators, and art lovers worldwide.
             </p>
@@ -124,20 +123,20 @@ const Footer = () => {
             </h3>
             <div className="flex justify-center lg:justify-start gap-3 sm:gap-4 mb-6">
               <SocialMediaLink
-                href="https://linkedin.com/company/GoVibeful_com"
+                href="https://www.linkedin.com/company/govibeful"
                 label="LinkedIn"
                 icon={Linkedin}
               />
               <SocialMediaLink
-                href="https://instagram.com/GoVibeful_com"
+                href="https://instagram.com/go_vibeful "
                 label="Instagram"
                 icon={Instagram}
               />
-              <SocialMediaLink
+              {/* <SocialMediaLink
                 href="https://twitter.com/GoVibeful_com"
                 label="YouTube"
                 icon={Youtube}
-              />
+              /> */}
             </div>
             <p className="mb-3 text-xs text-muted-foreground">
               Subscribe to our newsletter for updates and artistic inspiration!

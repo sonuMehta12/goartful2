@@ -32,9 +32,11 @@ import Link from "next/link";
 import { Skeleton } from "@/components/ui/skeleton";
 import GoogleIcon from "@/components/icons/GoogleIcon";
 import type { UserProfile } from "@/components/auth/AuthContext"; // Or from lib/types/user.ts
+import { usePathname } from "next/navigation";
 
 export default function UserMenu() {
   const { user, userProfile, loading, signOut, signInWithGoogle } = useAuth();
+  const pathname = usePathname();
 
   // Type assertion is okay here if you are confident userProfile will conform,
   // but often safer to access properties with optional chaining if they might be missing
@@ -75,10 +77,22 @@ export default function UserMenu() {
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem asChild>
-            <Link href="/join-artful">
-              <Briefcase className="mr-2 h-4 w-4" />
-              <span>Become a Host</span>
-            </Link>
+            {pathname === "/join-artful" ? (
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSfD4g6Qw6w7w7w7w7w7w7w7w7w7w7w7w7w7w7w7w7w7w7w7w/viewform"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center"
+              >
+                <Briefcase className="mr-2 h-4 w-4" />
+                <span>Join Artful</span>
+              </a>
+            ) : (
+              <Link href="/join-artful" className="flex items-center">
+                <Briefcase className="mr-2 h-4 w-4" />
+                <span>Become a Host</span>
+              </Link>
+            )}
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
             <Link href="/join-artful#how-it-works-artists">

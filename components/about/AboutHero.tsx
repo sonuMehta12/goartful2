@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const AboutHero = () => {
   return (
-    <section className="relative pt-24 pb-16 md:pt-32 md:pb-20 lg:pt-40 lg:pb-28 bg-gradient-to-b from-muted/30 via-background to-background dark:from-muted/10 dark:via-background">
+    <section className="relative pt-4 pb-16 md:pt-16 md:pb-20 lg:pt-20 lg:pb-28 bg-gradient-to-b from-muted/30 via-background to-background dark:from-muted/10 dark:via-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-10 md:gap-16 items-center">
           <div className="text-center lg:text-left">

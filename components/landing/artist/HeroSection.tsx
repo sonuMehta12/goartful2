@@ -98,7 +98,7 @@ const HeroSection = () => {
         {/* Text Content Section */}
         <div className="max-w-3xl mx-auto">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-foreground leading-tight tracking-tight mb-5 sm:mb-6">
-            Transform Your Art into Sustainable Income,{" "}
+            Turn Your Talent into an Sustainable Income.
             <span className="block sm:inline">On Your Terms.</span>
           </h1>
           <p className="text-lg sm:text-xl text-muted-foreground mb-8 sm:mb-10 max-w-2xl mx-auto">
@@ -223,7 +223,7 @@ const HeroSection = () => {
             <Sparkles className="w-5 h-5 text-amber-500" />
             <span>
               {" "}
-              GoVibeFul is onboarding 25 passionate artists, dancers, musicians
+              GoVibeFul is onboarding 25 passionate artists,
               & creators to launch with us. Be the face of the movement.
             </span>
           </div>

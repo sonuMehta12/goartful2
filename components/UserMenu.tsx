@@ -79,7 +79,7 @@ export default function UserMenu() {
           <DropdownMenuItem asChild>
             {pathname === "/join-artful" ? (
               <a
-                href="https://docs.google.com/forms/d/e/1FAIpQLSfD4g6Qw6w7w7w7w7w7w7w7w7w7w7w7w7w7w7w7w7w7w7w7w/viewform"
+                href="https://docs.google.com/forms/d/e/1FAIpQLSekZS7qzDURw4S7hsRjj_daKliqW3HevX9jZ_T82FvZzeq5JQ/viewform?usp=header"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center"

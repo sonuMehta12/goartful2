@@ -23,7 +23,9 @@ const CtaSection = () => {
           size="lg"
           className="bg-white hover:bg-gray-100 text-primary font-bold rounded-full text-lg px-10 py-7 shadow-2xl transform hover:scale-105 transition-transform duration-300 ease-in-out"
         >
-          <Link href="/register-artist">Join Now (It&apos;s Free!)</Link>
+          <Link href="/https://docs.google.com/forms/d/e/1FAIpQLSekZS7qzDURw4S7hsRjj_daKliqW3HevX9jZ_T82FvZzeq5JQ/viewform?usp=header">
+            Join Now (It&apos;s Free!)
+          </Link>
         </Button>
         <p className="text-xs text-primary-foreground/70 mt-6">
           Join the 25 founding artists of GoVibeful! We&apos;re accepting only a

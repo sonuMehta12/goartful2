@@ -14,8 +14,8 @@ import Image from "next/image";
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
-  title: "goArful - Live through art",
-  description: "Find and explore events happening around you",
+  title: "goVibeful - Live through art",
+  description: "Find and explore artful events happening around you",
   icons: {
     icon: "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1748969808/Artful_Icon_n7sv2v.png",
   },

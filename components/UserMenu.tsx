@@ -247,7 +247,7 @@ export default function UserMenu() {
           (safeUserProfile?.role === "artist" &&
             !safeUserProfile?.profileComplete)) && (
           <>
-            <DropdownMenuItem asChild>
+            {/* <DropdownMenuItem asChild>
               <Link
                 href={
                   safeUserProfile?.role === "artist" &&
@@ -264,6 +264,24 @@ export default function UserMenu() {
                     : "Become a Host"}
                 </span>
               </Link>
+            </DropdownMenuItem> */}
+            <DropdownMenuItem asChild>
+              {pathname === "/join-artful" ? (
+                <a
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSekZS7qzDURw4S7hsRjj_daKliqW3HevX9jZ_T82FvZzeq5JQ/viewform?usp=header"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center"
+                >
+                  <Briefcase className="mr-2 h-4 w-4" />
+                  <span>Join Artful</span>
+                </a>
+              ) : (
+                <Link href="/join-artful" className="flex items-center">
+                  <Briefcase className="mr-2 h-4 w-4" />
+                  <span>Become a Host</span>
+                </Link>
+              )}
             </DropdownMenuItem>
             <DropdownMenuSeparator />
           </>

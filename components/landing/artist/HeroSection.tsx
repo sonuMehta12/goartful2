@@ -213,7 +213,7 @@ const HeroSection = () => {
               size="lg"
               className="font-semibold text-lg px-8 py-7 group transition-all duration-300 ease-in-out hover:shadow-lg transform hover:scale-105"
             >
-              <Link href="/register-artist">
+              <Link href="https://docs.google.com/forms/d/e/1FAIpQLSekZS7qzDURw4S7hsRjj_daKliqW3HevX9jZ_T82FvZzeq5JQ/viewform?usp=header">
                 Start Hosting on GoVibeful
                 <ArrowRight className="w-5 h-5 ml-2.5 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
@@ -223,8 +223,8 @@ const HeroSection = () => {
             <Sparkles className="w-5 h-5 text-amber-500" />
             <span>
               {" "}
-              GoVibeFul is onboarding 25 passionate artists,
-              & creators to launch with us. Be the face of the movement.
+              GoVibeFul is onboarding 25 passionate artists, & creators to
+              launch with us. Be the face of the movement.
             </span>
           </div>
         </div>

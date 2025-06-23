@@ -107,7 +107,8 @@ export const HowItWorksForArtistsSection = () => {
       description:
         "Apply for free and become part of India's creative movement.",
       ctaText: "Apply Now",
-      ctaLink: "/register-artist",
+      ctaLink:
+        "https://docs.google.com/forms/d/e/1FAIpQLSekZS7qzDURw4S7hsRjj_daKliqW3HevX9jZ_T82FvZzeq5JQ/viewform?usp=header",
       imgSrc:
         "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1750495123/Group_53_ei18jm.png",
       imgAlt: "Artist registration form on GoVibeful",
@@ -120,7 +121,8 @@ export const HowItWorksForArtistsSection = () => {
       description:
         "Design the workshop, add theme, price, date, time & location of the workshop or Let us help you to design.",
       ctaText: "Start Creating",
-      ctaLink: "/register-artist",
+      ctaLink:
+        "https://docs.google.com/forms/d/e/1FAIpQLSekZS7qzDURw4S7hsRjj_daKliqW3HevX9jZ_T82FvZzeq5JQ/viewform?usp=header",
       imgSrc:
         "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1750057529/Group_50_kcsh1y.png",
       imgAlt: "Creating a workshop event on GoVibeful",
@@ -176,7 +178,7 @@ export const HowItWorksForArtistsSection = () => {
                 size="lg"
                 className="font-bold text-lg px-8 py-7 group transition-all duration-300 ease-in-out hover:shadow-lg w-full sm:w-auto"
               >
-                <Link href="/register-artist">
+                <Link href="https://docs.google.com/forms/d/e/1FAIpQLSekZS7qzDURw4S7hsRjj_daKliqW3HevX9jZ_T82FvZzeq5JQ/viewform?usp=header">
                   Become a GoVibeful Artist
                   <TrendingUp className="w-5 h-5 ml-2.5 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
@@ -217,7 +219,7 @@ export const HowItWorksForArtistsSection = () => {
         <div className="text-center mt-20 lg:mt-28">
           <div className="bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-3xl p-8 md:p-12 max-w-4xl mx-auto">
             <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
-            Be One of the First 25 Founding Artists 
+              Be One of the First 25 Founding Artists
             </h3>
             <p className="text-gray-600 dark:text-gray-300 mb-8 text-lg">
               This is your chance to be one of the Founding Artists on
@@ -229,7 +231,7 @@ export const HowItWorksForArtistsSection = () => {
               size="lg"
               className="font-semibold text-lg px-10 py-6 group transition-all duration-300 ease-in-out hover:shadow-lg"
             >
-              <Link href="/register-artist">
+              <Link href="https://docs.google.com/forms/d/e/1FAIpQLSekZS7qzDURw4S7hsRjj_daKliqW3HevX9jZ_T82FvZzeq5JQ/viewform?usp=header">
                 Get Started Today
                 <ArrowRight className="w-5 h-5 ml-3 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>

@@ -20,7 +20,7 @@ const footerLinksColumns: LinkColumn[] = [
     title: "Company",
     links: [
       { href: "/about-us", label: "About Us" },
-      { href: "/press", label: "Press" },
+      { href: "/blog", label: "blog" },
     ],
   },
   {
@@ -37,7 +37,7 @@ const footerLinksColumns: LinkColumn[] = [
     links: [
       { href: "/join-artful", label: "Become a Creative Partner" },
       { href: "/partner-with-us", label: "Partner with GoVibeful" },
-      { href: "/investors", label: "For Investors" },
+      // { href: "/investors", label: "For Investors" },
     ],
   },
 ];
@@ -82,7 +82,7 @@ const Footer = () => {
             <p className="text-xs text-muted-foreground leading-relaxed max-w-xs mx-auto lg:mx-0">
               {" "}
               {/* Added max-w-xs for better text flow */}
-              New Delhi | Bangalore 
+              New Delhi | Bangalore
               <br />
               Connecting artists, creators, and art lovers worldwide.
             </p>

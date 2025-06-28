@@ -58,8 +58,9 @@ export default function ComingSoonPage() {
                 Soon!
               </h1>
               <p className="text-md sm:text-lg text-slate-300 mb-8 max-w-lg mx-auto leading-relaxed">
-                Our creative hamsters are working hard on this new feature. It's
-                not quite ready yet, but we promise it'll be worth the wait!
+                Our creative hamsters are working hard on this new feature.
+                It&apos;s not quite ready yet, but we promise it&apos;ll be
+                worth the wait!
               </p>
               <Link href="/">
                 <Button

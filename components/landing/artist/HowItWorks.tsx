@@ -152,17 +152,27 @@ export const HowItWorksForArtistsSection = () => {
         {/* --- Modern Video Player --- */}
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-20 lg:mb-28">
           <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl group cursor-pointer transition-all duration-300 hover:shadow-primary/30 hover:scale-[1.02] bg-black">
-            <video
+            {/* Cloudinary Player */}
+            <iframe
+              src="https://player.cloudinary.com/embed/?cloud_name=dv9mzq2bv&public_id=Go_Vibeful_Video_1_v6ujfg&profile=cld-default"
+              width="640"
+              height="360"
+              className="height: auto; width: 100%; aspect-ratio: 640 / 360; w-full h-full object-cover"
+              allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+
+            {/* <video
               className="w-full h-full object-cover"
               controls
               poster="https://i.pinimg.com/736x/19/db/31/19db31732931019b73bedcf17924f814.jpg"
             >
               <source
-                src="https://www.w3schools.com/html/mov_bbb.mp4"
+                src="https://res.cloudinary.com/dv9mzq2bv/video/upload/v1751085477/Go_Vibeful_Video_1_v6ujfg.mp4"
                 type="video/mp4"
               />
               Your browser does not support the video tag.
-            </video>
+            </video> */}
           </div>
           <div className="space-y-6 text-center lg:text-left">
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2 tracking-tight">

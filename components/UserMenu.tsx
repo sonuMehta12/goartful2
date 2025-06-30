@@ -68,13 +68,13 @@ export default function UserMenu() {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-64" align="end" forceMount>
-          <DropdownMenuItem
+          {/* <DropdownMenuItem
             onClick={signInWithGoogle}
             className="cursor-pointer font-semibold text-primary focus:text-primary focus:bg-primary/10" // Made font-semibold for prominence
           >
             <GoogleIcon className="mr-2 h-4 w-4" />
             Login / Sign Up
-          </DropdownMenuItem>
+          </DropdownMenuItem> */}
           <DropdownMenuSeparator />
           <DropdownMenuItem asChild>
             {pathname === "/join-artful" ? (

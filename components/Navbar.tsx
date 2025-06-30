@@ -24,17 +24,17 @@ const Navbar: FC = () => {
     }
 
     if (!user) {
-      return (
-        <Button
-          onClick={signInWithGoogle}
-          size="lg"
-          className="hidden sm:flex items-center gap-2"
-          type="button"
-        >
-          <GoogleIcon className="h-5 w-5" />
-          <span>Login / Sign Up</span>
-        </Button>
-      );
+      // return (
+      //   <Button
+      //     onClick={signInWithGoogle}
+      //     size="lg"
+      //     className="hidden sm:flex items-center gap-2"
+      //     type="button"
+      //   >
+      //     <GoogleIcon className="h-5 w-5" />
+      //     <span>Login / Sign Up</span>
+      //   </Button>
+      // );
     }
     return null;
   };

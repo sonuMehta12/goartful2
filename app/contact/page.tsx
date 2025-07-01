@@ -21,15 +21,22 @@ const contactMethods = [
   {
     icon: Mail,
     label: "Email",
-    value: "hello@goartful.com",
-    href: "mailto:hello@goartful.com",
+    value: "govibeful@gmail.com",
+    href: "mailto:govibeful@gmail.com",
     description: "Send us an email",
   },
   {
     icon: Phone,
-    label: "Phone",
+    label: "Phone | Sonu",
     value: "+91 96507 79490",
     href: "tel:+919650779490",
+    description: "Call us directly",
+  },
+  {
+    icon: Phone,
+    label: "Phone | Varun",
+    value: "+91 99866 93208",
+    href: "tel:+919986693208",
     description: "Call us directly",
   },
   {

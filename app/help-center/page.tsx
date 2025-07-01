@@ -14,9 +14,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Help Center | GoArtful",
+  title: "Help Center | GoVibeful",
   description:
-    "Need help with GoArtful? Contact our support team through phone, email, or social media.",
+    "Need help with GoVibeful? Contact our support team through phone, email, or social media.",
 };
 
 const contactMethods = [
@@ -24,16 +24,16 @@ const contactMethods = [
     name: "Phone Support",
     icon: Phone,
     description: "Call us for immediate assistance",
-    contact: "+1 (555) 123-4567",
-    action: "tel:+15551234567",
-    available: "Mon-Fri, 9 AM - 6 PM EST",
+    contact: "+91 9650779490",
+    action: "tel:+919650779490",
+    available: "Mon-Fri, 9 AM - 6 PM IST",
   },
   {
     name: "Email Support",
     icon: Mail,
     description: "Send us a detailed message",
-    contact: "support@goartful.com",
-    action: "mailto:support@goartful.com",
+    contact: "govibeful@gmail.com",
+    action: "mailto:govibeful@gmail.com",
     available: "We reply within 24 hours",
   },
 ];
@@ -46,7 +46,7 @@ export default function HelpCenterPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <LifeBuoy className="w-16 h-16 text-primary mx-auto mb-6 opacity-90" />
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4">
-            GoArtful Help Center
+            GoVibeful Help Center
           </h1>
           <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
             Need help? We&apos;re here to support you! Choose your preferred way
@@ -123,12 +123,12 @@ export default function HelpCenterPage() {
           </h3>
           <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
             Whether you need help with bookings, payments, hosting events, or
-            general questions about GoArtful, our support team is ready to
+            general questions about GoVibeful, our support team is ready to
             assist you through any of the channels above.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Button asChild size="lg" className="font-semibold px-6">
-              <a href="tel:+15551234567">
+              <a href="tel:+919650779490">
                 <Phone className="w-5 h-5 mr-2" />
                 Call Now
               </a>
@@ -139,7 +139,7 @@ export default function HelpCenterPage() {
               variant="outline"
               className="font-semibold px-6"
             >
-              <a href="mailto:support@goartful.com">
+              <a href="mailto:support@govibeful.com">
                 <Mail className="w-5 h-5 mr-2" />
                 Send Email
               </a>

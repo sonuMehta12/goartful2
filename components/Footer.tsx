@@ -36,7 +36,7 @@ const footerLinksColumns: LinkColumn[] = [
     isPartnership: true,
     links: [
       { href: "/join-artful", label: "Become a Creative Partner" },
-      { href: "/partner-with-us", label: "Partner with GoVibeful" },
+      // { href: "/partner-with-us", label: "Partner with GoVibeful" },
       // { href: "/investors", label: "For Investors" },
     ],
   },

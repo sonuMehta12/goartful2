@@ -154,14 +154,13 @@ export const HowItWorksForArtistsSection = () => {
           <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl group cursor-pointer transition-all duration-300 hover:shadow-primary/30 hover:scale-[1.02] bg-black">
             {/* Cloudinary Player */}
             <iframe
-              src="https://player.cloudinary.com/embed/?cloud_name=dv9mzq2bv&public_id=Go_Vibeful_Video_1_v6ujfg&profile=cld-default"
+              src="https://res.cloudinary.com/dv9mzq2bv/video/upload/v1751351674/final_video_-_Made_with_Clipchamp_1_qdjfxc.mp4"
               width="640"
               height="360"
               className="height: auto; width: 100%; aspect-ratio: 640 / 360; w-full h-full object-cover"
               allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
               allowFullScreen
             ></iframe>
-
             {/* <video
               className="w-full h-full object-cover"
               controls

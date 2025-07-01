@@ -28,12 +28,12 @@ const testimonials: Testimonial[] = [
   },
   {
     quote:
-      "The low commission and no monthly fees were a game-changer. I use local cafes for my sessions – no studio needed! GoVibeful made it incredibly simple.",
-    authorName: "Rohan M.",
-    authorRole: "Calligraphy Instructor, Delhi",
-    avatarInitials: "RM",
+      "It was a great honor to be the first GoVibeful artist. GoVibeful is introducing a fresh and inspiring way to experience art, and I'm proud to be part of this journey",
+    authorName: "Akansha Sharma.",
+    authorRole: "Water and acrylic Artist, Delhi",
+    avatarInitials: "AS",
     avatarImg:
-      "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=400",
+      "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1748969461/Akansha_Sharma_aexlhb.jpg",
   },
   {
     quote:

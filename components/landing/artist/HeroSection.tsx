@@ -17,7 +17,7 @@ const carouselImages = [
   {
     id: "blue",
     bg: "bg-blue-500",
-    img: "https://images.unsplash.com/photo-1551180452-aea351b23949?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGFydGlzdHxlbnwwfHwwfHx8MA%3D%3D",
+    img: "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1751354626/Gemini_Generated_Image_6niic26niic26nii_i4uyny.png",
     headline: "Get 100% payout",
     subheadline:
       "Get  up to 9k paid on the first 3 workshops guaranteed! Regardless of workshop success.",
@@ -33,7 +33,7 @@ const carouselImages = [
   {
     id: "yellow",
     bg: "bg-yellow-400",
-    img: "https://plus.unsplash.com/premium_photo-1673676883851-761e734d6cec?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGFydGlzdHxlbnwwfHwwfHx8MA%3D%3D",
+    img: "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1751353147/image_30_rr5dxd.png",
     headline: "Fully free managed workshop",
     subheadline:
       "Get all your workshop support free from logistics to marketing.",

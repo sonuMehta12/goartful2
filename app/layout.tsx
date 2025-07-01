@@ -1,14 +1,15 @@
 // app/layout.tsx
-import "./globals.css"; // Your global styles
-import { AuthProvider } from "@/components/auth/AuthContext"; // Your AuthProvider
+import "./globals.css";
+import { AuthProvider } from "@/components/auth/AuthContext";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { Toaster } from "@/components/ui/sonner"; // Or your preferred toaster
+import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import Navbar from "@/components/Navbar"; // <<< IMPORT THE NEW NAVBAR
-import Footer from "@/components/Footer"; // Your Footer component
-import { ReactNode } from "react";
-import { cn } from "@/lib/utils"; // Utility function for classnames
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import { ReactNode, Suspense } from "react"; // <<< IMPORT Suspense
+import { cn } from "@/lib/utils";
+import GoogleTagManager from "@/components/GoogleTagManager"; // <<< IMPORT THE GTM COMPONENT
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -25,60 +26,31 @@ interface RootLayoutProps {
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
-  const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
-  const isProduction = process.env.NODE_ENV === 'production';
-  
   return (
     <html lang="en" suppressHydrationWarning>
-      {/* Google Tag Manager - Only in Production */}
-      {isProduction && gtmId && (
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-KQ43PSPT');
-            `,
-          }}
-        />
-      )}
+      {/* The GTM script component does not need to be in the <head> here */}
+      {/* The `next/script` component will handle placement correctly. */}
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
           inter.variable
         )}
       >
-        {/* Google Tag Manager (noscript) - Only in Production */}
-        {isProduction && gtmId && (
-          <noscript>
-            <iframe
-              src={`https://www.googletagmanager.com/ns.html?id=GTM-KQ43PSPT`}
-              height="0"
-              width="0"
-              style={{ display: "none", visibility: "hidden" }}
-            />
-          </noscript>
-    
-        )}
-        
+        {/* Wrap body contents in Suspense */}
+        <Suspense>
+          <GoogleTagManager />
+        </Suspense>
+
         <ThemeProvider
           attribute="class"
-          defaultTheme="system" // Or your preferred default
+          defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
           <AuthProvider>
             <div className="relative flex min-h-screen flex-col">
-              <Navbar /> {/* <<< USE THE NEW NAVBAR HERE */}
-              <main className="flex-grow pt-0">
-                {" "}
-                {/* Adjusted main */}
-                {/* Content from page.tsx will go here. */}
-                {/* The container for page content should be in individual page.tsx files or a sub-layout */}
-                {children}
-              </main>
+              <Navbar />
+              <main className="flex-grow pt-0">{children}</main>
               <Footer />
             </div>
             <Toaster richColors position="top-right" />

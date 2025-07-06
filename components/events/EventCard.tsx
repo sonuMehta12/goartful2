@@ -208,34 +208,33 @@ export function EventCard({ event, className }: EventCardProps) {
             </TooltipProvider>
 
             {/* Host Info - Keep it subtle if event is past */}
-            <div
-              className={cn(
-                "absolute bottom-3 left-3 right-12 flex items-center gap-2.5 text-white",
-                eventStatusLabel
-                  ? "w-auto max-w-[calc(100%-4rem-10px)]"
-                  : "w-auto",
-                isEventPast && "opacity-70"
-              )}
-            >
-              {/* ...(Your existing Host Info Div) ... */}
-              <div className="relative h-9 w-9 rounded-full overflow-hidden border-2 border-background/70 shrink-0">
-                <Image
-                  src={event.host.avatar.url || "/placeholder-avatar.jpg"}
-                  alt={event.host.avatar.alt || event.host.name}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="overflow-hidden">
-                {" "}
-                {/* To handle text truncation */}
-                <p className="text-sm font-semibold truncate flex items-center">
-                  {event.host.name}
-                  {event.host.verified && (
-                    <CheckCircle2Icon className="ml-1.5 h-4 w-4 fill-blue-500 text-white shrink-0" />
-                  )}
-                </p>
-                {event.averageRating &&
+            {event.host && event.host.length > 0 && (
+              <div
+                className={cn(
+                  "absolute bottom-3 left-3 right-12 flex items-center gap-2.5 text-white",
+                  eventStatusLabel
+                    ? "w-auto max-w-[calc(100%-4rem-10px)]"
+                    : "w-auto",
+                  isEventPast && "opacity-70"
+                )}
+              >
+                <div className="relative h-9 w-9 rounded-full overflow-hidden border-2 border-background/70 shrink-0">
+                  <Image
+                    src={event.host[0].avatar.url || "/placeholder-avatar.jpg"}
+                    alt={event.host[0].avatar.alt || event.host[0].name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="overflow-hidden">
+                  {/* To handle text truncation */}
+                  <p className="text-sm font-semibold truncate flex items-center">
+                    {event.host[0].name}
+                    {event.host[0].verified && (
+                      <CheckCircle2Icon className="ml-1.5 h-4 w-4 fill-blue-500 text-white shrink-0" />
+                    )}
+                  </p>
+                                  {event.averageRating &&
                   event.reviewCount > 0 &&
                   !isEventPast && (
                     <div className="flex items-center gap-1 text-xs opacity-90">
@@ -246,8 +245,9 @@ export function EventCard({ event, className }: EventCardProps) {
                       </span>
                     </div>
                   )}
+                </div>
               </div>
-            </div>
+            )}
           </div>
 
           <CardContent className="p-4 flex flex-col flex-grow">

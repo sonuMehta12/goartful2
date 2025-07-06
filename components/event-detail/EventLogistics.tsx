@@ -1,142 +1,88 @@
-import type { Event } from "@/lib/types/event";
-import {
-  PackageCheck,
-  ShoppingBag,
-  Info,
-  Sparkles,
-  ClipboardList,
-  Shirt,
-  ShieldAlert,
-  FileCheck,
-} from "lucide-react"; // Refined icons
-
-interface ListItemProps {
-  text: string;
-  icon?: React.ElementType; // Allow passing specific icon for "Things to Know"
-}
-
-const ListItem: React.FC<ListItemProps> = ({ text, icon: ItemIcon }) => (
-  <li className="flex items-start">
-    {ItemIcon ? (
-      <ItemIcon className="w-4 h-4 text-primary mr-2.5 mt-0.5 shrink-0" />
-    ) : (
-      <FileCheck className="w-4 h-4 text-green-500 mr-2.5 mt-0.5 shrink-0" />
-    )}
-    <span className="text-sm text-muted-foreground">{text}</span>
-  </li>
-);
+import type { Event, GoodToKnowItem } from "@/lib/types/event";
+import { BookOpen, FileText, Headphones, Mic, PlayCircle, Image, Package, Send } from "lucide-react";
 
 interface EventLogisticsProps {
-  event: Pick<
-    Event,
-    | "materialsIncluded"
-    | "foodIncluded"
-    | "whatToBring"
-    | "whatToWear"
-    | "prerequisites"
-    | "policies"
-  >;
+  event: Pick<Event, "goodToKnow">;
 }
 
 export default function EventLogistics({ event }: EventLogisticsProps) {
-  const {
-    materialsIncluded,
-    foodIncluded,
-    whatToBring,
-    whatToWear,
-    prerequisites,
-    policies,
-  } = event;
+  const { goodToKnow } = event;
 
-  const whatsIncludedItems: string[] = [];
-  if (materialsIncluded) whatsIncludedItems.push(...materialsIncluded);
-  if (foodIncluded) whatsIncludedItems.push(...foodIncluded);
-
-  const thingsToKnowItems: { text: string; icon?: React.ElementType }[] = [];
-  if (whatToBring)
-    whatToBring.forEach((item) =>
-      thingsToKnowItems.push({ text: item, icon: ShoppingBag })
-    );
-  if (whatToWear)
-    whatToWear.forEach((item) =>
-      thingsToKnowItems.push({ text: item, icon: Shirt })
-    );
-  if (prerequisites)
-    thingsToKnowItems.push({
-      text: `Prerequisites: ${prerequisites}`,
-      icon: Info,
-    });
-  if (policies?.cancellation) {
-    // Extract first sentence of cancellation policy or a short summary
-    const cancellationSnippet =
-      policies.cancellation.split(".")[0] + "." ||
-      "Cancellation policy applies.";
-    thingsToKnowItems.push({
-      text: `Cancellation: ${cancellationSnippet}`,
-      icon: ShieldAlert,
-    });
-  }
-  // Add any other "important notes" you might define on the event object
-
-  const hasContent =
-    whatsIncludedItems.length > 0 || thingsToKnowItems.length > 0;
-
-  if (!hasContent) {
-    return null; // Don't render the section if there's nothing to show
+  if (!goodToKnow || goodToKnow.length === 0) {
+    return null;
   }
 
   return (
-    <section id="event-essentials" className="py-10 sm:py-12 border-t">
-      {" "}
-      {/* Added ID */}
+    <section id="event-essentials" className="py-6 sm:py-8 border-t">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-8 text-center sm:text-left">
-          <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
-            Your Event Essentials
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-12 text-center">
+            Everything You Need is Here
           </h2>
-          <p className="mt-1 text-muted-foreground">
-            Everything you need to know to prepare for an amazing experience.
-          </p>
-        </div>
 
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-          {/* Column 1: What's Included */}
-          {whatsIncludedItems.length > 0 && (
-            <div className="bg-card border border-border p-6 rounded-xl shadow-sm">
-              <h3 className="text-xl font-semibold text-foreground mb-4 flex items-center">
-                <PackageCheck className="w-6 h-6 mr-3 text-primary" />
-                What's Included
-              </h3>
-              <ul className="space-y-2">
-                {whatsIncludedItems.map((item, index) => (
-                  <ListItem key={`included-${index}`} text={item} />
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {/* Column 2: Good to Know */}
-          {thingsToKnowItems.length > 0 && (
-            <div className="bg-card border border-border p-6 rounded-xl shadow-sm">
-              <h3 className="text-xl font-semibold text-foreground mb-4 flex items-center">
-                <ClipboardList className="w-6 h-6 mr-3 text-primary" />
-                Good to Know
-              </h3>
-              <ul className="space-y-2.5">
-                {" "}
-                {/* Increased spacing slightly */}
-                {thingsToKnowItems.map((item, index) => (
-                  <ListItem
-                    key={`know-${index}`}
-                    text={item.text}
-                    icon={item.icon}
-                  />
-                ))}
-              </ul>
-            </div>
-          )}
+          <div className="space-y-4">
+            {goodToKnow.map((item, index) => (
+              <GoodToKnowItem key={`good-to-know-${index}`} item={item} />
+            ))}
+          </div>
         </div>
       </div>
     </section>
   );
+}
+
+interface GoodToKnowItemProps {
+  item: GoodToKnowItem;
+}
+
+function GoodToKnowItem({ item }: GoodToKnowItemProps) {
+  const IconComponent = getIconComponent(item.icon);
+  
+  return (
+    <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-card to-card/80 border border-border/50 p-6 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 hover:border-primary/20 hover:-translate-y-1">
+      <div className="flex items-start space-x-4">
+        <div className="relative">
+          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors duration-300">
+            {IconComponent ? (
+              <IconComponent className="h-6 w-6 text-primary" />
+            ) : (
+              <div className="h-6 w-6 rounded-full bg-primary/30" />
+            )}
+          </div>
+          <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-primary/20 to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm" />
+        </div>
+        <div className="flex-1 min-w-0">
+          <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+            {item.heading}
+          </h3>
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            {item.text}
+          </p>
+        </div>
+      </div>
+      
+      {/* Subtle gradient overlay for premium feel */}
+      <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+    </div>
+  );
+}
+
+// Helper function to get icon component based on string
+function getIconComponent(iconName: string | undefined) {
+  const iconMap = {
+    BookOpen,
+    FileText,
+    Headphones,
+    Mic,
+    PlayCircle,
+    Image,
+    Package,
+    Send,
+  };
+  
+  if (!iconName || !(iconName in iconMap)) {
+    return null;
+  }
+  
+  return iconMap[iconName as keyof typeof iconMap];
 }

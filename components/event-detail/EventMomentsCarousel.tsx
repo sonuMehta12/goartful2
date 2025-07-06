@@ -120,7 +120,7 @@ export default function EventMomentsCarousel({
   if (!isClient || !moments || moments.length === 0) {
     // Skeleton / Placeholder
     return (
-      <section className="py-12 sm:py-16 bg-muted/20 dark:bg-card animate-pulse">
+      <section className="py-6 sm:py-8 bg-muted/20 dark:bg-card animate-pulse">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="h-8 bg-muted-foreground/20 rounded w-3/4 mx-auto mb-4 sm:w-1/2 lg:w-1/3"></div>
           <div className="h-6 bg-muted-foreground/20 rounded w-1/2 mx-auto mb-10 sm:w-1/3 lg:w-1/4"></div>
@@ -138,7 +138,7 @@ export default function EventMomentsCarousel({
   }
 
   return (
-    <section className="py-12 sm:py-16 bg-muted/20 dark:bg-card overflow-hidden">
+    <section className="py-6 sm:py-8 bg-muted/20 dark:bg-card overflow-hidden">
       {" "}
       {/* overflow-hidden for carousel partial view */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">

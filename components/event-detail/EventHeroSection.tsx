@@ -58,12 +58,6 @@ export default function EventHeroSection({ event }: EventHeroSectionProps) {
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
   };
 
-  const handleHostClick = () => {
-    if (event.host?.id) {
-      console.log("Navigate to host profile:", event.host.id);
-    }
-  };
-
   return (
     <div className="relative">
       {/* Image Carousel Section - Clean, no text overlay */}
@@ -161,7 +155,7 @@ export default function EventHeroSection({ event }: EventHeroSectionProps) {
           {/* Critical Stats Grid - Prominent & Scannable */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
             {/* Duration */}
-            {event.duration && (
+            {event.date && (
               <Card className="border-0 bg-muted/50">
                 <CardContent className="p-4 text-center">
                   <Clock className="w-6 h-6 mx-auto mb-2 text-primary" />

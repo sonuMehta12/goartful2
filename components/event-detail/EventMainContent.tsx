@@ -1,4 +1,3 @@
-// components/event-detail/EventMainContent.tsx
 import { Event } from "@/lib/types/event";
 // Import the refined section components (we'll create/refactor these next)
 import EventDescriptionHostVenue from "./EventDescriptionHostVenue";
@@ -8,11 +7,14 @@ import EventMomentsCarousel from "./EventMomentsCarousel"; // Assuming it's a cl
 import EventReviewsClient from "./EventReviewsClient"; // Assuming this is a client component
 import EventPoliciesClient from "./EventPoliciesClient"; // Assuming this is a client component
 import EventLocationSection from "./EventLocationSection";
+import EventHostSection from "./EventHostSection";
 // ... other sections you might have like RelatedEvents
 
 interface EventMainContentProps {
   event: Pick<
     Event,
+    | "id"
+    | "name"
     | "description"
     | "host"
     | "venue"
@@ -22,20 +24,13 @@ interface EventMainContentProps {
     | "reviewCount"
     | "reviews"
     | "attendeeMoments"
-    | "name"
     | "policies"
     | "faqs"
     | "category"
     | "tags"
     | "skillLevel"
     | "ageRequirement"
-    | "highlights"
-    | "materialsIncluded"
-    | "foodIncluded"
-    | "whatToBring"
-    | "whatToWear"
-    | "prerequisites"
-    | "perfectFor"
+    | "goodToKnow"
   >;
 }
 
@@ -56,6 +51,9 @@ export default function EventMainContent({ event }: EventMainContentProps) {
       {/* Location Details Section */}
       <EventLocationSection venue={event.venue} />
 
+      {/* Hosts Section */}
+      <EventHostSection hosts={event.host || []} />
+
       {event.attendeeMoments && event.attendeeMoments.length > 0 && (
         <EventMomentsCarousel
           moments={event.attendeeMoments}
@@ -65,8 +63,8 @@ export default function EventMainContent({ event }: EventMainContentProps) {
       )}
       {/* Reviews Section */}
       <EventReviewsClient
-        eventId={(event as any).id}
-        eventName={(event as any).name || ""}
+        eventId={event.id}
+        eventName={event.name}
         reviews={event.reviews || []}
         averageRating={event.averageRating ?? 0}
         reviewCount={event.reviewCount ?? 0}

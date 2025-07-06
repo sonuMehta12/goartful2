@@ -39,22 +39,21 @@ export const EVENTS_DATA: Event[] = [
     isFeatured: true,
     isTrending: true,
     status: "active",
-    date: "2025-06-19", // Approx. 1.5 months from now
+    date: "2025-06-19",
     startTime: "6:00 PM",
     endTime: "08:00 PM",
-    duration: "2 hours", // Clarified duration
+    duration: "2 hours",
     upcomingDates: [
-      // Assuming this festival might run for a weekend
       {
-        date: "2025-06-19", // Friday
+        date: "2025-06-19",
         startTime: "6:00 PM",
         endTime: "09:00 PM",
-        spotsLeft: 15, // General admission spots for Friday
+        spotsLeft: 15,
         totalSpots: 15,
         status: "available",
       },
       {
-        date: "2025-06-20", // Saturday
+        date: "2025-06-20",
         startTime: "10:00 AM",
         endTime: "10:00 PM",
         spotsLeft: 15,
@@ -62,10 +61,10 @@ export const EVENTS_DATA: Event[] = [
         status: "available",
       },
     ],
-    price: 799, // Price per day or for a pass, e.g., ₹799.00
+    price: 799,
     currency: "INR",
     isFree: false,
-    capacity: 15, // Max capacity for any given day, for general reference
+    capacity: 15,
     ticketsLeft: 15,
     heroImage: {
       url: "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1748940564/Summer_HERO_veqoki.webp",
@@ -104,29 +103,31 @@ export const EVENTS_DATA: Event[] = [
         alt: "Close-up of colorful abstract paintings at a festival stall",
       },
     ],
-    host: {
-      id: "h1",
-      name: "Akansha Sharma", // More formal for a festival
-      tagline: "Cultivating creativity, connecting communities.",
-      avatar: {
-        url: "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1748969461/Akansha_Sharma_aexlhb.jpg", // Replace with an actual foundation logo or generic event icon
-        alt: "Akansha Sharma",
+    // FIX: Changed host to be an array of hosts
+    host: [
+      {
+        id: "h1",
+        name: "Akansha Sharma",
+        tagline: "Cultivating creativity, connecting communities.",
+        avatar: {
+          url: "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1748969461/Akansha_Sharma_aexlhb.jpg",
+          alt: "Akansha Sharma",
+        },
+        introVideoUrl:
+          "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+        introVideoPosterUrl:
+          "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg",
+        portfolioUrl: "https://www.instagram.com/akansha.sharma_/",
+        hostRating: 4.8,
+        hostReviewCount: 25,
+        instagramHandle: "akansha.sharma_",
+        verified: true,
+        title: "Artist & Associate Dentist",
+        bio: "I am Akanksha Sharma , an acrylic and watercolor artist. Creative art has been my go to especially in times when pressed by overwhelming emotions as it provides a healthy medium of expressing oneself . I wish to help others to utilise this meditative experience and thus introduce to them a tool they can access to process their feelings.",
+        experience: "1+ years doing art workshops and community events",
+        eventsHosted: 2,
       },
-      introVideoUrl:
-        "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-      introVodeoPosterUrl:
-        "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg",
-      portfolioUrl: "https://www.instagram.com/akansha.sharma_/",
-      hostRating: 4.8,
-      hostReviewCount: 25,
-      instagramHandle: "akansha.sharma_",
-      verified: true,
-      title: "Artist & Associate Dentist",
-      bio: "I am Akanksha Sharma , an acrylic and watercolor artist. Creative art has been my go to especially in times when pressed by overwhelming emotions as it provides a healthy medium of expressing oneself . I wish to help others to utilise this meditative experience and thus introduce to them a tool they can access to process their feelings.",
-      experience: "1+ years doing art workshops and community events",
-      eventsHosted: 2, // Number of significant events
-      // languages, responseTime might not be relevant for an organization
-    },
+    ],
     venue: {
       id: "v1",
       name: "Bikanervala | Sector 62 Noida",
@@ -163,7 +164,7 @@ export const EVENTS_DATA: Event[] = [
       ],
       isVerified: true,
     },
-    averageRating: 4.8, // Example from 150 reviews
+    averageRating: 4.8,
     reviewCount: 21,
     reviews: [
       {
@@ -198,7 +199,7 @@ export const EVENTS_DATA: Event[] = [
       {
         id: "am1-1",
         mediaUrl:
-          "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1748940564/Summer_HERO_veqoki.webp", // From your gallery
+          "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1748940564/Summer_HERO_veqoki.webp",
         mediaType: "image",
         altText: "Attendee capturing the vibrant festival atmosphere.",
         caption: "Loved the energy at the Summer Art Fest! #GoVibeful",
@@ -241,7 +242,7 @@ export const EVENTS_DATA: Event[] = [
         mediaType: "image",
         altText: "Enjoying the delicious food at the event.",
         caption: "Art + Food = Perfect Evening!",
-        attendee: { name: "Vikram J." /* no avatarUrl for this one */ },
+        attendee: { name: "Vikram J." },
         timestamp: "1 week ago",
       },
       {
@@ -258,10 +259,9 @@ export const EVENTS_DATA: Event[] = [
         timestamp: "June 8, 2024",
       },
       {
-        // Add a 6th item for testing partial visibility
         id: "am1-6",
         mediaUrl:
-          "https://img.traveltriangle.com/blog/wp-content/uploads/2019/09/Restaurants-In-Bikaner.jpg", // Different image
+          "https://img.traveltriangle.com/blog/wp-content/uploads/2019/09/Restaurants-In-Bikaner.jpg",
         mediaType: "image",
         altText: "Chilling at Bikanervala after the workshop!",
         caption: "Great end to a creative session.",
@@ -274,20 +274,6 @@ export const EVENTS_DATA: Event[] = [
     ],
     skillLevel: "Everyone Welcome",
     ageRequirement: "All Ages",
-    highlights: [
-      "No Art Experience Required - This is about expression, not perfection. We provide all materials and gentle guidance.",
-      "Science-Backed Benefits - Art therapy has been proven to reduce cortisol (stress hormone) levels by up to 75% in just 45 minutes and provides fresh perspective on work challenges.",
-      "Genuine Connection - Meet like-minded professionals in a judgment-free environment designed for authentic sharing.",
-      "Complete Experience - End with delicious food from Bikanervala while sharing your creative journey.",
-      "Digital Detox: Two hours of screen-free, hands-on creativity that resets your nervous system.",
-    ],
-    perfectFor: [
-      "Busy professionals needing a creative outlet",
-      "You want to meet authentic people beyond professional networking",
-      "You believe self-care should be more than bubble baths and face masks",
-      "You're curious about art and creativity but don't know where to start",
-    ],
-
     whatYoullDo: [
       {
         title: "Welcome & Theme Immersion (Approx. 15-20 mins)",
@@ -326,15 +312,6 @@ export const EVENTS_DATA: Event[] = [
         },
       },
     ],
-    materialsIncluded: [
-      "All painting materials (canvas, paints, brushes, aprons)",
-      "Food/refreshments up to ₹250 from Bikanervala menu",
-      "Take-home artwork as your personal mood memoir",
-    ], // Typically not applicable for a festival like this for attendees
-    foodIncluded: [],
-    whatToBring: [],
-    prerequisites:
-      "None! Just a curiosity to explore your emotions through art and a desire to connect.",
     policies: {
       cancellation: "Full refund available up to 24 hours before the event",
       healthSafety:
@@ -368,15 +345,362 @@ export const EVENTS_DATA: Event[] = [
           "Yes, re-entry is permitted with a valid ticket/wristband for the same day.",
       },
     ],
-    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", // Placeholder (rickroll, replace with actual video)
+    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
     videoPosterUrl:
       "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1748940564/Summer_HERO_veqoki.webp",
+    goodToKnow: [
+      {
+        icon: undefined,
+        heading: "All Painting Materials Provided",
+        text: "Canvas, paints, brushes, and aprons — everything you need to express yourself is included.",
+      },
+      {
+        icon: undefined,
+        heading: "Food & Refreshments Included",
+        text: "Enjoy delicious food and drinks worth up to ₹250 from the Bikanervala menu.",
+      },
+      {
+        icon: undefined,
+        heading: "Take Home Your Mood Memoir",
+        text: "Leave with your personal painting — a colorful snapshot of your emotions and experience.",
+      },
+    ],
+  },
+
+  // Event 2: Suminagashi Event
+  {
+    id: "2",
+    name: "Suminagashi: The Art of Floating Ink",
+    slug: generateSlug("Suminagashi: The Art of Floating Ink"),
+    tagline: "An Exclusive Workshop on Japanese Marbling & Mindfulness",
+    description:
+      "You are invited into a centuries-old practice of calm and a Zen creative journey. This workshop is designed for high-achieving professionals to provide you a serene yet stimulating environment where you can experience the captivating art of Suminagashi, create stunning unique pieces for your home and office, and experience a profound sense of calm and accomplishment.",
+    shortDescription: "A Calm and Zen Creative Journey",
+    type: "Art Workshop",
+    category: { id: "Art Workshop", name: "Art Workshop" },
+    tags: [
+      { id: "t7", name: "Japanese Art" },
+      { id: "t8", name: "Mindfulness" },
+      { id: "t9", name: "Marbling" },
+      { id: "t10", name: "Zen" },
+      { id: "t11", name: "Meditation" },
+      { id: "t12", name: "Professional Development" },
+    ],
+    isFeatured: true,
+    isTrending: false,
+    status: "active",
+    date: "2025-07-15",
+    startTime: "10:00 AM",
+    endTime: "01:00 PM",
+    duration: "3 hours",
+    upcomingDates: [
+      {
+        date: "2025-07-15",
+        startTime: "10:00 AM",
+        endTime: "01:00 PM",
+        spotsLeft: 8,
+        totalSpots: 12,
+        status: "available",
+      },
+      {
+        date: "2025-07-22",
+        startTime: "10:00 AM",
+        endTime: "01:00 PM",
+        spotsLeft: 10,
+        totalSpots: 12,
+        status: "available",
+      },
+      {
+        date: "2025-07-29",
+        startTime: "2:00 PM",
+        endTime: "5:00 PM",
+        spotsLeft: 12,
+        totalSpots: 12,
+        status: "available",
+      },
+    ],
+    price: 1299,
+    currency: "INR",
+    isFree: false,
+    capacity: 12,
+    ticketsLeft: 8,
+    heroImage: {
+      url: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80",
+      alt: "Serene Suminagashi ink patterns floating on water surface",
+    },
+    galleryImages: [
+      {
+        id: "g2-1",
+        url: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        alt: "Beautiful concentric ink rings on water surface",
+      },
+      {
+        id: "g2-2",
+        url: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        alt: "Hands gently placing paper on marbled water",
+      },
+      {
+        id: "g2-3",
+        url: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        alt: "Collection of finished Suminagashi art pieces",
+      },
+      {
+        id: "g2-4",
+        url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        alt: "Zen workspace with traditional Japanese materials",
+      },
+      {
+        id: "g2-5",
+        url: "https://images.unsplash.com/photo-1545558014-8692077e9b5c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        alt: "Participants in meditation before starting the workshop",
+      },
+    ],
+    // FIX: Host property is now a valid array. Corrected typo in introVideoPosterUrl and removed redundant properties that were outside the object.
+    host: [
+      {
+        id: "h2",
+        name: "Kenji Nakamura",
+        tagline: "Master of traditional Japanese arts and mindfulness practices",
+        title: "Suminagashi Master & Mindfulness Instructor",
+        avatar: {
+          url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
+          alt: "Kenji Nakamura - Suminagashi Master",
+        },
+        verified: true,
+        bio: "Kenji has been practicing traditional Japanese arts for over 15 years...",
+        experience: "15+ years",
+        eventsHosted: 127,
+        hostRating: 4.9,
+        hostReviewCount: 89,
+        responseTime: "Usually responds within 1 hour",
+        languages: ["English", "Japanese"],
+        instagramHandle: "@kenji_suminagashi",
+        portfolioUrl: "https://kenji-art.com",
+        introVideoUrl: null,
+        introVideoPosterUrl: null,
+      },
+      {
+        id: "h3",
+        name: "Sarah Chen",
+        tagline:
+          "Contemporary artist specializing in mixed media and digital art",
+        title: "Digital Art Specialist",
+        avatar: {
+          url: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
+          alt: "Sarah Chen - Digital Artist",
+        },
+        verified: true,
+        bio: "Sarah combines traditional techniques with modern digital tools...",
+        experience: "8+ years",
+        eventsHosted: 45,
+        hostRating: 4.8,
+        hostReviewCount: 32,
+        responseTime: "Usually responds within 2 hours",
+        languages: ["English", "Mandarin"],
+        instagramHandle: "@sarah_digital_art",
+        portfolioUrl: "https://sarahchen.art",
+        introVideoUrl: "https://example.com/video.mp4",
+        introVideoPosterUrl: "https://example.com/poster.jpg",
+      },
+    ],
+    venue: {
+      id: "v2",
+      name: "Zen Garden Studio | Sector 18 Noida",
+      address:
+        "2nd Floor, Unity One Mall, Sector 18, Noida, Uttar Pradesh 201301",
+      city: "NOIDA",
+      state: "Uttar Pradesh",
+      zipCode: "201301",
+      mapUrl: "https://maps.google.com/?q=Unity+One+Mall+Sector+18+Noida",
+      directions:
+        "Take the Blue Line Metro to Sector 18 Metro Station. The studio is a 3-minute walk from the station.",
+      venueImage: {
+        url: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        alt: "Peaceful zen studio with natural lighting",
+      },
+      howToGetThere: {
+        publicTransport: [
+          "Blue Line Metro to Sector 18 Station, then 3-minute walk",
+          "Multiple bus routes available to Sector 18 hub",
+        ],
+        parking: "Free parking available at Unity One Mall for 4 hours",
+      },
+      accessibility: [
+        "Elevator access to 2nd floor",
+        "Wide doorways suitable for wheelchairs",
+        "Accessible restrooms on same floor",
+      ],
+      amenities: [
+        "Air-conditioned studio space",
+        "Natural lighting with adjustable blinds",
+        "Comfortable floor seating with back support",
+        "Tea and meditation corner",
+        "Washroom facilities",
+      ],
+      isVerified: true,
+    },
+    averageRating: 4.9,
+    reviewCount: 34,
+    reviews: [
+      {
+        id: "r2-1",
+        name: "Priya Mehta",
+        rating: 5,
+        comment:
+          "This was the most peaceful 3 hours I've had in months! Kenji's guidance was gentle yet profound. The art I created was beautiful, but the inner calm I experienced was priceless. Highly recommend for anyone feeling overwhelmed.",
+        date: "2025-07-01",
+        verified: true,
+      },
+      {
+        id: "r2-2",
+        name: "Arjun Singh",
+        rating: 4.5,
+        comment:
+          "As a software engineer, I was skeptical about 'floating ink' art, but this workshop completely changed my perspective. The meditative process helped me disconnect from work stress. Will definitely attend again!",
+        date: "2025-06-28",
+        verified: true,
+      },
+      {
+        id: "r2-3",
+        name: "Kavya Sharma",
+        rating: 5,
+        comment:
+          "Kenji's explanation of the philosophy behind Suminagashi was enlightening. The workspace was serene, and I loved how each piece turned out uniquely. Perfect for a digital detox weekend activity!",
+        date: "2025-06-25",
+        verified: true,
+      },
+    ],
+    attendeeMoments: [
+      {
+        id: "am2-1",
+        mediaUrl:
+          "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        mediaType: "image",
+        altText: "My first Suminagashi creation - so proud!",
+        caption: "Found my zen through floating ink ✨ #Suminagashi #Mindfulness",
+        attendee: {
+          name: "Ravi K.",
+          avatarUrl: "https://i.pravatar.cc/150?u=ravi",
+        },
+        timestamp: "5 days ago",
+      },
+      {
+        id: "am2-2",
+        mediaUrl:
+          "https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        mediaType: "image",
+        altText: "The magical moment of capturing the floating ink",
+        caption: "This moment when the paper touches water... pure magic! 🎨",
+        attendee: {
+          name: "Neha P.",
+          avatarUrl: "https://i.pravatar.cc/150?u=neha",
+        },
+        timestamp: "1 week ago",
+      },
+      {
+        id: "am2-3",
+        mediaUrl:
+          "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        mediaType: "image",
+        altText: "Collection of beautiful Suminagashi pieces",
+        caption: "Each piece tells a story of mindfulness and flow 🌊",
+        attendee: {
+          name: "Amit J.",
+          avatarUrl: "https://i.pravatar.cc/150?u=amit2",
+        },
+        timestamp: "2 weeks ago",
+      },
+    ],
+    skillLevel: "Beginner Friendly",
+    ageRequirement: "16+",
+    whatYoullDo: [
+      {
+        title: "The Stillness: Philosophy & Meditation (30 mins)",
+        description:
+          "Begin with a welcome tea ceremony and learn about the philosophy of Suminagashi and Wabi-Sabi. Engage in guided meditation to enter a state of mindful awareness and prepare your mind for the creative journey ahead.",
+        image: {
+          url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+          alt: "Peaceful meditation space with tea ceremony setup",
+        },
+      },
+      {
+        title: "The Flow: Mastering the Water Dance (90 mins)",
+        description:
+          "Learn to 'kiss' the water surface with ink-loaded brushes, creating concentric rings that bloom like ripples. Master breath control and gentle vibrations to guide ink into mesmerizing patterns. Practice the ancient techniques with premium Sumi inks.",
+        image: {
+          url: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+          alt: "Hands creating ink patterns on water surface",
+        },
+      },
+      {
+        title: "The Capture: Preserving Your Flow State (45 mins)",
+        description:
+          "Master the delicate art of laying absorbent paper onto the water to capture your floating designs. Learn timing, pressure, and lifting techniques to create perfect prints. Create multiple pieces with different color combinations.",
+        image: {
+          url: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+          alt: "Paper being placed on marbled water surface",
+        },
+      },
+      {
+        title: "Reflection & Tea: Integration (15 mins)",
+        description:
+          "Conclude with a mindful tea session while your artwork dries. Share your experience with fellow participants and receive guidance on incorporating mindfulness practices into daily life. Package your creations for safekeeping.",
+        image: {
+          url: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+          alt: "Finished artwork collection with tea setting",
+        },
+      },
+    ],
+    policies: {
+      cancellation: "Full refund available up to 48 hours before the workshop",
+      healthSafety:
+        "Please inform us of any allergies. If feeling unwell, please reschedule at no charge.",
+      refund:
+        "All approved refunds processed within 48 hours to original payment method.",
+    },
+    guidelines: [
+      "Arrive 15 minutes early for check-in and settling in",
+      "Maintain silence during meditation portions",
+      "Embrace imperfection - there are no mistakes in Suminagashi",
+      "Respect the meditative atmosphere and others' creative process",
+      "Turn phones to silent mode during the workshop",
+      "Stay hydrated and take breaks as needed",
+    ],
+    faqs: [
+      {
+        id: "faq2-1",
+        question: "Do I need any prior art experience?",
+        answer:
+          "Absolutely not! Suminagashi is about letting go of control and embracing the natural flow. A beginner's mind is actually ideal for this practice.",
+      },
+      {
+        id: "faq2-2",
+        question: "How many art pieces will I create?",
+        answer:
+          "You'll typically create 5-7 unique pieces during the workshop. Each piece is one-of-a-kind and cannot be replicated exactly.",
+      },
+      {
+        id: "faq2-3",
+        question: "Is this suitable for people with anxiety or stress?",
+        answer:
+          "Yes! The meditative nature of Suminagashi is particularly beneficial for reducing stress and anxiety. The workshop is designed to be calming and therapeutic.",
+      },
+      {
+        id: "faq2-4",
+        question: "What if I'm not comfortable with meditation?",
+        answer:
+          "The meditation portion is gentle and optional. We focus more on mindful awareness during the art-making process rather than formal meditation.",
+      },
+    ],
+    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    videoPosterUrl:
+      "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     goodToKnow: [],
   },
 
-  // Event 2: Myths We Inherit Art Exhibition (Past Event)
+  // Event 3: Myths We Inherit Art Exhibition (Past Event)
   {
-    id: "2",
+    id: "3",
     name: "Myths We Inherit",
     slug: generateSlug("Myths We Inherit"),
     tagline:
@@ -409,9 +733,9 @@ export const EVENTS_DATA: Event[] = [
         date: "2025-05-31", // Preview Day 1
         startTime: "6:00 PM",
         endTime: "9:00 PM",
-        spotsLeft: 0, // Past event, no spots available
+        spotsLeft: 0,
         totalSpots: 80,
-        status: "past", // Past event
+        status: "past",
       },
       {
         date: "2025-06-01", // Preview Day 2
@@ -419,14 +743,14 @@ export const EVENTS_DATA: Event[] = [
         endTime: "8:00 PM",
         spotsLeft: 0,
         totalSpots: 120,
-        status: "past", // Past event
+        status: "past",
       },
     ],
-    price: 0, // Free exhibition
+    price: 0,
     currency: "INR",
     isFree: true,
     capacity: 120,
-    ticketsLeft: 0, // Past event
+    ticketsLeft: 0,
     heroImage: {
       url: "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1749134006/Myth_gallery_2_-_Copy_qjxmq1.jpg",
       alt: "Contemporary art gallery with visitors viewing large-scale paintings",
@@ -454,22 +778,25 @@ export const EVENTS_DATA: Event[] = [
         alt: "Farwa Moledina's contemporary interpretation of cultural symbols from Birmingham perspective",
       },
     ],
-    host: {
-      id: "h2",
-      name: "Prachi Kapoor",
-      tagline:
-        "Bringing Fine Art into functional environments, believing in art that transcends traditional boundaries",
-      avatar: {
-        url: "https://media.licdn.com/dms/image/v2/D4D03AQH2nZGaM9wqIQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1728452638004?e=2147483647&v=beta&t=RAPuGe0rFl4L2srbERKkBMK36ZgYNny2OE_MqUHXkH0",
-        alt: "Prachi Kapoor, Founder & Curator of Artura Spaces",
+    // FIX: Changed host to be an array of hosts
+    host: [
+      {
+        id: "h2",
+        name: "Prachi Kapoor",
+        tagline:
+          "Bringing Fine Art into functional environments, believing in art that transcends traditional boundaries",
+        avatar: {
+          url: "https://media.licdn.com/dms/image/v2/D4D03AQH2nZGaM9wqIQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1728452638004?e=2147483647&v=beta&t=RAPuGe0rFl4L2srbERKkBMK36ZgYNny2OE_MqUHXkH0",
+          alt: "Prachi Kapoor, Founder & Curator of Artura Spaces",
+        },
+        title: "Founder & Curator, Artura Spaces",
+        bio: "Prachi Kapoor is the visionary founder of Artura Spaces, dedicated to creating dialogue between local and international artists while exploring stories, materials, cultures, and people. With a philosophy that art should transcend the confines of traditional galleries and collector storage units, she curates exhibitions that bring powerful voices together. Her curatorial approach focuses on creating space for meaningful artistic dialogue, as demonstrated in 'Myths We Inherit' where she brings together three distinct voices—each exploring myths, memories, and cultural symbols that shape identity.",
+        experience:
+          "8+ years creating dialogue-focused contemporary art exhibitions",
+        eventsHosted: 25,
+        verified: true,
       },
-      title: "Founder & Curator, Artura Spaces",
-      bio: "Prachi Kapoor is the visionary founder of Artura Spaces, dedicated to creating dialogue between local and international artists while exploring stories, materials, cultures, and people. With a philosophy that art should transcend the confines of traditional galleries and collector storage units, she curates exhibitions that bring powerful voices together. Her curatorial approach focuses on creating space for meaningful artistic dialogue, as demonstrated in 'Myths We Inherit' where she brings together three distinct voices—each exploring myths, memories, and cultural symbols that shape identity.",
-      experience:
-        "8+ years creating dialogue-focused contemporary art exhibitions",
-      eventsHosted: 25,
-      verified: true,
-    },
+    ],
     venue: {
       id: "v2",
       name: "Artura Spaces",
@@ -542,20 +869,6 @@ export const EVENTS_DATA: Event[] = [
     ],
     skillLevel: "All Art Enthusiasts",
     ageRequirement: "All Ages (Children under 16 with adult supervision)",
-    highlights: [
-      "Tirthraj Sinh Zala's 'Neelantara: A Mythic Blue Journey' - Experience the cosmic power of blue through ritualistic mark-making and symbols derived from Rajputana heritage, offering a deeply personal exploration of mythology.",
-      "Visual Pilgrimage Through Mythology - Journey through ancestral memory and cultural symbols as interpreted by three distinct artistic voices from Rajkot, Pune, and Birmingham.",
-      "Exclusive Artist Insights - Featured in The Aishya Magazine with in-depth conversations about the creative process, cultural inheritance, and the role of color in spiritual expression.",
-      "Immersive Gallery Experience - Navigate through carefully curated linear pathways that create dialogue between local and international artistic perspectives.",
-      "Contemporary Mythology Exploration - Witness how ancient narratives translate into present-day visual language through mark-making, mixed media, and symbolic representation.",
-    ],
-    perfectFor: [
-      "Contemporary art enthusiasts seeking thought-provoking content",
-      "Individuals exploring questions of identity and cultural heritage",
-      "Art collectors interested in emerging South Asian artists",
-      "Students and academics studying contemporary cultural narratives",
-      "Anyone curious about the intersection of tradition and modernity",
-    ],
     whatYoullDo: [
       {
         title: "Welcome & Exhibition Overview (15 minutes)",
@@ -604,25 +917,6 @@ export const EVENTS_DATA: Event[] = [
         },
       },
     ],
-    materialsIncluded: [
-      "Exclusive exhibition catalogue featuring artist statements and Prachi Kapoor's curatorial essay",
-      "The Aishya Magazine feature article with in-depth artist interviews and process insights",
-      "Gallery map highlighting the 'visual pilgrimage' pathway through all three artists' works",
-      "Audio guide access featuring artist conversations about mythology, color symbolism, and cultural inheritance",
-      "Complimentary postcard set featuring key works from Zala's 'Neelantara' series",
-      "Digital access to extended artist interviews and behind-the-scenes creative process documentation",
-    ],
-    foodIncluded: [
-      "Welcome refreshments during preview opening",
-      "Light snacks and beverages available at gallery café (additional cost)",
-    ],
-    whatToBring: [
-      "An open mind and curiosity about cultural narratives",
-      "Camera for personal documentation (flash photography not permitted)",
-      "Notebook if you enjoy reflecting on art experiences",
-    ],
-    prerequisites:
-      "No prior art knowledge required. Suitable for all levels of art appreciation.",
     policies: {
       cancellation: "Free cancellation up to 2 hours before visit time",
       healthSafety:
@@ -666,12 +960,10 @@ export const EVENTS_DATA: Event[] = [
       },
     ],
     videoUrl:
-      "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1749134006/Myth_gallery_2_-_Copy_qjxmq1.jpg", // Placeholder
+      "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1749134006/Myth_gallery_2_-_Copy_qjxmq1.jpg",
     videoPosterUrl:
       "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1749134006/Myth_gallery_2_-_Copy_qjxmq1.jpg",
+    // FIX: Replaced incorrect goodToKnow data with an empty array.
     goodToKnow: [],
   },
-  // Event ID "2" (Philosophy & Painting - needs similar full population)
-  // ... (Ensure Event 2 is also fully populated for all fields) ...
-  // ... (Example: copy structure from Event 1 and adapt content) ...
 ];

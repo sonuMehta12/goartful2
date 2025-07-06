@@ -16,7 +16,7 @@ export default function EventLocationSection({
     // If you always expect a venue, the parent should handle not rendering this.
     // But as a safeguard, or if it's truly optional:
     return (
-      <section id="event-location" className="py-10 sm:py-12 border-t">
+      <section id="event-location" className="py-6 sm:py-8 border-t">
         <div className="container mx-auto px-4 text-center">
           <p className="text-muted-foreground">
             Venue information is currently being finalized.
@@ -27,7 +27,7 @@ export default function EventLocationSection({
   }
 
   return (
-    <section id="event-location" className="py-8 sm:py-12 border-t">
+    <section id="event-location" className="py-6 sm:py-8 border-t">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mb-6 sm:mb-8 text-center sm:text-left">

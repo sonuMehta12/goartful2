@@ -1,4 +1,3 @@
-// components/event-detail/EventPoliciesClient.tsx
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -115,7 +114,7 @@ export default function EventPoliciesClient({
   }
 
   return (
-    <section id="information" className="py-12 sm:py-16 bg-background">
+    <section id="information" className="py-6 sm:py-8 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center mb-10 lg:mb-12">
           <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">

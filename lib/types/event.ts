@@ -1,3 +1,4 @@
+// lib/types/event.ts
 import React from "react";
 
 export interface ImageAsset {
@@ -14,9 +15,9 @@ export interface Tag {
   name: string;
 }
 export interface GoodToKnowItem {
-  icon?: React.ElementType; // Optional specific icon from Lucide
+  icon: string | undefined; // Optional specific icon from Lucide
+  heading: string;
   text: string;
-  category: "bring" | "wear" | "policy" | "prerequisite" | "note"; // To help with styling or grouping if needed
 }
 
 export interface Host {
@@ -25,7 +26,7 @@ export interface Host {
   tagline?: string;
   avatar: ImageAsset;
   introVideoUrl?: string | null;
-  introVodeoPosterUrl?: string | null;
+  introVideoPosterUrl?: string | null; // Corrected typo from "introVodeoPosterUrl"
   portfolioUrl?: string | null;
   hostRating?: number | null;
   hostReviewCount?: number | null;
@@ -76,7 +77,6 @@ export interface Review {
 export interface AttendeeInfo {
   name: string;
   avatarUrl?: string | null; // Optional: URL to attendee's avatar
-  // Could add profileLink to their GoVibeful profile if that exists later
 }
 
 export interface AttendeeMomentItem {
@@ -86,10 +86,7 @@ export interface AttendeeMomentItem {
   altText: string; // Alt text for the image, or description for video
   caption?: string | null; // Optional short caption from the attendee
   attendee: AttendeeInfo;
-  timestamp: string; // ISO string for the moment's creation time
-  // Optional: Could link back to the specific event it's from
-  // eventId?: string;
-  // eventName?: string;
+  timestamp: string; // ISO string or relative time string
 }
 export interface UpcomingDateSession {
   date: string; // ISO Date string "YYYY-MM-DD"
@@ -108,7 +105,6 @@ export interface PolicyDetails {
   groupBooking?: string;
 }
 
-// Update FAQItem interface
 export interface FAQItem {
   id: string;
   question: string;
@@ -134,9 +130,8 @@ export interface WhatYoullDoItem {
   image?: ImageAsset;
 }
 
-// Update Event interface to match the actual data structure
+// Main Event interface
 export interface Event {
-  ticketsLeft?: number | null;
   id: string;
   name: string;
   slug: string;
@@ -156,21 +151,15 @@ export interface Event {
   startTime: string;
   endTime: string;
   duration: string;
-  upcomingDates: Array<{
-    date: string;
-    startTime: string;
-    endTime?: string;
-    spotsLeft: number;
-    totalSpots: number;
-    status: "available" | "sold-out" | "cancelled" | "past";
-  }>;
+  upcomingDates: UpcomingDateSession[];
   price: number;
   currency: string;
   isFree: boolean;
   capacity?: number | null;
+  ticketsLeft?: number | null;
   heroImage: ImageAsset;
   galleryImages: GalleryImageItem[] | null;
-  host: Host;
+  host: Host[] | null;
   venue: Venue;
   attendeeMoments?: AttendeeMomentItem[] | null;
   averageRating: number;
@@ -178,15 +167,8 @@ export interface Event {
   reviews: Review[] | null;
   skillLevel: string;
   ageRequirement: string;
-  highlights: string[];
-  perfectFor: string[];
   whatYoullDo: WhatYoullDoItem[];
   goodToKnow: GoodToKnowItem[];
-  materialsIncluded?: string[] | null;
-  foodIncluded?: string[] | null;
-  whatToBring?: string[] | null;
-  whatToWear?: string[] | null;
-  prerequisites?: string | null;
   policies: PolicyDetails;
   guidelines?: string[] | null;
   faqs: FAQItem[];

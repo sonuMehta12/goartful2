@@ -4,7 +4,7 @@ import type { Event } from "@/lib/types/event";
 import { notFound } from "next/navigation";
 import type { Metadata, ResolvingMetadata } from "next";
 
-import EventMainContent from "@/components/event-detail/EventMainContent";
+import EventMainContent from "../../../components/event-detail/EventMainContent";
 import FloatingBookingBarClient from "@/components/event-detail/FloatingBookingBarClient";
 import EventHeroSection from "@/components/event-detail/EventHeroSection";
 import EventBookingCardClient from "@/components/event-detail/EventBookingCardClient";

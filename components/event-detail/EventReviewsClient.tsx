@@ -127,7 +127,7 @@ export default function EventReviewsClient({
     return (
       <section
         id="reviews"
-        className="py-12 sm:py-16 bg-muted/20 dark:bg-card animate-pulse"
+        className="py-6 sm:py-8 bg-muted/20 dark:bg-card animate-pulse"
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header Skeleton */}
@@ -185,7 +185,7 @@ export default function EventReviewsClient({
     return (
       <section
         id="reviews"
-        className="py-16 sm:py-20 text-center bg-muted/20 dark:bg-card rounded-lg"
+        className="py-6 sm:py-8 text-center bg-muted/20 dark:bg-card rounded-lg"
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <Star className="w-12 h-12 text-primary mx-auto mb-4 opacity-70" />
@@ -206,7 +206,7 @@ export default function EventReviewsClient({
   }
 
   return (
-    <section id="reviews" className="py-12 sm:py-16">
+    <section id="reviews" className="py-6 sm:py-8">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mb-10 lg:mb-12">

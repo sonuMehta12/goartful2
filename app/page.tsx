@@ -259,7 +259,7 @@ export default function HomePage() {
           event.shortDescription.toLowerCase().includes(lowerQuery) ||
           event.venue.name.toLowerCase().includes(lowerQuery) ||
           event.venue.city.toLowerCase().includes(lowerQuery) ||
-          event.host.name.toLowerCase().includes(lowerQuery) ||
+          (event.host && event.host.length > 0 && event.host[0].name.toLowerCase().includes(lowerQuery)) ||
           event.tags.some((tag) => tag.name.toLowerCase().includes(lowerQuery))
       );
     }

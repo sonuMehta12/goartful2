@@ -1,4 +1,3 @@
-// components/event-detail/EventBookingCardClient.tsx
 "use client";
 
 import { useState, useEffect, useMemo } from "react";

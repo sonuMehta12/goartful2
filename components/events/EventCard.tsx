@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -8,18 +8,17 @@ import {
   CalendarDays,
   Clock3Icon,
   MapPinIcon,
-  AccessibilityIcon,
   CheckCircle2Icon,
   HeartIcon,
   StarIcon,
   TicketIcon,
-  Info, // For past event indication
+  Share2Icon, // --- (1) IMPORT: Added Share icon ---
 } from "lucide-react";
 import { Event } from "@/lib/types/event";
-import { cn, formatCurrency, formatDate } from "@/lib/utils";
+import { cn, formatCurrency } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import {
   Tooltip,
   TooltipContent,
@@ -28,12 +27,19 @@ import {
 } from "@/components/ui/tooltip";
 import {
   isPast,
-  isFuture,
   isToday,
+  isTomorrow, // --- (2) IMPORT: Added isTomorrow for enhanced date formatting ---
   parseISO,
   format as formatDateFns,
   isValid as isValidDate,
-} from "date-fns"; // For date checking
+} from "date-fns";
+
+// --- Assume Event type might have totalCapacity ---
+// interface Event {
+//   // ... other properties
+//   ticketsLeft?: number;
+//   totalCapacity?: number;
+// }
 
 interface EventCardProps {
   event: Event;
@@ -46,73 +52,92 @@ export function EventCard({ event, className }: EventCardProps) {
   const [isEventPast, setIsEventPast] = useState<boolean>(false);
 
   useEffect(() => {
-    // Determine event status based on the primary event.date and potentially upcomingDates
     let statusLabel: string | null = null;
     let past = false;
+    const effectiveDate = event.date ? parseISO(event.date) : null;
 
-    // Consider the *last* date if upcomingDates are present and span multiple days
-    let effectiveLastDate: Date | null = null;
-    if (event.upcomingDates && event.upcomingDates.length > 0) {
-      const dates = event.upcomingDates
-        .map((s) => parseISO(s.date))
-        .sort((a, b) => b.getTime() - a.getTime());
-      if (dates.length > 0) {
-        effectiveLastDate = dates[0];
-      }
-    } else if (event.date) {
-      effectiveLastDate = parseISO(event.date);
-    }
-
-    if (effectiveLastDate && isValidDate(effectiveLastDate)) {
-      if (isPast(effectiveLastDate) && !isToday(effectiveLastDate)) {
-        // Strictly past
-        statusLabel = "Event Concluded";
+    if (effectiveDate && isValidDate(effectiveDate)) {
+      if (isPast(effectiveDate) && !isToday(effectiveDate)) {
+        statusLabel = "Concluded";
         past = true;
       } else if (event.status === "cancelled") {
         statusLabel = "Cancelled";
-        past = true; // Treat cancelled as non-bookable/past for card display
+        past = true;
       } else if (
-        event.status === "sold-out" &&
-        (!event.ticketsLeft || event.ticketsLeft === 0)
+        event.status === "sold-out" ||
+        (typeof event.ticketsLeft === "number" && event.ticketsLeft === 0)
       ) {
         statusLabel = "Sold Out";
-        // 'past' remains false if it's upcoming but sold out
+      } else if (event.price === 0) {
+        statusLabel = "Free";
       }
-      // Could add "Ongoing" if start is past but end is future (more complex with timezones and specific times)
     }
     setEventStatusLabel(statusLabel);
     setIsEventPast(past);
-  }, [event.date, event.upcomingDates, event.status, event.ticketsLeft]);
+  }, [event.date, event.status, event.ticketsLeft, event.price]);
 
-  const handleWishlistClick = (
-    e: React.MouseEvent<HTMLButtonElement>
-  ): void => {
+  // --- (3) REFACTOR: Memoized and improved date/time formatting ---
+  const formattedDateTime = useMemo(() => {
+    if (!event.date) return "Date TBD";
+    const date = parseISO(event.date);
+    if (!isValidDate(date)) return "Invalid Date";
+
+    let datePart;
+    if (isToday(date)) {
+      datePart = "Today";
+    } else if (isTomorrow(date)) {
+      datePart = "Tomorrow";
+    } else {
+      datePart = formatDateFns(date, "E, MMM d"); // Format: "Thu, Feb 5"
+    }
+
+    return `${datePart} • ${event.startTime || "Time TBD"}`;
+  }, [event.date, event.startTime]);
+
+  const handleWishlistClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
     e.preventDefault();
     e.stopPropagation();
     setIsWishlisted(!isWishlisted);
-    console.log("Toggled wishlist for event:", event.id, !isWishlisted);
+    // console.log("Toggled wishlist for event:", event.id, !isWishlisted);
   };
 
+  // --- (4) FEATURE: Added Share handler ---
+  const handleShareClick = async (e: React.MouseEvent<HTMLButtonElement>): Promise<void> => {
+    e.preventDefault();
+    e.stopPropagation();
+    const shareData = {
+      title: event.name,
+      text: event.shortDescription,
+      url: `${window.location.origin}/events/${event.slug}`,
+    };
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else {
+        // Fallback for desktop or unsupported browsers
+        await navigator.clipboard.writeText(shareData.url);
+        alert("Event link copied to clipboard!");
+      }
+    } catch (err) {
+      console.error("Share failed:", err);
+      // Fallback for failed share
+      await navigator.clipboard.writeText(shareData.url);
+      alert("Sharing failed. Link copied to clipboard instead!");
+    }
+  };
+
+
   const cardVariants = {
-    /* ... your existing variants ... */ initial: { opacity: 0, y: 20 },
-    animate: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.4, ease: "easeOut" },
-    },
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
     hover: {
       y: -5,
-      boxShadow:
-        "0px 8px 25px -5px hsl(var(--primary) / 0.15), 0px 5px 10px -6px hsl(var(--primary) / 0.1)",
+      boxShadow: "0px 8px 25px -5px hsl(var(--primary) / 0.15), 0px 5px 10px -6px hsl(var(--primary) / 0.1)",
       transition: { duration: 0.2, ease: "easeOut" },
     },
   };
 
-  const formattedMainDate = event.date ? formatDate(event.date) : "Date TBD";
-  const linkHref =
-    isEventPast && event.status !== "past"
-      ? `/events/${event.slug}?status=past_gallery`
-      : `/events/${event.slug}`;
+  const linkHref = isEventPast ? `/events/${event.slug}?status=past_gallery` : `/events/${event.slug}`;
 
   return (
     <motion.div
@@ -120,7 +145,7 @@ export function EventCard({ event, className }: EventCardProps) {
       initial="initial"
       animate="animate"
       whileHover="hover"
-      className={cn("h-full", className)}
+      className={cn("h-full", className, "group")}
     >
       <Link href={linkHref} className="block h-full" passHref>
         <Card
@@ -141,108 +166,86 @@ export function EventCard({ event, className }: EventCardProps) {
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               priority={event.isFeatured}
             />
-            <div
-              className={cn(
-                "absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent",
-                isEventPast && "from-black/80 via-black/50"
-              )}
-            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
 
-            {/* Category/Type Badge */}
-            {(event.category?.name || event.type) && (
-              <Badge
-                variant="secondary"
-                className="absolute top-3 left-3 z-10 bg-black/50 text-white backdrop-blur-sm text-xs border-none"
-              >
-                {event.category?.name || event.type}
+            {event.category?.name && (
+              <Badge variant="secondary" className="absolute top-3 left-3 z-10 bg-black/50 text-white backdrop-blur-sm text-xs border-none">
+                {event.category.name}
               </Badge>
             )}
 
-            {/* Status Badge for Past/Cancelled/Sold Out Events */}
             {eventStatusLabel && (
               <Badge
-                variant={
-                  isEventPast && eventStatusLabel !== "Sold Out"
-                    ? "outline"
-                    : "destructive"
-                }
+                variant={isEventPast && eventStatusLabel !== "Sold Out" ? "outline" : "destructive"}
                 className="absolute bottom-3 right-3 z-10 bg-black/60 text-white backdrop-blur-sm text-xs border-white/30"
               >
                 {eventStatusLabel}
               </Badge>
             )}
 
+            {/* --- (5) UI-CHANGE: Container for stacked action buttons --- */}
             <TooltipProvider delayDuration={100}>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button
-                    variant="secondary"
-                    size="icon"
-                    className="absolute top-3 right-3 z-10 h-9 w-9 rounded-full bg-background/80 backdrop-blur-sm shadow-md hover:bg-background"
-                    onClick={handleWishlistClick}
-                    aria-label={
-                      isWishlisted ? "Remove from wishlist" : "Add to wishlist"
-                    }
-                    style={
-                      eventStatusLabel
-                        ? { right: "calc(0.75rem + 2.5rem + 0.5rem)" }
-                        : {}
-                    } // Adjust if status badge is present
-                  >
-                    <HeartIcon
-                      className={cn(
-                        "h-5 w-5 transition-all",
-                        isWishlisted
-                          ? "fill-primary text-primary"
-                          : "text-foreground/70 group-hover:text-primary/80"
-                      )}
-                    />
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>
-                    {isWishlisted ? "Remove from Wishlist" : "Add to Wishlist"}
-                  </p>
-                </TooltipContent>
-              </Tooltip>
+              <div className="absolute top-3 right-3 z-10 flex flex-col gap-2 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-200">
+                {/* Wishlist Button */}
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant="secondary"
+                      size="icon"
+                      className="h-9 w-9 rounded-full bg-background/80 backdrop-blur-sm shadow-md hover:bg-background"
+                      onClick={handleWishlistClick}
+                      aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
+                    >
+                      <HeartIcon
+                        className={cn(
+                          "h-5 w-5 transition-all",
+                          isWishlisted ? "fill-primary text-primary" : "text-foreground/70"
+                        )}
+                      />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent><p>{isWishlisted ? "Remove from Wishlist" : "Add to Wishlist"}</p></TooltipContent>
+                </Tooltip>
+
+                {/* Share Button */}
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant="secondary"
+                      size="icon"
+                      className="h-9 w-9 rounded-full bg-background/80 backdrop-blur-sm shadow-md hover:bg-background"
+                      onClick={handleShareClick}
+                      aria-label="Share event"
+                    >
+                      <Share2Icon className="h-5 w-5 text-foreground/70" />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent><p>Share Event</p></TooltipContent>
+                </Tooltip>
+              </div>
             </TooltipProvider>
 
-            {/* Host Info - Keep it subtle if event is past */}
-            {event.host && event.host.length > 0 && (
-              <div
-                className={cn(
-                  "absolute bottom-3 left-3 right-12 flex items-center gap-2.5 text-white",
-                  eventStatusLabel
-                    ? "w-auto max-w-[calc(100%-4rem-10px)]"
-                    : "w-auto",
-                  isEventPast && "opacity-70"
-                )}
-              >
+            {event.host?.[0] && (
+              <div className="absolute bottom-3 left-3 flex items-center gap-2.5 text-white max-w-[calc(100%-8rem)]">
                 <div className="relative h-9 w-9 rounded-full overflow-hidden border-2 border-background/70 shrink-0">
                   <Image
                     src={event.host[0].avatar.url || "/placeholder-avatar.jpg"}
-                    alt={event.host[0].avatar.alt || event.host[0].name}
+                    alt={event.host[0].name}
                     fill
                     className="object-cover"
                   />
                 </div>
                 <div className="overflow-hidden">
-                  {/* To handle text truncation */}
                   <p className="text-sm font-semibold truncate flex items-center">
                     {event.host[0].name}
                     {event.host[0].verified && (
                       <CheckCircle2Icon className="ml-1.5 h-4 w-4 fill-blue-500 text-white shrink-0" />
                     )}
                   </p>
-                                  {event.averageRating &&
-                  event.reviewCount > 0 &&
-                  !isEventPast && (
+                  {event.averageRating && event.reviewCount > 0 && !isEventPast && (
                     <div className="flex items-center gap-1 text-xs opacity-90">
                       <StarIcon className="h-3.5 w-3.5 fill-yellow-400 text-yellow-400 shrink-0" />
-                      <span className="truncate">
-                        {event.averageRating.toFixed(1)} ({event.reviewCount}{" "}
-                        reviews)
-                      </span>
+                      <span className="truncate">{`${event.averageRating.toFixed(1)} (${event.reviewCount} reviews)`}</span>
                     </div>
                   )}
                 </div>
@@ -250,153 +253,55 @@ export function EventCard({ event, className }: EventCardProps) {
             )}
           </div>
 
-          <CardContent className="p-4 flex flex-col flex-grow">
-            <div className="mb-3 flex items-start justify-between gap-2">
-              <CardTitle
-                className={cn(
-                  "text-lg font-semibold leading-snug text-foreground group-hover:text-primary transition-colors duration-200 line-clamp-2",
-                  isEventPast && "group-hover:text-muted-foreground"
-                )}
-              >
-                {event.name}
-              </CardTitle>
-              {!isEventPast && ( // Only show price for current/upcoming
-                <div
-                  className={cn(
-                    "text-lg font-bold whitespace-nowrap shrink-0 pl-2",
-                    event.isFree
-                      ? "text-emerald-600 dark:text-emerald-500"
-                      : "text-primary"
-                  )}
-                >
-                  {event.isFree
-                    ? "FREE"
-                    : formatCurrency(
-                        event.price,
-                        event.currency,
-                        event.currency === "INR" ? "en-IN" : "en-US"
-                      )}
-                </div>
-              )}
-            </div>
-
-            <p
-              className={cn(
-                "text-sm text-muted-foreground mb-3 line-clamp-2",
-                isEventPast && "opacity-80"
-              )}
+          <CardContent className="p-5 flex flex-col flex-grow pb-4">
+            <CardTitle
+              className="text-xl font-bold leading-tight text-foreground group-hover:text-primary transition-colors duration-200"
+              style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}
             >
+              {event.name}
+            </CardTitle>
+            
+            <p className="text-base text-muted-foreground mt-2 mb-4 line-clamp-2 leading-relaxed">
               {event.shortDescription}
             </p>
 
-            <div
-              className={cn(
-                "space-y-2 text-sm text-muted-foreground mb-4",
-                isEventPast && "opacity-80"
-              )}
-            >
-              <div className="flex items-center gap-2">
-                <CalendarDays className="h-4 w-4 shrink-0 text-muted-foreground/80" />
-                <span>{formattedMainDate}</span>
+            <div className="space-y-3 text-sm text-muted-foreground mt-auto">
+              {/* --- (6) UI-CHANGE: Combined Date & Time --- */}
+              <div className="flex items-center gap-3">
+                <CalendarDays className="h-4 w-4 shrink-0 text-muted-foreground/70" />
+                <span className="font-medium">{formattedDateTime}</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Clock3Icon className="h-4 w-4 shrink-0 text-muted-foreground/80" />
-                <span>
-                  {event.startTime} {event.endTime && `- ${event.endTime}`}
-                </span>
+
+              <div className="flex items-center gap-3">
+                <MapPinIcon className="h-4 w-4 shrink-0 text-muted-foreground/70" />
+                <span className="line-clamp-1 font-medium">{`${event.venue.name}, ${event.venue.city}`}</span>
               </div>
-              <div className="flex items-center gap-2">
-                <MapPinIcon className="h-4 w-4 shrink-0 text-muted-foreground/80" />
-                <span className="line-clamp-1">
-                  {event.venue.name}, {event.venue.city}
-                </span>
-              </div>
-            </div>
-
-            {event.tags && event.tags.length > 0 && (
-              <div className="flex flex-wrap gap-1.5 mb-4">
-                {event.tags.slice(0, 3).map((tag) => (
-                  <Badge
-                    key={tag.id}
-                    variant={isEventPast ? "outline" : "secondary"}
-                    className="px-2 py-0.5 text-[11px] font-normal rounded-md cursor-default"
-                  >
-                    {tag.name}
-                  </Badge>
-                ))}
-              </div>
-            )}
-
-            <div className="flex-grow" />
-
-            <CardFooter className="mt-auto p-0 pt-4 flex justify-between items-center border-t">
-              <TooltipProvider delayDuration={100}>
-                {/* Accessibility Info or different info for past events */}
-                {isEventPast ? (
-                  <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                    <Info className="h-4 w-4 text-blue-500" />
-                    <span>View Event Archive</span>
-                  </div>
-                ) : (
-                  <Tooltip>
-                    <TooltipTrigger className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-colors">
-                      <AccessibilityIcon className="h-4 w-4" />
-                      <span>Accessibility</span>
-                    </TooltipTrigger>
-                    <TooltipContent side="top" className="max-w-xs">
-                      {/* ... (your accessibility tooltip content) ... */}
-                      <div className="space-y-1 p-1">
-                        {" "}
-                        <p className="font-medium text-sm">
-                          Accessibility Features:
-                        </p>{" "}
-                        {event.venue.accessibility &&
-                        event.venue.accessibility.length > 0 ? (
-                          <ul className="text-xs list-disc pl-4 space-y-0.5">
-                            {" "}
-                            {event.venue.accessibility
-                              .slice(0, 3)
-                              .map((feature, index) => (
-                                <li key={index}>{feature}</li>
-                              ))}{" "}
-                            {event.venue.accessibility.length > 3 && (
-                              <li>Plus more...</li>
-                            )}{" "}
-                          </ul>
-                        ) : (
-                          <p className="text-xs">Details on event page.</p>
-                        )}{" "}
-                      </div>
-                    </TooltipContent>
-                  </Tooltip>
-                )}
-              </TooltipProvider>
-
-              {/* Spots Left - only show if not explicitly past and ticketsLeft is a number */}
-              {typeof event.ticketsLeft === "number" &&
-                !isEventPast &&
-                !event.isFree && (
-                  <div
+              
+              {/* --- (7) FEATURE: Added Ticket/Capacity information --- */}
+              {typeof event.ticketsLeft === "number" && !isEventPast && event.status !== "cancelled" && (
+                <div className="flex items-center gap-3">
+                  <TicketIcon className="h-4 w-4 shrink-0 text-muted-foreground/70" />
+                  <span
                     className={cn(
-                      "flex items-center gap-1 text-xs font-medium",
-                      event.ticketsLeft <= 10 && event.ticketsLeft > 0
-                        ? "text-destructive animate-pulse"
-                        : event.ticketsLeft === 0
-                        ? "text-destructive/80"
-                        : "text-muted-foreground"
+                      "font-medium",
+                      event.ticketsLeft > 0 && event.ticketsLeft <= 10 && "text-destructive"
                     )}
                   >
-                    <TicketIcon className="h-3.5 w-3.5" />
-                    <span>
-                      {event.ticketsLeft === 0
-                        ? "Sold Out"
-                        : `${event.ticketsLeft} spot${
-                            event.ticketsLeft !== 1 ? "s" : ""
-                          } left`}
-                    </span>
-                  </div>
-                )}
-            </CardFooter>
+                    {event.ticketsLeft === 0
+                      ? "Sold Out"
+                      : (event.capacity === null || event.capacity === undefined)
+                        ? `${event.ticketsLeft} spot${event.ticketsLeft !== 1 ? "s" : ""} left (Unlimited)`
+                        : `${event.ticketsLeft} (${event.capacity}) spots left`}
+                  </span>
+                </div>
+              )}
+              {event.ticketsLeft == null && !isEventPast && event.status !== "cancelled" && (
+                <div className="flex items-center gap-3">
+                  <TicketIcon className="h-4 w-4 shrink-0 text-muted-foreground/70" />
+                  <span className="font-medium">Unlimited</span>
+                </div>
+              )}
+            </div>
           </CardContent>
         </Card>
       </Link>

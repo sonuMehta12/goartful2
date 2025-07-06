@@ -17,6 +17,919 @@ const getFutureDateString = (daysToAdd: number): string => {
 
 export const EVENTS_DATA: Event[] = [
   // Event 1: Summer Art Festival (Fully Populated)
+
+  // Add this new event object to your lib/data/events.ts file
+
+{
+  id: "5",
+  name: "Colors of Resilience: The Delhi Healing Project",
+  slug: generateSlug("Colors of Resilience The Delhi Healing Project"),
+  tagline: "Handing the brush to the people whose stories need to be told.",
+  description:
+    "This is more than paint on a wall. It is an act of healing, a process of transformation. 'Colors of Resilience' is an intensive 11-day initiative that partners world-renowned artists with local communities in Delhi to create murals that are monuments to their stories. We believe art is a catalyst for change—an alchemy that can turn fear into fearlessness, and silence into a voice. This project moves beyond mere aesthetics to ask a deeper question: Can we paint the world we want to live in?",
+  shortDescription:
+    "A 11-day public art initiative creating community-led murals across Delhi.",
+  type: "Community Art Project",
+  category: {
+    id: "Community Art Project",
+    name: "Community Art Project",
+  },
+  tags: [
+    { id: "t22", name: "Mural Art" },
+    { id: "t23", name: "Community Healing" },
+    { id: "t24", name: "Social Art" },
+    { id: "t25", name: "Street Art" },
+    { id: "t26", name: "Delhi Events" },
+    { id: "t27", name: "Participatory Art" },
+    { id: "t28", name: "Activism" },
+  ],
+  isFeatured: true,
+  isTrending: false,
+  status: "upcoming",
+  date: "2026-04-20",
+  startTime: "10:00 AM", // General start time for daily activities
+  endTime: "6:00 PM", // General end time for daily activities
+  duration: "11 Days",
+  upcomingDates: [
+    {
+      date: "2026-04-20", // The project spans this entire duration
+      startTime: "10:00 AM",
+      endTime: "6:00 PM",
+      spotsLeft: 100, // Represents open slots for participation
+      totalSpots: 100,
+      status: "available",
+    },
+  ],
+  price: 0,
+  currency: "INR",
+  isFree: true,
+  capacity: 100, // Capacity for active daily participants
+  ticketsLeft: 100,
+  heroImage: {
+    url: "https://i0.wp.com/eastwalnuthills.org/wp-content/uploads/2021/08/MuralProgress.png?resize=900%2C550&ssl=1",
+    alt: "A massive, colorful mural on a city building being painted by a team.",
+  },
+  galleryImages: [
+    {
+      id: "g5-1",
+      url: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      alt: "Community members of all ages collaborating on a large canvas.",
+    },
+    {
+      id: "g5-2",
+      url: "https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      alt: "An intimate dialogue session with artists and community members in a circle.",
+    },
+    {
+      id: "g5-3",
+      url: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      alt: "A close-up of a vibrant, abstract mural detail with bold colors.",
+    },
+    {
+      id: "g5-4",
+      url: "https://images.unsplash.com/photo-1600723829034-39d518755b2a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      alt: "A street artist on a lift, working on a large-scale public wall.",
+    },
+    {
+      id: "g5-5",
+      url: "https://images.unsplash.com/photo-1528281146393-6143d33eb431?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      alt: "The hands of many people, covered in paint, working together.",
+    },
+    {
+      id: "g5-6",
+      url: "https://images.unsplash.com/photo-1505664124572-b7654a4a5844?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      alt: "A smiling woman from the community proudly pointing to her contribution on the finished mural.",
+    },
+  ],
+  host: [
+    {
+      id: "h8",
+      name: "Kiran Nadar Museum of Art",
+      title: "Organizing Institution",
+      tagline: "Pioneering public access to contemporary Indian art.",
+      avatar: {
+        url: "https://yt3.googleusercontent.com/E8nKU-30wwhWFATTKlmV-uAPb6g9vtkHef_DeGvU5WdS7l8vJ84EHsmlwLg_HeemR6bYhucZxQ=s900-c-k-c0x00ffffff-no-rj",
+        alt: "Logo of Kiran Nadar Museum of Art",
+      },
+      verified: true,
+      bio: "As a leading institution for the arts in India, KNMA is committed to fostering creative and socially engaged public projects. 'Colors of Resilience' is a flagship initiative to bring art out of the gallery and into the heart of the community.",
+      portfolioUrl: "https://www.knma.in/",
+    },
+    {
+      id: "h9",
+      name: "Aafreen 'Fearless' Khan",
+      title: "Lead Artist & Methodologist",
+      tagline: "My art is my protest. Beauty is my strategy.",
+      avatar: {
+        url: "https://images.unsplash.com/photo-1557053910-d9eadeed1c58?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
+        alt: "Aafreen Khan, a confident female artist.",
+      },
+      verified: true,
+      bio: "Aafreen is a globally recognized street artist whose work focuses on amplifying the voices of women and marginalized communities. Her 'Fearless Methodology' uses collaborative art-making as a tool for building solidarity and demanding social change.",
+      hostRating: 4.9,
+      hostReviewCount: 78,
+    },
+    {
+      id: "h10",
+      name: "Mateo Vargas",
+      title: "International Artist & Storyteller",
+      tagline: "Every wall has a story waiting to be told.",
+      avatar: {
+        url: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
+        alt: "Mateo Vargas, an artist with a thoughtful expression.",
+      },
+      verified: true,
+      bio: "Hailing from Bogotá, Colombia, Mateo specializes in large-scale narrative murals that transform urban landscapes. He believes in a 'ritualistic' approach to creation, where deep listening and community dialogue form the foundation of every brushstroke.",
+      hostRating: 4.8,
+      hostReviewCount: 112,
+    },
+  ],
+  venue: {
+    id: "v5",
+    name: "Various Public Sites, Delhi",
+    address: "Central Hub: KNMA, 145, DLF South Court Mall, Saket, New Delhi",
+    city: "New Delhi",
+    state: "Delhi",
+    zipCode: "110017",
+    mapUrl: "https://maps.google.com/?q=Kiran+Nadar+Museum+of+Art",
+    directions:
+      "The project will take place at select community centers and public walls across Delhi. Registered participants will receive detailed location information for each day.",
+    venueImage: {
+      url: "https://images.unsplash.com/photo-1588147348401-903b4486333c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      alt: "A bustling and vibrant street in Delhi, representing the public canvas for the project.",
+    },
+    howToGetThere: {
+      publicTransport: [
+        "Locations are chosen for their accessibility via the Delhi Metro and local bus networks.",
+      ],
+    },
+    accessibility: [
+      "As a public street art project, accessibility will vary by location. Please contact us with specific needs.",
+    ],
+    amenities: [
+      "All Art Materials Provided",
+      "On-site Safety Equipment",
+      "Daily Refreshments & Lunch for Participants",
+      "Mobile Restroom Facilities",
+      "Shaded Areas for Dialogues",
+    ],
+    isVerified: true,
+  },
+  averageRating: 4.9,
+  reviewCount: 42, // Based on previous fictional projects
+  reviews: [
+    {
+      id: "r5-1",
+      name: "Sunita Devi",
+      rating: 5,
+      comment:
+        "I never held a brush before. For 10 days, I painted my story alongside my sisters. Now, I see our faces, our strength, on a wall for the whole world to see. This project didn't just color a wall; it colored my soul with pride. Thank you, Aafreen Ma'am.",
+      date: "2025-05-10",
+      verified: true,
+    },
+    {
+      id: "r5-2",
+      name: "Ravi Kumar",
+      rating: 5,
+      comment:
+        "Volunteering for this was a life-changing experience. The 'Artist Dialogues' were incredibly profound. It's one thing to see art, but to be part of its creation, to understand its purpose from the ground up... that's something else entirely. True art in action.",
+      date: "2025-05-12",
+      verified: true,
+    },
+  ],
+  attendeeMoments: null,
+  skillLevel: "No experience needed. All are welcome.",
+  ageRequirement: "All Ages Welcome",
+  whatYoullDo: [
+    {
+      title: "The Ritual of Creation",
+      description:
+        "Engage in almost-ritualistic workshops where community members collaboratively decide on the themes and imagery that will represent their collective experience. This is not a top-down process.",
+      image: {
+        url: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        alt: "A diverse group of people sitting in a circle, engaged in a deep and collaborative discussion.",
+      },
+    },
+    {
+      title: "Paint with Purpose",
+      description:
+        "Work hand-in-hand with leading street artists. Whether you've painted your whole life or never held a brush, your contribution is vital. This is a truly participative process where the community becomes the artist.",
+      image: {
+        url: "https://images.unsplash.com/photo-1558214323-47317d616345?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        alt: "Close-up of a person's hand, holding a brush, painting a bold yellow stroke on a large wall.",
+      },
+    },
+    {
+      title: "Artist Dialogues: The Fearless Methodology",
+      description:
+        "Sit with the artists and hear their stories. Understand their 'Fearless Methodology' and learn how beauty can be a powerful strategic tool for standing for something positive in the world.",
+      image: {
+        url: "https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        alt: "An artist speaking passionately to an engaged and listening audience in an informal setting.",
+      },
+    },
+    {
+      title: "The Unveiling Celebration",
+      description:
+        "At the end of the 11 days, join a community celebration to unveil the finished mural—a testament to the stories, struggles, and resilience of the people who created it.",
+      image: {
+        url: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        alt: "A joyful community celebration in front of a massive, newly completed mural.",
+      },
+    },
+  ],
+  goodToKnow: [
+    {
+      icon: undefined,
+      heading: "All Materials Provided",
+      text: "From paints and brushes to safety gear, we provide everything you need to participate.",
+    },
+    {
+      icon: undefined,
+      heading: "Wear Comfortable Clothes",
+      text: "Come in clothing that you don't mind getting paint on. We're here to make a beautiful mess!",
+    },
+    {
+      icon: undefined,
+      heading: "Nourishment for All",
+      text: "Light lunch, snacks, and water will be provided on-site daily for all active participants.",
+    },
+  ],
+  policies: {
+    cancellation:
+      "This is a free project. If you register and cannot make it, please inform us so we can offer the spot to someone else.",
+    healthSafety:
+      "Safety briefings are conducted daily. All participants must adhere to on-site safety guidelines, especially when working with ladders or lifts.",
+  },
+  guidelines: [
+    "This is a space of respect. Listen to every story with an open heart.",
+    "Collaboration is key. This is about 'we', not 'me'.",
+    "Embrace the process. The journey of creation is as important as the final mural.",
+    "This is a drug and alcohol-free project to ensure a safe environment for all.",
+  ],
+  faqs: [
+    {
+      id: "faq5-1",
+      question: "Do I need any artistic skills to participate?",
+      answer:
+        "Absolutely not. This project is for everyone. Your willingness to participate is all that's required. We need hands to mix paint, run errands, talk to people, and paint!",
+    },
+    {
+      id: "faq5-2",
+      question: "How do I sign up to be a participant?",
+      answer:
+        "An open call for participation will be announced on the KNMA website and our social media channels. You can register for one day or for the entire duration.",
+    },
+    {
+      id: "faq5-3",
+      question: "Do I have to commit for all 11 days?",
+      answer:
+        "No, while we encourage longer participation to fully experience the process, you can sign up for as many days as you are available.",
+    },
+  ],
+  videoUrl: "https://www.youtube.com/watch?v=68hT5PA-r48", // Example: St+art India festival video
+  videoPosterUrl:
+    "https://images.unsplash.com/photo-1599422089965-3d576e273d68?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80",
+},
+
+// Add this new event object to your lib/data/events.ts file
+
+{
+  id: "4",
+  name: "Sangam: A Confluence of Arts",
+  slug: generateSlug("Sangam: A Confluence of Arts"),
+  tagline: "Where ancient echoes meet modern rhythms.",
+  description:
+    "Step into a 3-day immersive festival set against the majestic backdrop of Udaipur. Sangam celebrates the vibrant confluence of music, poetry, dance, and painting, creating an unforgettable sensory journey for those who seek to not just observe, but to truly experience art in its most dynamic forms.",
+  shortDescription: "A 3-day immersive arts festival in majestic Udaipur.",
+  type: "Arts Festival",
+  category: { id: "Arts Festival", name: "Arts Festival" },
+  tags: [
+    { id: "t15", name: "Music Festival" },
+    { id: "t16", name: "Poetry" },
+    { id: "t17", name: "Dance" },
+    { id: "t18", name: "Live Painting" },
+    { id: "t19", name: "Udaipur" },
+    { id: "t20", name: "Cultural" },
+    { id: "t21", name: "Immersive Experience" },
+    { id: "t9", name: "Suminagashi" },
+  ],
+  isFeatured: true,
+  isTrending: true,
+  status: "upcoming",
+  date: "2026-02-20",
+  startTime: "10:00 AM",
+  endTime: "11:00 PM",
+  duration: "3 Days",
+  upcomingDates: [
+    {
+      date: "2026-02-20",
+      startTime: "10:00 AM",
+      endTime: "11:00 PM",
+      spotsLeft: 850,
+      totalSpots: 2000,
+      status: "available",
+    },
+    {
+      date: "2026-02-21",
+      startTime: "10:00 AM",
+      endTime: "11:00 PM",
+      spotsLeft: 850,
+      totalSpots: 2000,
+      status: "available",
+    },
+    {
+      date: "2026-02-22",
+      startTime: "10:00 AM",
+      endTime: "11:00 PM",
+      spotsLeft: 850,
+      totalSpots: 2000,
+      status: "available",
+    },
+  ],
+  price: 7500, // Price for a 3-day pass
+  currency: "INR",
+  isFree: false,
+  capacity: 2000,
+  ticketsLeft: 850,
+  heroImage: {
+    url: "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1751794109/image_9_yrudgw.png",
+    alt: "A vibrant music festival stage lit up at night against a historic Indian backdrop.",
+  },
+  galleryImages: [
+    {
+      id: "g4-1",
+      url: "https://images.unsplash.com/photo-1616292239335-512590510643?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      alt: "A sitar player performing during a golden sunrise.",
+    },
+    {
+      id: "g4-2",
+      url: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      alt: "An intimate poetry reading session in a warmly lit, cozy setting.",
+    },
+    {
+      id: "g4-3",
+      url: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      alt: "Hands gently placing paper on water during a Suminagashi workshop.",
+    },
+    {
+      id: "g4-4",
+      url: "https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      alt: "A crowd enjoying a live band performance at the main stage.",
+    },
+    {
+      id: "g4-5",
+      url: "https://images.unsplash.com/photo-1596633649948-2cf9f7059784?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      alt: "A classical Indian dancer performing with expressive movements.",
+    },
+    {
+      id: "g4-6",
+      url: "https://images.unsplash.com/photo-1550614004-97cb39600a06?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      alt: "Festival attendees collaborating on a large, colorful community mural.",
+    },
+  ],
+  host: [
+    {
+      id: "h4",
+      name: "Ananya Rao",
+      title: "Founder & Artistic Director",
+      tagline: "Curating conversations between tradition and tomorrow.",
+      avatar: {
+        url: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
+        alt: "Ananya Rao, Artistic Director of Sangam",
+      },
+      verified: true,
+      bio: "Ananya is the visionary behind Sangam Arts Collective. With a background in cultural studies and event curation, she is passionate about creating immersive spaces where diverse art forms can interact and inspire a new generation of art lovers.",
+      hostRating: 4.9,
+      hostReviewCount: 182,
+    },
+    {
+      id: "h5",
+      name: "Rohan Das",
+      title: "Sitar Virtuoso & Music Producer",
+      tagline: "Weaving ancient ragas into contemporary soundscapes.",
+      avatar: {
+        url: "https://images.unsplash.com/photo-1615197241945-853443834638?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
+        alt: "Rohan Das, musician",
+      },
+      verified: true,
+      bio: "A master of the sitar, Rohan has toured globally, collaborating with artists across genres. At Sangam, he will lead the sunrise meditation sessions and perform a headline fusion set that blends classical Indian music with electronic beats.",
+      hostRating: 4.8,
+      hostReviewCount: 155,
+    },
+    {
+      id: "h6",
+      name: "Meera Iyer",
+      title: "Kathak Danseuse & Spoken Word Poet",
+      tagline: "Telling stories through rhythm and rhyme.",
+      avatar: {
+        url: "https://images.unsplash.com/photo-1599151522079-a4173a58e5e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
+        alt: "Meera Iyer, dancer and poet",
+      },
+      verified: true,
+      bio: "Meera believes that every movement and every word holds a universe of stories. Her performances are a powerful blend of graceful Kathak choreography and evocative spoken word poetry, exploring themes of mythology and modern identity.",
+      hostRating: 4.9,
+      hostReviewCount: 130,
+    },
+    {
+      id: "h7",
+      name: "Kabir Al-Farsi",
+      title: "Muralist & Art Facilitator",
+      tagline: "Art is not a thing, it is a way.",
+      avatar: {
+        url: "https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
+        alt: "Kabir Al-Farsi, muralist",
+      },
+      verified: true,
+      bio: "Kabir's large-scale murals adorn cities worldwide. He is a passionate advocate for community art and mindfulness. At Sangam, he will guide participants in Suminagashi workshops and lead the creation of a massive collaborative mural.",
+      hostRating: 4.8,
+      hostReviewCount: 210,
+    },
+  ],
+  venue: {
+    id: "v4",
+    name: "Shilpgram, Udaipur",
+    address: "Shilpgram, Near Havala Village, Udaipur, Rajasthan 313001",
+    city: "Udaipur",
+    state: "Rajasthan",
+    zipCode: "313001",
+    mapUrl: "https://maps.google.com/?q=Shilpgram+Udaipur",
+    directions:
+      "Located 3 km west of Udaipur, near Fateh Sagar Lake. Easily accessible by auto-rickshaws and ride-sharing services from the city center.",
+    venueImage: {
+      url: "https://images.unsplash.com/photo-1624555130297-3a17e058655c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      alt: "The rustic and artistic entrance to Shilpgram, the rural arts and crafts complex in Udaipur.",
+    },
+    howToGetThere: {
+      publicTransport: [
+        "Auto-rickshaws and local taxis are readily available from all parts of Udaipur.",
+      ],
+      parking:
+        "Ample paid parking space available for cars and two-wheelers at the main entrance.",
+    },
+    accessibility: [
+      "The venue is large with uneven, rustic pathways. Comfortable footwear is highly recommended.",
+      "Accessible restrooms are available near the main activity zones.",
+    ],
+    amenities: [
+      "Multiple Open-Air Stages",
+      "Dedicated Workshop Tents",
+      "Central Food & Beverage Zone",
+      "Artisan & Crafts Market",
+      "First Aid & Medical Stations",
+      "Restroom Facilities",
+      "Designated Chill-Out Areas",
+    ],
+    isVerified: true,
+  },
+  averageRating: 4.9,
+  reviewCount: 1245,
+  reviews: [
+    {
+      id: "r4-1",
+      name: "Aarav Sharma",
+      rating: 5,
+      comment:
+        "The last edition of Sangam was pure magic. Rohan Das's sunrise sitar session with the Aravalli hills in the background is a memory I'll cherish forever. The energy is infectious. Can't wait for 2026!",
+      date: "2024-03-01",
+      verified: true,
+    },
+    {
+      id: "r4-2",
+      name: "Priya Singh",
+      rating: 5,
+      comment:
+        "I'm not an 'artist', but the Suminagashi workshop with Kabir was so meditative and welcoming. I came for the music, but I left with a newfound love for painting and a piece of art I created myself. A truly transformative experience.",
+      date: "2024-02-28",
+      verified: true,
+    },
+    {
+      id: "r4-3",
+      name: "Vikram Mehta",
+      rating: 4.5,
+      comment:
+        "An incredible festival. The sheer variety of performances is astounding. The food court was great too, offering so much more than typical festival fare. My only advice: book your stay well in advance!",
+      date: "2024-03-05",
+      verified: true,
+    },
+  ],
+  attendeeMoments: null,
+  skillLevel: "Everyone Welcome",
+  ageRequirement: "18+",
+  whatYoullDo: [
+    {
+      title: "Musical Journeys: From Dawn to Dusk",
+      description:
+        "Witness diverse musical performances, from meditative sunrise ragas that greet the day to folk-fusion afternoons and electrifying main stage acts that light up the night.",
+      image: {
+        url: "https://images.unsplash.com/photo-1546057248-938bagn5a72e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        alt: "A band performing on a brightly lit stage to an energetic crowd.",
+      },
+    },
+    {
+      title: "The Spoken & The Seen: Poetry & Dance",
+      description:
+        "Engage with the soul of Sangam in intimate settings. Experience the raw power of live poetry slams, immersive storytelling sessions, and mesmerizing dance performances.",
+      image: {
+        url: "https://images.unsplash.com/photo-1557426895-2f619a9a3d46?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        alt: "A performer reading poetry passionately into a microphone on a dimly lit stage.",
+      },
+    },
+    {
+      title: "Canvas of Community: Live Art Creation",
+      description:
+        "Unleash your own creativity. Participate in hands-on workshops, including the mindful art of Suminagashi, and leave your mark on a collaborative community mural.",
+      image: {
+        url: "https://images.unsplash.com/photo-1569172122301-bc5008bc09c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        alt: "A person focused on a canvas during a vibrant, creative painting workshop.",
+      },
+    },
+  ],
+  goodToKnow: [
+    {
+      icon: undefined, // e.g., 'Paintbrush'
+      heading: "Artisan Materials Provided",
+      text: "Everything you need for the workshops, from inks to canvases, is included. Just bring your creativity.",
+    },
+    {
+      icon: undefined, // e.g., 'Utensils'
+      heading: "Festival Food Hub",
+      text: "A diverse food and beverage zone is available, featuring gourmet local pop-ups and pan-Indian culinary delights.",
+    },
+    {
+      icon: undefined, // e.g., 'Bed'
+      heading: "Curated Stay Partners",
+      text: "We have partnered with select local heritage hotels and guesthouses to offer you a comfortable and authentic Udaipur retreat.",
+    },
+  ],
+  policies: {
+    cancellation:
+      "Tickets are non-refundable. However, they are transferrable up to 15 days before the event start date.",
+    healthSafety:
+      "Your safety is our priority. Medical stations and security personnel are present throughout the festival grounds. Please stay hydrated.",
+    refund: "No refunds will be issued for any reason. In the event of festival cancellation, tickets will be valid for the rescheduled date.",
+  },
+  guidelines: [
+    "This is an 18+ event. Please carry valid government-issued photo ID.",
+    "Sangam is an inclusive space. Respect the artists, fellow attendees, and the venue.",
+    "No outside food, beverages, or illicit substances are permitted.",
+    "Professional photography/videography equipment requires a media pass.",
+  ],
+  faqs: [
+    {
+      id: "faq4-1",
+      question: "Are single-day passes available?",
+      answer:
+        "Single-day passes will be released closer to the festival date, subject to availability. The 3-day pass offers the most comprehensive experience.",
+    },
+    {
+      id: "faq4-2",
+      question: "What is the accommodation situation?",
+      answer:
+        "While accommodation is not included in the festival pass, we have partnered with several local hotels and guesthouses. A list of partners will be sent to ticket holders.",
+    },
+    {
+      id: "faq4-3",
+      question: "Is the venue wheelchair accessible?",
+      answer:
+        "Shilpgram is a rural arts complex with many rustic and uneven pathways, which may pose challenges for wheelchair users. Please contact our support team for specific accessibility queries.",
+    },
+  ],
+  videoUrl: "https://www.youtube.com/watch?v=CnJp-z33_bw", // Example: NH7 Weekender aftermovie
+  videoPosterUrl:
+    "https://images.unsplash.com/photo-1516947650893-01c513881434?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80",
+},
+
+  // Event 2: Suminagashi Event
+  {
+    id: "2",
+    name: "Suminagashi: The Art of Floating Ink",
+    slug: generateSlug("Suminagashi: The Art of Floating Ink"),
+    tagline: "An Exclusive Workshop on Japanese Marbling & Mindfulness",
+    description:
+      "You are invited into a centuries-old practice of calm and a Zen creative journey. This workshop is designed for high-achieving professionals to provide you a serene yet stimulating environment where you can experience the captivating art of Suminagashi, create stunning unique pieces for your home and office, and experience a profound sense of calm and accomplishment.",
+    shortDescription: "A Calm and Zen Creative Journey",
+    type: "Art Workshop",
+    category: { id: "Art Workshop", name: "Art Workshop" },
+    tags: [
+      { id: "t7", name: "Japanese Art" },
+      { id: "t8", name: "Mindfulness" },
+      { id: "t9", name: "Marbling" },
+      { id: "t10", name: "Zen" },
+      { id: "t11", name: "Meditation" },
+      { id: "t12", name: "Professional Development" },
+    ],
+    isFeatured: true,
+    isTrending: false,
+    status: "active",
+    date: "2025-07-15",
+    startTime: "10:00 AM",
+    endTime: "01:00 PM",
+    duration: "3 hours",
+    upcomingDates: [
+      {
+        date: "2025-07-15",
+        startTime: "10:00 AM",
+        endTime: "01:00 PM",
+        spotsLeft: 8,
+        totalSpots: 12,
+        status: "available",
+      },
+      {
+        date: "2025-07-22",
+        startTime: "10:00 AM",
+        endTime: "01:00 PM",
+        spotsLeft: 10,
+        totalSpots: 12,
+        status: "available",
+      },
+      {
+        date: "2025-07-29",
+        startTime: "2:00 PM",
+        endTime: "5:00 PM",
+        spotsLeft: 12,
+        totalSpots: 12,
+        status: "available",
+      },
+    ],
+    price: 0,
+    currency: "INR",
+    isFree: false,
+    capacity: 12,
+    ticketsLeft: 8,
+    heroImage: {
+      url: "https://static1.squarespace.com/static/5e9f075c097b7d5688f6cb57/t/65392c9f09d6fc227aa48ce1/1698245791779/Suminagashi+Floating+Japanese+ink+marbling+kit+art+and+craft+creative+team+building+offsite+retreat+activity+in+NYC+or+virtual+for+remote+employees+3.jpg?format=1500w",
+      alt: "Serene Suminagashi ink patterns floating on water surface",
+    },
+    galleryImages: [
+      {
+        id: "g2-1",
+        url: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        alt: "Beautiful concentric ink rings on water surface",
+      },
+      {
+        id: "g2-2",
+        url: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        alt: "Hands gently placing paper on marbled water",
+      },
+      {
+        id: "g2-3",
+        url: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        alt: "Collection of finished Suminagashi art pieces",
+      },
+      {
+        id: "g2-4",
+        url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        alt: "Zen workspace with traditional Japanese materials",
+      },
+      {
+        id: "g2-5",
+        url: "https://images.unsplash.com/photo-1545558014-8692077e9b5c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        alt: "Participants in meditation before starting the workshop",
+      },
+    ],
+    // FIX: Host property is now a valid array. Corrected typo in introVideoPosterUrl and removed redundant properties that were outside the object.
+    host: [
+      {
+        id: "h2",
+        name: "Kenji Nakamura",
+        tagline: "Master of traditional Japanese arts and mindfulness practices",
+        title: "Suminagashi Master & Mindfulness Instructor",
+        avatar: {
+          url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
+          alt: "Kenji Nakamura - Suminagashi Master",
+        },
+        verified: true,
+        bio: "Kenji has been practicing traditional Japanese arts for over 15 years...",
+        experience: "15+ years",
+        eventsHosted: 127,
+        hostRating: 4.9,
+        hostReviewCount: 89,
+        responseTime: "Usually responds within 1 hour",
+        languages: ["English", "Japanese"],
+        instagramHandle: "@kenji_suminagashi",
+        portfolioUrl: "https://kenji-art.com",
+        introVideoUrl: null,
+        introVideoPosterUrl: null,
+      },
+      {
+        id: "h3",
+        name: "Sarah Chen",
+        tagline:
+          "Contemporary artist specializing in mixed media and digital art",
+        title: "Digital Art Specialist",
+        avatar: {
+          url: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
+          alt: "Sarah Chen - Digital Artist",
+        },
+        verified: true,
+        bio: "Sarah combines traditional techniques with modern digital tools...",
+        experience: "8+ years",
+        eventsHosted: 45,
+        hostRating: 4.8,
+        hostReviewCount: 32,
+        responseTime: "Usually responds within 2 hours",
+        languages: ["English", "Mandarin"],
+        instagramHandle: "@sarah_digital_art",
+        portfolioUrl: "https://sarahchen.art",
+        introVideoUrl: "https://example.com/video.mp4",
+        introVideoPosterUrl: "https://example.com/poster.jpg",
+      },
+    ],
+    venue: {
+      id: "v2",
+      name: "Zen Garden Studio | Sector 18 Noida",
+      address:
+        "2nd Floor, Unity One Mall, Sector 18, Noida, Uttar Pradesh 201301",
+      city: "NOIDA",
+      state: "Uttar Pradesh",
+      zipCode: "201301",
+      mapUrl: "https://maps.google.com/?q=Unity+One+Mall+Sector+18+Noida",
+      directions:
+        "Take the Blue Line Metro to Sector 18 Metro Station. The studio is a 3-minute walk from the station.",
+      venueImage: {
+        url: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        alt: "Peaceful zen studio with natural lighting",
+      },
+      howToGetThere: {
+        publicTransport: [
+          "Blue Line Metro to Sector 18 Station, then 3-minute walk",
+          "Multiple bus routes available to Sector 18 hub",
+        ],
+        parking: "Free parking available at Unity One Mall for 4 hours",
+      },
+      accessibility: [
+        "Elevator access to 2nd floor",
+        "Wide doorways suitable for wheelchairs",
+        "Accessible restrooms on same floor",
+      ],
+      amenities: [
+        "Air-conditioned studio space",
+        "Natural lighting with adjustable blinds",
+        "Comfortable floor seating with back support",
+        "Tea and meditation corner",
+        "Washroom facilities",
+      ],
+      isVerified: true,
+    },
+    averageRating: 4.9,
+    reviewCount: 34,
+    reviews: [
+      {
+        id: "r2-1",
+        name: "Priya Mehta",
+        rating: 5,
+        comment:
+          "This was the most peaceful 3 hours I've had in months! Kenji's guidance was gentle yet profound. The art I created was beautiful, but the inner calm I experienced was priceless. Highly recommend for anyone feeling overwhelmed.",
+        date: "2025-07-01",
+        verified: true,
+      },
+      {
+        id: "r2-2",
+        name: "Arjun Singh",
+        rating: 4.5,
+        comment:
+          "As a software engineer, I was skeptical about 'floating ink' art, but this workshop completely changed my perspective. The meditative process helped me disconnect from work stress. Will definitely attend again!",
+        date: "2025-06-28",
+        verified: true,
+      },
+      {
+        id: "r2-3",
+        name: "Kavya Sharma",
+        rating: 5,
+        comment:
+          "Kenji's explanation of the philosophy behind Suminagashi was enlightening. The workspace was serene, and I loved how each piece turned out uniquely. Perfect for a digital detox weekend activity!",
+        date: "2025-06-25",
+        verified: true,
+      },
+    ],
+    attendeeMoments: [
+      {
+        id: "am2-1",
+        mediaUrl:
+          "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        mediaType: "image",
+        altText: "My first Suminagashi creation - so proud!",
+        caption: "Found my zen through floating ink ✨ #Suminagashi #Mindfulness",
+        attendee: {
+          name: "Ravi K.",
+          avatarUrl: "https://i.pravatar.cc/150?u=ravi",
+        },
+        timestamp: "5 days ago",
+      },
+      {
+        id: "am2-2",
+        mediaUrl:
+          "https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        mediaType: "image",
+        altText: "The magical moment of capturing the floating ink",
+        caption: "This moment when the paper touches water... pure magic! 🎨",
+        attendee: {
+          name: "Neha P.",
+          avatarUrl: "https://i.pravatar.cc/150?u=neha",
+        },
+        timestamp: "1 week ago",
+      },
+      {
+        id: "am2-3",
+        mediaUrl:
+          "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        mediaType: "image",
+        altText: "Collection of beautiful Suminagashi pieces",
+        caption: "Each piece tells a story of mindfulness and flow 🌊",
+        attendee: {
+          name: "Amit J.",
+          avatarUrl: "https://i.pravatar.cc/150?u=amit2",
+        },
+        timestamp: "2 weeks ago",
+      },
+    ],
+    skillLevel: "Beginner Friendly",
+    ageRequirement: "16+",
+    whatYoullDo: [
+      {
+        title: "The Stillness",
+        description:
+          "Begin with a welcome tea ceremony and learn about the philosophy of Suminagashi and Wabi-Sabi. Engage in guided meditation to enter a state of mindful awareness and prepare your mind for the creative journey ahead.",
+        image: {
+          url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+          alt: "Peaceful meditation space with tea ceremony setup",
+        },
+      },
+      {
+        title: "The Flow",
+        description:
+          "Learn to 'kiss' the water surface with ink-loaded brushes, creating concentric rings that bloom like ripples. Master breath control and gentle vibrations to guide ink into mesmerizing patterns. Practice the ancient techniques with premium Sumi inks.",
+        image: {
+          url: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+          alt: "Hands creating ink patterns on water surface",
+        },
+      },
+      {
+        title: "The Capture",
+        description:
+          "Master the delicate art of laying absorbent paper onto the water to capture your floating designs. Learn timing, pressure, and lifting techniques to create perfect prints. Create multiple pieces with different color combinations.",
+        image: {
+          url: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+          alt: "Paper being placed on marbled water surface",
+        },
+      },
+      {
+        title: "Reflection & Tea: Integration (15 mins)",
+        description:
+          "Conclude with a mindful tea session while your artwork dries. Share your experience with fellow participants and receive guidance on incorporating mindfulness practices into daily life. Package your creations for safekeeping.",
+        image: {
+          url: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+          alt: "Finished artwork collection with tea setting",
+        },
+      },
+    ],
+    policies: {
+      cancellation: "Full refund available up to 48 hours before the workshop",
+      healthSafety:
+        "Please inform us of any allergies. If feeling unwell, please reschedule at no charge.",
+      refund:
+        "All approved refunds processed within 48 hours to original payment method.",
+    },
+    guidelines: [
+      "Arrive 15 minutes early for check-in and settling in",
+      "Maintain silence during meditation portions",
+      "Embrace imperfection - there are no mistakes in Suminagashi",
+      "Respect the meditative atmosphere and others' creative process",
+      "Turn phones to silent mode during the workshop",
+      "Stay hydrated and take breaks as needed",
+    ],
+    faqs: [
+      {
+        id: "faq2-1",
+        question: "Do I need any prior art experience?",
+        answer:
+          "Absolutely not! Suminagashi is about letting go of control and embracing the natural flow. A beginner's mind is actually ideal for this practice.",
+      },
+      {
+        id: "faq2-2",
+        question: "How many art pieces will I create?",
+        answer:
+          "You'll typically create 5-7 unique pieces during the workshop. Each piece is one-of-a-kind and cannot be replicated exactly.",
+      },
+      {
+        id: "faq2-3",
+        question: "Is this suitable for people with anxiety or stress?",
+        answer:
+          "Yes! The meditative nature of Suminagashi is particularly beneficial for reducing stress and anxiety. The workshop is designed to be calming and therapeutic.",
+      },
+      {
+        id: "faq2-4",
+        question: "What if I'm not comfortable with meditation?",
+        answer:
+          "The meditation portion is gentle and optional. We focus more on mindful awareness during the art-making process rather than formal meditation.",
+      },
+    ],
+    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    videoPosterUrl:
+      "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    goodToKnow: [],
+  },
   {
     id: "1",
     name: "Paint Your Summer Mood",
@@ -367,336 +1280,7 @@ export const EVENTS_DATA: Event[] = [
     ],
   },
 
-  // Event 2: Suminagashi Event
-  {
-    id: "2",
-    name: "Suminagashi: The Art of Floating Ink",
-    slug: generateSlug("Suminagashi: The Art of Floating Ink"),
-    tagline: "An Exclusive Workshop on Japanese Marbling & Mindfulness",
-    description:
-      "You are invited into a centuries-old practice of calm and a Zen creative journey. This workshop is designed for high-achieving professionals to provide you a serene yet stimulating environment where you can experience the captivating art of Suminagashi, create stunning unique pieces for your home and office, and experience a profound sense of calm and accomplishment.",
-    shortDescription: "A Calm and Zen Creative Journey",
-    type: "Art Workshop",
-    category: { id: "Art Workshop", name: "Art Workshop" },
-    tags: [
-      { id: "t7", name: "Japanese Art" },
-      { id: "t8", name: "Mindfulness" },
-      { id: "t9", name: "Marbling" },
-      { id: "t10", name: "Zen" },
-      { id: "t11", name: "Meditation" },
-      { id: "t12", name: "Professional Development" },
-    ],
-    isFeatured: true,
-    isTrending: false,
-    status: "active",
-    date: "2025-07-15",
-    startTime: "10:00 AM",
-    endTime: "01:00 PM",
-    duration: "3 hours",
-    upcomingDates: [
-      {
-        date: "2025-07-15",
-        startTime: "10:00 AM",
-        endTime: "01:00 PM",
-        spotsLeft: 8,
-        totalSpots: 12,
-        status: "available",
-      },
-      {
-        date: "2025-07-22",
-        startTime: "10:00 AM",
-        endTime: "01:00 PM",
-        spotsLeft: 10,
-        totalSpots: 12,
-        status: "available",
-      },
-      {
-        date: "2025-07-29",
-        startTime: "2:00 PM",
-        endTime: "5:00 PM",
-        spotsLeft: 12,
-        totalSpots: 12,
-        status: "available",
-      },
-    ],
-    price: 1299,
-    currency: "INR",
-    isFree: false,
-    capacity: 12,
-    ticketsLeft: 8,
-    heroImage: {
-      url: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80",
-      alt: "Serene Suminagashi ink patterns floating on water surface",
-    },
-    galleryImages: [
-      {
-        id: "g2-1",
-        url: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        alt: "Beautiful concentric ink rings on water surface",
-      },
-      {
-        id: "g2-2",
-        url: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        alt: "Hands gently placing paper on marbled water",
-      },
-      {
-        id: "g2-3",
-        url: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        alt: "Collection of finished Suminagashi art pieces",
-      },
-      {
-        id: "g2-4",
-        url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        alt: "Zen workspace with traditional Japanese materials",
-      },
-      {
-        id: "g2-5",
-        url: "https://images.unsplash.com/photo-1545558014-8692077e9b5c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        alt: "Participants in meditation before starting the workshop",
-      },
-    ],
-    // FIX: Host property is now a valid array. Corrected typo in introVideoPosterUrl and removed redundant properties that were outside the object.
-    host: [
-      {
-        id: "h2",
-        name: "Kenji Nakamura",
-        tagline: "Master of traditional Japanese arts and mindfulness practices",
-        title: "Suminagashi Master & Mindfulness Instructor",
-        avatar: {
-          url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
-          alt: "Kenji Nakamura - Suminagashi Master",
-        },
-        verified: true,
-        bio: "Kenji has been practicing traditional Japanese arts for over 15 years...",
-        experience: "15+ years",
-        eventsHosted: 127,
-        hostRating: 4.9,
-        hostReviewCount: 89,
-        responseTime: "Usually responds within 1 hour",
-        languages: ["English", "Japanese"],
-        instagramHandle: "@kenji_suminagashi",
-        portfolioUrl: "https://kenji-art.com",
-        introVideoUrl: null,
-        introVideoPosterUrl: null,
-      },
-      {
-        id: "h3",
-        name: "Sarah Chen",
-        tagline:
-          "Contemporary artist specializing in mixed media and digital art",
-        title: "Digital Art Specialist",
-        avatar: {
-          url: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
-          alt: "Sarah Chen - Digital Artist",
-        },
-        verified: true,
-        bio: "Sarah combines traditional techniques with modern digital tools...",
-        experience: "8+ years",
-        eventsHosted: 45,
-        hostRating: 4.8,
-        hostReviewCount: 32,
-        responseTime: "Usually responds within 2 hours",
-        languages: ["English", "Mandarin"],
-        instagramHandle: "@sarah_digital_art",
-        portfolioUrl: "https://sarahchen.art",
-        introVideoUrl: "https://example.com/video.mp4",
-        introVideoPosterUrl: "https://example.com/poster.jpg",
-      },
-    ],
-    venue: {
-      id: "v2",
-      name: "Zen Garden Studio | Sector 18 Noida",
-      address:
-        "2nd Floor, Unity One Mall, Sector 18, Noida, Uttar Pradesh 201301",
-      city: "NOIDA",
-      state: "Uttar Pradesh",
-      zipCode: "201301",
-      mapUrl: "https://maps.google.com/?q=Unity+One+Mall+Sector+18+Noida",
-      directions:
-        "Take the Blue Line Metro to Sector 18 Metro Station. The studio is a 3-minute walk from the station.",
-      venueImage: {
-        url: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        alt: "Peaceful zen studio with natural lighting",
-      },
-      howToGetThere: {
-        publicTransport: [
-          "Blue Line Metro to Sector 18 Station, then 3-minute walk",
-          "Multiple bus routes available to Sector 18 hub",
-        ],
-        parking: "Free parking available at Unity One Mall for 4 hours",
-      },
-      accessibility: [
-        "Elevator access to 2nd floor",
-        "Wide doorways suitable for wheelchairs",
-        "Accessible restrooms on same floor",
-      ],
-      amenities: [
-        "Air-conditioned studio space",
-        "Natural lighting with adjustable blinds",
-        "Comfortable floor seating with back support",
-        "Tea and meditation corner",
-        "Washroom facilities",
-      ],
-      isVerified: true,
-    },
-    averageRating: 4.9,
-    reviewCount: 34,
-    reviews: [
-      {
-        id: "r2-1",
-        name: "Priya Mehta",
-        rating: 5,
-        comment:
-          "This was the most peaceful 3 hours I've had in months! Kenji's guidance was gentle yet profound. The art I created was beautiful, but the inner calm I experienced was priceless. Highly recommend for anyone feeling overwhelmed.",
-        date: "2025-07-01",
-        verified: true,
-      },
-      {
-        id: "r2-2",
-        name: "Arjun Singh",
-        rating: 4.5,
-        comment:
-          "As a software engineer, I was skeptical about 'floating ink' art, but this workshop completely changed my perspective. The meditative process helped me disconnect from work stress. Will definitely attend again!",
-        date: "2025-06-28",
-        verified: true,
-      },
-      {
-        id: "r2-3",
-        name: "Kavya Sharma",
-        rating: 5,
-        comment:
-          "Kenji's explanation of the philosophy behind Suminagashi was enlightening. The workspace was serene, and I loved how each piece turned out uniquely. Perfect for a digital detox weekend activity!",
-        date: "2025-06-25",
-        verified: true,
-      },
-    ],
-    attendeeMoments: [
-      {
-        id: "am2-1",
-        mediaUrl:
-          "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-        mediaType: "image",
-        altText: "My first Suminagashi creation - so proud!",
-        caption: "Found my zen through floating ink ✨ #Suminagashi #Mindfulness",
-        attendee: {
-          name: "Ravi K.",
-          avatarUrl: "https://i.pravatar.cc/150?u=ravi",
-        },
-        timestamp: "5 days ago",
-      },
-      {
-        id: "am2-2",
-        mediaUrl:
-          "https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-        mediaType: "image",
-        altText: "The magical moment of capturing the floating ink",
-        caption: "This moment when the paper touches water... pure magic! 🎨",
-        attendee: {
-          name: "Neha P.",
-          avatarUrl: "https://i.pravatar.cc/150?u=neha",
-        },
-        timestamp: "1 week ago",
-      },
-      {
-        id: "am2-3",
-        mediaUrl:
-          "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-        mediaType: "image",
-        altText: "Collection of beautiful Suminagashi pieces",
-        caption: "Each piece tells a story of mindfulness and flow 🌊",
-        attendee: {
-          name: "Amit J.",
-          avatarUrl: "https://i.pravatar.cc/150?u=amit2",
-        },
-        timestamp: "2 weeks ago",
-      },
-    ],
-    skillLevel: "Beginner Friendly",
-    ageRequirement: "16+",
-    whatYoullDo: [
-      {
-        title: "The Stillness: Philosophy & Meditation (30 mins)",
-        description:
-          "Begin with a welcome tea ceremony and learn about the philosophy of Suminagashi and Wabi-Sabi. Engage in guided meditation to enter a state of mindful awareness and prepare your mind for the creative journey ahead.",
-        image: {
-          url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-          alt: "Peaceful meditation space with tea ceremony setup",
-        },
-      },
-      {
-        title: "The Flow: Mastering the Water Dance (90 mins)",
-        description:
-          "Learn to 'kiss' the water surface with ink-loaded brushes, creating concentric rings that bloom like ripples. Master breath control and gentle vibrations to guide ink into mesmerizing patterns. Practice the ancient techniques with premium Sumi inks.",
-        image: {
-          url: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-          alt: "Hands creating ink patterns on water surface",
-        },
-      },
-      {
-        title: "The Capture: Preserving Your Flow State (45 mins)",
-        description:
-          "Master the delicate art of laying absorbent paper onto the water to capture your floating designs. Learn timing, pressure, and lifting techniques to create perfect prints. Create multiple pieces with different color combinations.",
-        image: {
-          url: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-          alt: "Paper being placed on marbled water surface",
-        },
-      },
-      {
-        title: "Reflection & Tea: Integration (15 mins)",
-        description:
-          "Conclude with a mindful tea session while your artwork dries. Share your experience with fellow participants and receive guidance on incorporating mindfulness practices into daily life. Package your creations for safekeeping.",
-        image: {
-          url: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-          alt: "Finished artwork collection with tea setting",
-        },
-      },
-    ],
-    policies: {
-      cancellation: "Full refund available up to 48 hours before the workshop",
-      healthSafety:
-        "Please inform us of any allergies. If feeling unwell, please reschedule at no charge.",
-      refund:
-        "All approved refunds processed within 48 hours to original payment method.",
-    },
-    guidelines: [
-      "Arrive 15 minutes early for check-in and settling in",
-      "Maintain silence during meditation portions",
-      "Embrace imperfection - there are no mistakes in Suminagashi",
-      "Respect the meditative atmosphere and others' creative process",
-      "Turn phones to silent mode during the workshop",
-      "Stay hydrated and take breaks as needed",
-    ],
-    faqs: [
-      {
-        id: "faq2-1",
-        question: "Do I need any prior art experience?",
-        answer:
-          "Absolutely not! Suminagashi is about letting go of control and embracing the natural flow. A beginner's mind is actually ideal for this practice.",
-      },
-      {
-        id: "faq2-2",
-        question: "How many art pieces will I create?",
-        answer:
-          "You'll typically create 5-7 unique pieces during the workshop. Each piece is one-of-a-kind and cannot be replicated exactly.",
-      },
-      {
-        id: "faq2-3",
-        question: "Is this suitable for people with anxiety or stress?",
-        answer:
-          "Yes! The meditative nature of Suminagashi is particularly beneficial for reducing stress and anxiety. The workshop is designed to be calming and therapeutic.",
-      },
-      {
-        id: "faq2-4",
-        question: "What if I'm not comfortable with meditation?",
-        answer:
-          "The meditation portion is gentle and optional. We focus more on mindful awareness during the art-making process rather than formal meditation.",
-      },
-    ],
-    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    videoPosterUrl:
-      "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    goodToKnow: [],
-  },
+  
 
   // Event 3: Myths We Inherit Art Exhibition (Past Event)
   {

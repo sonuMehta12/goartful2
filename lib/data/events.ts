@@ -104,16 +104,16 @@ export const EVENTS_DATA: Event[] = [
   host: [
     {
       id: "h8",
-      name: "Kiran Nadar Museum of Art",
+      name: "Artful Museum of Art",
       title: "Organizing Institution",
       tagline: "Pioneering public access to contemporary Indian art.",
       avatar: {
-        url: "https://yt3.googleusercontent.com/E8nKU-30wwhWFATTKlmV-uAPb6g9vtkHef_DeGvU5WdS7l8vJ84EHsmlwLg_HeemR6bYhucZxQ=s900-c-k-c0x00ffffff-no-rj",
-        alt: "Logo of Kiran Nadar Museum of Art",
+        url: "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1748969808/Artful_Icon_n7sv2v.png",
+        alt: "Goartful logo",
       },
       verified: true,
-      bio: "As a leading institution for the arts in India, KNMA is committed to fostering creative and socially engaged public projects. 'Colors of Resilience' is a flagship initiative to bring art out of the gallery and into the heart of the community.",
-      portfolioUrl: "https://www.knma.in/",
+      bio: "As a leading institution for the arts in India, Goartful is committed to fostering creative and socially engaged public projects. 'Colors of Resilience' is a flagship initiative to bring art out of the gallery and into the heart of the community.",
+      portfolioUrl: "https://www.43wew.in/",
     },
     {
       id: "h9",
@@ -147,7 +147,7 @@ export const EVENTS_DATA: Event[] = [
   venue: {
     id: "v5",
     name: "Various Public Sites, Delhi",
-    address: "Central Hub: KNMA, 145, DLF South Court Mall, Saket, New Delhi",
+    address: "Central Hub: Goartful, 145, DLF South Court Mall, Saket, New Delhi",
     city: "New Delhi",
     state: "Delhi",
     zipCode: "110017",
@@ -278,7 +278,7 @@ export const EVENTS_DATA: Event[] = [
       id: "faq5-2",
       question: "How do I sign up to be a participant?",
       answer:
-        "An open call for participation will be announced on the KNMA website and our social media channels. You can register for one day or for the entire duration.",
+        "An open call for participation will be announced on the Goartful website and our social media channels. You can register for one day or for the entire duration.",
     },
     {
       id: "faq5-3",

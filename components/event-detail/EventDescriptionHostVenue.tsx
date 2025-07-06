@@ -14,7 +14,7 @@ export default function EventDescriptionHostVenue({
   const firstHost = hosts[0]; // Get the first host for intro video
 
   return (
-    <section className="py-6 sm:py-8">
+    <section>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="space-y-8 md:space-y-12">
           {/* Artist Introduction Video Section */}

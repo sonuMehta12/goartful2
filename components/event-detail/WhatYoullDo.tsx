@@ -22,24 +22,15 @@ export default function EventWhatYoullDo({ items }: EventWhatYoullDoProps) {
   const displayItems = items.slice(0, MAX_DISPLAY_ITEMS);
 
   return (
-    <section className="py-6 sm:py-8 bg-muted/20 dark:bg-background">
+    <section className="bg-muted/20 dark:bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <Header />
         <ActivityList items={displayItems} />
       </div>
     </section>
   );
 }
 
-function Header() {
-  return (
-    <div className="max-w-3xl mb-10 lg:mb-16">
-      <h2 className="text-2xl lg:text-4xl font-bold text-foreground mb-4">
-      Your Creative Journey
-      </h2>
-    </div>
-  );
-}
+
 
 function ActivityList({ items }: { items: WhatYoullDoItem[] }) {
   return (

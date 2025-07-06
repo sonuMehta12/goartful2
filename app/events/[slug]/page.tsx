@@ -70,7 +70,7 @@ export default async function EventDetailPage({
   }
 
   return (
-    <div className="bg-background min-h-screen">
+    <div className="container mx-auto max-w-7xl px-4 py-4 lg:py-12 bg-background min-h-screen">
       <EventHeroSection event={event} />
       <div className="container mx-auto max-w-7xl px-4 py-8 lg:py-12">
         <div className="lg:grid lg:grid-cols-12 lg:gap-8 xl:gap-12">

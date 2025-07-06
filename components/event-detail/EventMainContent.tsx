@@ -38,7 +38,7 @@ export default function EventMainContent({ event }: EventMainContentProps) {
   return (
     <>
       {/* Description, Host Info, Basic Venue Snippet */}
-      <EventDescriptionHostVenue event={event} />
+      {/* <EventDescriptionHostVenue event={event} /> */}
 
       {/* What You'll Do Section */}
       {event.whatYoullDo && event.whatYoullDo.length > 0 && (

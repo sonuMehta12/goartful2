@@ -125,6 +125,7 @@ export interface RelatedEventInfo {
 }
 
 export interface WhatYoullDoItem {
+  id: string;
   title: string;
   description: string;
   image?: ImageAsset;

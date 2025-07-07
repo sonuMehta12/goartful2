@@ -202,6 +202,7 @@ export const EVENTS_DATA: Event[] = [
   ageRequirement: "All Ages Welcome",
   whatYoullDo: [
     {
+      id: '33443',
       title: "The Ritual of Creation",
       description:
         "Engage in almost-ritualistic workshops where community members collaboratively decide on the themes and imagery that will represent their collective experience. This is not a top-down process.",
@@ -211,6 +212,7 @@ export const EVENTS_DATA: Event[] = [
       },
     },
     {
+      id: '343',
       title: "Paint with Purpose",
       description:
         "Work hand-in-hand with leading street artists. Whether you've painted your whole life or never held a brush, your contribution is vital. This is a truly participative process where the community becomes the artist.",
@@ -220,6 +222,7 @@ export const EVENTS_DATA: Event[] = [
       },
     },
     {
+      id: '43',
       title: "Artist Dialogues: The Fearless Methodology",
       description:
         "Sit with the artists and hear their stories. Understand their 'Fearless Methodology' and learn how beauty can be a powerful strategic tool for standing for something positive in the world.",
@@ -229,6 +232,7 @@ export const EVENTS_DATA: Event[] = [
       },
     },
     {
+      id: '343',
       title: "The Unveiling Celebration",
       description:
         "At the end of the 11 days, join a community celebration to unveil the finished mural—a testament to the stories, struggles, and resilience of the people who created it.",
@@ -516,33 +520,46 @@ export const EVENTS_DATA: Event[] = [
   attendeeMoments: null,
   skillLevel: "Everyone Welcome",
   ageRequirement: "18+",
+
+
   whatYoullDo: [
     {
-      title: "Musical Journeys: From Dawn to Dusk",
-      description:
-        "Witness diverse musical performances, from meditative sunrise ragas that greet the day to folk-fusion afternoons and electrifying main stage acts that light up the night.",
-      image: {
-        url: "https://images.unsplash.com/photo-1546057248-938bagn5a72e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        alt: "A band performing on a brightly lit stage to an energetic crowd.",
+      id: "workshop-1",
+      image:  {
+        url: "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1751877340/image_11_pvqzqm.png",
+        alt: "img",
       },
+      title: "Poetry & Dance",
+      description: "Live poetry slams, storytelling, and mesmerizing dance",
+    },
+   
+    {
+      id: "artist-1",
+      image: {
+        url: "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1751877338/image_10_vnsdbj.png",
+        alt: "image2"
+      },
+      title: "Musical Journeys",
+      description: "From sunrise ragas to electrifying night performances",
+    },
+   
+    {
+      id: "venue-1",
+      image: {
+        url: "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1751877339/image_12_iwek0z.png",
+        alt: "image 3"
+      },
+      title: "Live Art Creation",
+      description: "Hands-on workshops and collaborative community murals",
     },
     {
-      title: "The Spoken & The Seen: Poetry & Dance",
-      description:
-        "Engage with the soul of Sangam in intimate settings. Experience the raw power of live poetry slams, immersive storytelling sessions, and mesmerizing dance performances.",
+      id: "community-1",
       image: {
-        url: "https://images.unsplash.com/photo-1557426895-2f619a9a3d46?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        alt: "A performer reading poetry passionately into a microphone on a dimly lit stage.",
+        url: "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1751877340/image_13_y6mzj2.png",
+        alt: "image 4"
       },
-    },
-    {
-      title: "Canvas of Community: Live Art Creation",
-      description:
-        "Unleash your own creativity. Participate in hands-on workshops, including the mindful art of Suminagashi, and leave your mark on a collaborative community mural.",
-      image: {
-        url: "https://images.unsplash.com/photo-1569172122301-bc5008bc09c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        alt: "A person focused on a canvas during a vibrant, creative painting workshop.",
-      },
+      title: "Canvas of Community",
+      description: "Unleash creativity through mindful art and Suminagashi",
     },
   ],
   goodToKnow: [
@@ -848,6 +865,7 @@ export const EVENTS_DATA: Event[] = [
     ageRequirement: "16+",
     whatYoullDo: [
       {
+        id: 'ew',
         title: "The Stillness",
         description:
           "Begin with a welcome tea ceremony and learn about the philosophy of Suminagashi and Wabi-Sabi. Engage in guided meditation to enter a state of mindful awareness and prepare your mind for the creative journey ahead.",
@@ -857,6 +875,7 @@ export const EVENTS_DATA: Event[] = [
         },
       },
       {
+        id: '34',
         title: "The Flow",
         description:
           "Learn to 'kiss' the water surface with ink-loaded brushes, creating concentric rings that bloom like ripples. Master breath control and gentle vibrations to guide ink into mesmerizing patterns. Practice the ancient techniques with premium Sumi inks.",
@@ -866,6 +885,7 @@ export const EVENTS_DATA: Event[] = [
         },
       },
       {
+        id: "45",
         title: "The Capture",
         description:
           "Master the delicate art of laying absorbent paper onto the water to capture your floating designs. Learn timing, pressure, and lifting techniques to create perfect prints. Create multiple pieces with different color combinations.",
@@ -875,6 +895,7 @@ export const EVENTS_DATA: Event[] = [
         },
       },
       {
+        id: "34",
         title: "Reflection & Tea: Integration (15 mins)",
         description:
           "Conclude with a mindful tea session while your artwork dries. Share your experience with fellow participants and receive guidance on incorporating mindfulness practices into daily life. Package your creations for safekeeping.",
@@ -1189,6 +1210,7 @@ export const EVENTS_DATA: Event[] = [
     ageRequirement: "All Ages",
     whatYoullDo: [
       {
+        id: '343',
         title: "Welcome & Theme Immersion (Approx. 15-20 mins)",
         description:
           "Enjoy a welcome tea and brief introductions, followed by a guided breathing exercise to shift from a work mindset to a creative one, and an overview of the therapeutic painting process.",
@@ -1198,6 +1220,7 @@ export const EVENTS_DATA: Event[] = [
         },
       },
       {
+        id: "343",
         title: "Mindful Art Creation (75 minutes)",
         description:
           "Experience color meditation to explore your emotional landscape, engage in mood mapping to visually express your feelings, and dive into intuitive painting to capture your summer mood without overthinking.",
@@ -1207,6 +1230,7 @@ export const EVENTS_DATA: Event[] = [
         },
       },
       {
+        id: "434",
         title: "Share & Connect (20 minutes)",
         description:
           "Join an optional sharing circle to discuss your creative process, witness others' artistic expressions and stories, and build meaningful connections through vulnerability and authenticity.",
@@ -1216,6 +1240,7 @@ export const EVENTS_DATA: Event[] = [
         },
       },
       {
+        id: "45",
         title: "Your Artful Takeaway:  Nourish & Celebrate (10 minutes)",
         description:
           "Enjoy Bikanervala’s menu with ₹250 included per person, pack your artwork as a keepsake of your inner journey, and leave with your unique creation, a lighter spirit, and new connections.",
@@ -1455,6 +1480,7 @@ export const EVENTS_DATA: Event[] = [
     ageRequirement: "All Ages (Children under 16 with adult supervision)",
     whatYoullDo: [
       {
+        id: '4334',
         title: "Welcome & Exhibition Overview (15 minutes)",
         description:
           "Begin with a curator-led introduction to the exhibition's themes and artists. Receive a detailed gallery map and insights into the conceptual framework connecting the three distinct practices.",
@@ -1464,6 +1490,7 @@ export const EVENTS_DATA: Event[] = [
         },
       },
       {
+        id: '34',
         title:
           "Tirthraj Sinh Zala: Neelantara - A Mythic Blue Journey (45 minutes)",
         description:
@@ -1474,6 +1501,7 @@ export const EVENTS_DATA: Event[] = [
         },
       },
       {
+        id: '34',
         title: "Abhishek Pandey: Memory Fragments (30 minutes)",
         description:
           "Engage with Pandey's mixed-media installations that reconstruct familial and collective memories, inviting viewers to consider how personal histories shape identity formation.",
@@ -1483,6 +1511,7 @@ export const EVENTS_DATA: Event[] = [
         },
       },
       {
+        id: 'de4',
         title: "Farwa Moledina: Psychedelic Repetitions (30 minutes)",
         description:
           "Experience Moledina's hypnotic works that use repetitive patterns and vibrant colors to explore the cyclical nature of cultural transmission and transformation.",
@@ -1492,6 +1521,7 @@ export const EVENTS_DATA: Event[] = [
         },
       },
       {
+        id: 'e34',
         title: "Reflection & Discussion (15 minutes)",
         description:
           "Conclude your visit in the dedicated reflection space where you can journal your thoughts, participate in guided discussions, or simply contemplate the themes explored.",

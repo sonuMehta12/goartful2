@@ -1,7 +1,7 @@
 import { Event } from "@/lib/types/event";
 // Import the refined section components (we'll create/refactor these next)
 import EventDescriptionHostVenue from "./EventDescriptionHostVenue";
-import EventWhatYoullDo from "./WhatYoullDo"; // Assuming this is a client component
+// import EventWhatYoullDo from "./WhatYoullDo"; // Assuming this is a client component
 import EventLogistics from "./EventLogistics"; // Assuming this is a client component
 import EventMomentsCarousel from "./EventMomentsCarousel"; // Assuming it's a client component
 import EventReviewsClient from "./EventReviewsClient"; // Assuming this is a client component
@@ -41,9 +41,9 @@ export default function EventMainContent({ event }: EventMainContentProps) {
       <EventDescriptionHostVenue event={event} />
 
       {/* What You'll Do Section */}
-      {event.whatYoullDo && event.whatYoullDo.length > 0 && (
+      {/* {event.whatYoullDo && event.whatYoullDo.length > 0 && (
         <EventWhatYoullDo items={event.whatYoullDo} />
-      )}
+      )} */}
 
       {/* Logistics: Highlights, Materials, What to Bring/Wear, Prerequisites */}
       <EventLogistics event={event} />

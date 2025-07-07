@@ -110,12 +110,6 @@ function ArtistIntroCarousel({ host, slides }: ArtistIntroCarouselProps) {
     };
   }, [emblaApi]);
 
-  // Group images in pairs for dual display
-  const groupedImages = [];
-  for (let i = 0; i < slides.length; i += 2) {
-    groupedImages.push(slides.slice(i, i + 2));
-  }
-
   // If no carousel images, show placeholder
   if (!isClient || slides.length === 0) {
     return (
@@ -153,41 +147,35 @@ function ArtistIntroCarousel({ host, slides }: ArtistIntroCarouselProps) {
       <div className="relative">
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex">
-            {groupedImages.map((imageGroup, slideIndex) => (
-              <div key={slideIndex} className="flex-[0_0_100%] min-w-0">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-4">
-                  {imageGroup.map((slide, imageIndex) => (
-                    <div
-                      key={slide.id}
-                      className="group space-y-4"
-                    >
-                      {/* 1:1 Image Container */}
-                      <div className="relative aspect-square overflow-hidden rounded-2xl bg-gray-100 group-hover:shadow-lg transition-all duration-300">
-                        <Image
-                          src={slide.image.url}
-                          alt={slide.image.alt || slide.title}
-                          fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-300"
-                          sizes="(max-width: 768px) 100vw, 50vw"
-                        />
-                        
-                        {/* Subtle hover overlay for interactivity */}
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300" />
-                        
-                       
-                      </div>
-                      
-                      {/* Content Below Image */}
-                      <div className="space-y-2 text-center md:text-left">
-                        <h4 className="text-xl font-semibold text-gray-900 group-hover:text-primary transition-colors duration-200">
-                          {slide.title}
-                        </h4>
-                        <p className="text-gray-600 leading-relaxed">
-                          {slide.description}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
+            {slides.map((slide, slideIndex) => (
+              <div 
+                key={slide.id} 
+                className="flex-[0_0_70%] min-w-0 md:flex-[0_0_50%] px-2 md:px-4"
+              >
+                <div className="space-y-4">
+                  {/* 1:1 Image Container */}
+                  <div className="relative aspect-square overflow-hidden rounded-2xl bg-gray-100 group-hover:shadow-lg transition-all duration-300">
+                    <Image
+                      src={slide.image.url}
+                      alt={slide.image.alt || slide.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      sizes="(max-width: 768px) 70vw, 50vw"
+                    />
+                    
+                    {/* Subtle hover overlay for interactivity */}
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300" />
+                  </div>
+                  
+                  {/* Content Below Image */}
+                  <div className="space-y-2 text-center md:text-left">
+                    <h4 className="text-xl font-semibold text-gray-900 group-hover:text-primary transition-colors duration-200">
+                      {slide.title}
+                    </h4>
+                    <p className="text-gray-600 leading-relaxed">
+                      {slide.description}
+                    </p>
+                  </div>
                 </div>
               </div>
             ))}
@@ -195,25 +183,25 @@ function ArtistIntroCarousel({ host, slides }: ArtistIntroCarouselProps) {
         </div>
 
         {/* Navigation Buttons */}
-        {emblaApi && groupedImages.length > 1 && (
+        {emblaApi && slides.length > 1 && (
           <>
             <Button
               variant="outline"
               size="icon"
-              className="absolute left-4 top-1/2 -translate-y-1/2 -translate-x-2 bg-white/90 backdrop-blur-sm hover:bg-white shadow-lg border-gray-200 z-10 rounded-full w-12 h-12"
+              className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 -translate-x-2 bg-white/90 backdrop-blur-sm hover:bg-white shadow-lg border-gray-200 z-10 rounded-full w-10 h-10 md:w-12 md:h-12"
               onClick={scrollPrev}
               aria-label="Previous activities"
             >
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft className="w-4 h-4 md:w-5 md:h-5" />
             </Button>
             <Button
               variant="outline"
               size="icon"
-              className="absolute right-4 top-1/2 -translate-y-1/2 translate-x-2 bg-white/90 backdrop-blur-sm hover:bg-white shadow-lg border-gray-200 z-10 rounded-full w-12 h-12"
+              className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 translate-x-2 bg-white/90 backdrop-blur-sm hover:bg-white shadow-lg border-gray-200 z-10 rounded-full w-10 h-10 md:w-12 md:h-12"
               onClick={scrollNext}
               aria-label="Next activities"
             >
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />
             </Button>
           </>
         )}
@@ -226,12 +214,12 @@ function ArtistIntroCarousel({ host, slides }: ArtistIntroCarouselProps) {
             {slides.map((slide, index) => (
               <button
                 key={slide.id}
-                onClick={() => scrollTo(Math.floor(index / 2))}
+                onClick={() => scrollTo(index)}
                 className={cn(
                   "relative flex-shrink-0 rounded-lg overflow-hidden transition-all duration-300 ease-in-out transform hover:scale-105",
-                  "w-12 h-12 sm:w-14 sm:h-14", // Smaller thumbnail size
-                  Math.floor(index / 2) === selectedIndex
-                    ? "scale-110"
+                  "w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14", // Responsive thumbnail size
+                  index === selectedIndex
+                    ? "scale-110 ring-2 ring-blue-500"
                     : "opacity-70 hover:opacity-100"
                 )}
                 aria-label={`Activity ${index + 1}: ${slide.title}`}
@@ -250,8 +238,8 @@ function ArtistIntroCarousel({ host, slides }: ArtistIntroCarouselProps) {
                 </div>
                 
                 {/* Active indicator overlay */}
-                {Math.floor(index / 2) === selectedIndex && (
-                  <div className="absolute " />
+                {index === selectedIndex && (
+                  <div className="absolute inset-0 bg-blue-500/20 rounded-lg" />
                 )}
               </button>
             ))}

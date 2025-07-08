@@ -699,7 +699,7 @@ export const EVENTS_DATA: Event[] = [
         tagline: "Master of traditional Japanese arts and mindfulness practices",
         title: "Suminagashi Master & Mindfulness Instructor",
         avatar: {
-          url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
+          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSX5KS_GZg9np5n3EyRga8AvF_6nqembwan1t7iW933YIx1Hd-3XByaiAHO_C39_HbaE98&usqp=CAU",
           alt: "Kenji Nakamura - Suminagashi Master",
         },
         verified: true,

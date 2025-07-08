@@ -121,27 +121,13 @@ export const EVENTS_DATA: Event[] = [
       title: "Lead Artist & Methodologist",
       tagline: "My art is my protest. Beauty is my strategy.",
       avatar: {
-        url: "https://images.unsplash.com/photo-1557053910-d9eadeed1c58?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
+        url: "https://images.livemint.com/rf/Image-621x414/LiveMint/Period2/2016/12/14/Photos/Multimedia/tanya-U101411283090xC--621x414@LiveMint.jpg",
         alt: "Aafreen Khan, a confident female artist.",
       },
       verified: true,
       bio: "Aafreen is a globally recognized street artist whose work focuses on amplifying the voices of women and marginalized communities. Her 'Fearless Methodology' uses collaborative art-making as a tool for building solidarity and demanding social change.",
       hostRating: 4.9,
       hostReviewCount: 78,
-    },
-    {
-      id: "h10",
-      name: "Mateo Vargas",
-      title: "International Artist & Storyteller",
-      tagline: "Every wall has a story waiting to be told.",
-      avatar: {
-        url: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
-        alt: "Mateo Vargas, an artist with a thoughtful expression.",
-      },
-      verified: true,
-      bio: "Hailing from Bogotá, Colombia, Mateo specializes in large-scale narrative murals that transform urban landscapes. He believes in a 'ritualistic' approach to creation, where deep listening and community dialogue form the foundation of every brushstroke.",
-      hostRating: 4.8,
-      hostReviewCount: 112,
     },
   ],
   venue: {
@@ -205,7 +191,7 @@ export const EVENTS_DATA: Event[] = [
       id: '33443',
       title: "The Ritual of Creation",
       description:
-        "Engage in almost-ritualistic workshops where community members collaboratively decide on the themes and imagery that will represent their collective experience. This is not a top-down process.",
+        "Co-create themes in a ritual of collective imagination.",
       image: {
         url: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
         alt: "A diverse group of people sitting in a circle, engaged in a deep and collaborative discussion.",
@@ -215,9 +201,9 @@ export const EVENTS_DATA: Event[] = [
       id: '343',
       title: "Paint with Purpose",
       description:
-        "Work hand-in-hand with leading street artists. Whether you've painted your whole life or never held a brush, your contribution is vital. This is a truly participative process where the community becomes the artist.",
+        "Paint bold strokes with Delhi’s fearless street artists.",
       image: {
-        url: "https://images.unsplash.com/photo-1558214323-47317d616345?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        url: "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1751959690/image_22_lpqoiq.png",
         alt: "Close-up of a person's hand, holding a brush, painting a bold yellow stroke on a large wall.",
       },
     },
@@ -225,9 +211,9 @@ export const EVENTS_DATA: Event[] = [
       id: '43',
       title: "Artist Dialogues: The Fearless Methodology",
       description:
-        "Sit with the artists and hear their stories. Understand their 'Fearless Methodology' and learn how beauty can be a powerful strategic tool for standing for something positive in the world.",
+        "Hear fearless stories from artists who paint with purpose.",
       image: {
-        url: "https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        url: "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1751959690/image_18_utschf.png",
         alt: "An artist speaking passionately to an engaged and listening audience in an informal setting.",
       },
     },
@@ -235,9 +221,9 @@ export const EVENTS_DATA: Event[] = [
       id: '343',
       title: "The Unveiling Celebration",
       description:
-        "At the end of the 11 days, join a community celebration to unveil the finished mural—a testament to the stories, struggles, and resilience of the people who created it.",
+        "Celebrate the mural and the voices behind its colors..",
       image: {
-        url: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        url: "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1751959691/image_21_kido9k.png",
         alt: "A joyful community celebration in front of a massive, newly completed mural.",
       },
     },
@@ -351,11 +337,11 @@ export const EVENTS_DATA: Event[] = [
       status: "available",
     },
   ],
-  price: 7500, // Price for a 3-day pass
+  price: 3550, // Price for a 3-day pass
   currency: "INR",
   isFree: false,
-  capacity: 2000,
-  ticketsLeft: 850,
+  capacity: 500,
+  ticketsLeft: 289,
   heroImage: {
     url: "https://res.cloudinary.com/dv9mzq2bv/image/upload/v1751794109/image_9_yrudgw.png",
     alt: "A vibrant music festival stage lit up at night against a historic Indian backdrop.",
@@ -399,7 +385,7 @@ export const EVENTS_DATA: Event[] = [
       title: "Founder & Artistic Director",
       tagline: "Curating conversations between tradition and tomorrow.",
       avatar: {
-        url: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
+        url: "https://images.livemint.com/rf/Image-621x414/LiveMint/Period2/2016/12/14/Photos/Multimedia/tanya-U101411283090xC--621x414@LiveMint.jpg",
         alt: "Ananya Rao, Artistic Director of Sangam",
       },
       verified: true,

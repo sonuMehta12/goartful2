@@ -89,7 +89,7 @@ export default function AllocatePage() {
   }
 
   return (
-    <div className="mx-auto w-full max-w-5xl px-4">
+    <div className="mx-auto w-full max-w-3xl px-4">
       <div className="mt-6 border border-gray-200 rounded-2xl bg-white shadow-sm p-6">
       <div className="flex items-center justify-between mb-4">
         <Link

@@ -15,21 +15,21 @@ interface CandidateCardProps {
 
 // Move color maps outside component to avoid recreation on every render
 const COLOR_MAP = {
-  jdu: "bg-jdu",
+  jdu: "bg-orange-500",
   rjd: "bg-rjd",
-  jsp: "bg-jsp",
+  jsp: "bg-yellow-500", // Changed to yellow
 } as const;
 
 const COLOR_HOVER_MAP = {
-  jdu: "hover:bg-jdu/90",
+  jdu: "hover:bg-orange-600",
   rjd: "hover:bg-rjd/90",
-  jsp: "hover:bg-jsp/90",
+  jsp: "hover:bg-yellow-600", // Changed hover to darker yellow
 } as const;
 
 const COLOR_BADGE_MAP = {
-  jdu: "bg-jdu/10 text-jdu",
+  jdu: "bg-orange-500/10 text-orange-600",
   rjd: "bg-rjd/10 text-rjd",
-  jsp: "bg-jsp/10 text-jsp",
+  jsp: "bg-yellow-500/10 text-yellow-600", // Changed badge to yellow
 } as const;
 
 export default function CandidateCard({ candidate }: CandidateCardProps) {
@@ -44,15 +44,7 @@ export default function CandidateCard({ candidate }: CandidateCardProps) {
 
   return (
     <Card className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-card">
-      <div
-        className={cn(
-          "relative h-60 flex items-center justify-center",
-          // subtle colored background per candidate
-          candidate.color === "jdu" && "bg-jdu/15",
-          candidate.color === "rjd" && "bg-rjd/15",
-          candidate.color === "jsp" && "bg-jsp/15"
-        )}
-      >
+      <div className="relative h-60 flex items-center justify-center bg-gray-50">
         {!imageError ? (
           <Image
             src={candidate.avatar}

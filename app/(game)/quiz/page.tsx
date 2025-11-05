@@ -123,7 +123,7 @@ export default function QuizPage() {
             <CardHeader>
               <div className="aspect-video bg-muted rounded-lg overflow-hidden">
                 <Image
-                  src="/images/india-map-night.jpg"
+                  src="/imgs/Bihar_district_map.png"
                   alt="India Map"
                   width={393}
                   height={221}

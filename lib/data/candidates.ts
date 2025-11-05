@@ -9,7 +9,7 @@ export const candidates: Candidate[] = [
     partyShort: "JD-U (NDA)",
     description: "Development Record, Women Support",
     slogan: "phir se nda sarkar",
-    avatar: "/avatars/nitish-kumar.png",
+    avatar: "imgs/nitsh_hero.png",
     color: "jdu",
   },
   {
@@ -19,7 +19,7 @@ export const candidates: Candidate[] = [
     partyShort: "RJD (Mahagathbandhan)",
     description: "Youth Energy, Job Promise",
     slogan: "har ghar ek naukri",
-    avatar: "/avatars/tejashwi-yadav.png",
+    avatar: "imgs/tejashwi_hero.png",
     color: "rjd",
   },
   {
@@ -29,7 +29,7 @@ export const candidates: Candidate[] = [
     partyShort: "Jan Suraaj Party",
     description: "Fresh Face, Strategy Genius",
     slogan: "Sahi loga, sahi soca aura sāmūhika prayāsa",
-    avatar: "/avatars/prashant-kishor.png",
+    avatar: "imgs/pk_hero.png",
     color: "jsp",
   },
 ];
